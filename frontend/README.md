@@ -325,5 +325,3 @@ B.Tech CSE — Artificial Intelligence & Data Science
 If you like this project:
 
 ⭐ Star the repository
-🍴 Fork it
-🛠 Build something cool
