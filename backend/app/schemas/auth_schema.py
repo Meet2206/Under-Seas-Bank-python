@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import Annotated, Optional
 
-from pydantic import BaseModel, EmailStr, constr
+from pydantic import BaseModel, EmailStr, StringConstraints
 
 
-MPIN = constr(pattern=r"^\d{4}$")
-PHONE = constr(pattern=r"^\d{10}$")
-OTP = constr(pattern=r"^\d{6}$")
+MPIN = Annotated[str, StringConstraints(pattern=r"^\d{4}$")]
+PHONE = Annotated[str, StringConstraints(pattern=r"^\d{10}$")]
+OTP = Annotated[str, StringConstraints(pattern=r"^\d{6}$")]
 
 
 class RegisterRequest(BaseModel):

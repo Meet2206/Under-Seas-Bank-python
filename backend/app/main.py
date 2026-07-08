@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+import traceback
+import logging
+from fastapi import Request
+from fastapi.responses import JSONResponse
 
 from app.config import get_settings
 from app.database import engine, Base
@@ -13,6 +17,7 @@ from app.routes.creditcard_routes import router as credit_router
 from app.routes.analytics_routes import router as analytics_router
 from app.routes.beneficiary_routes import router as beneficiary_router
 
+logger = logging.getLogger(__name__)
 settings = get_settings()
 
 
@@ -66,6 +71,38 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ── Global exception handler ──────────────────────────────────────────────────
+# FastAPI's CORSMiddleware does NOT attach CORS headers to unhandled 500
+# responses. This handler ensures every error response includes the correct
+# Access-Control-Allow-Origin header so the browser sees the real status code
+# instead of a misleading CORS block.
+# ─────────────────────────────────────────────────────────────────────────────
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Catch-all handler: logs the traceback and returns a proper 500 with CORS headers."""
+
+    logger.error("Unhandled exception: %s", traceback.format_exc())
+
+    origin = request.headers.get("origin", "")
+    allowed = settings.cors_origins_list
+
+    # Mirror back the origin if it is in the allow-list; otherwise omit header.
+    cors_origin = origin if origin.rstrip("/") in [o.rstrip("/") for o in allowed] else ""
+
+    headers = {}
+    if cors_origin:
+        headers["Access-Control-Allow-Origin"] = cors_origin
+        headers["Access-Control-Allow-Credentials"] = "true"
+        headers["Access-Control-Allow-Methods"] = "*"
+        headers["Access-Control-Allow-Headers"] = "*"
+
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error. Please try again later."},
+        headers=headers,
+    )
 
 
 @app.get("/", tags=["Health"])

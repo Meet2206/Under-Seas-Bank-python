@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     DEBUG: bool = False
     APP_NAME: str = "BankingSystem"
     APP_VERSION: str = "1.0.0"
-    CORS_ORIGINS: str = "http://127.0.0.1:5173,http://localhost:5173"
+    CORS_ORIGINS: str = "http://127.0.0.1:5173,http://localhost:5173,https://underseas-bank.vercel.app"
 
     @property
     def cors_origins_list(self) -> List[str]:
