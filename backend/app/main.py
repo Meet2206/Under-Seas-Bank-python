@@ -19,7 +19,22 @@ settings = get_settings()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup and shutdown lifecycle."""
-    Base.metadata.create_all(bind=engine)
+    import time
+    from sqlalchemy.exc import OperationalError
+    
+    # Try connecting to the database with retries to prevent startup crash if database is booting
+    retries = 5
+    while retries > 0:
+        try:
+            Base.metadata.create_all(bind=engine)
+            print("Database tables verified/created successfully!")
+            break
+        except OperationalError as e:
+            retries -= 1
+            print(f"Database not ready yet ({e}). Retrying in 2 seconds... ({retries} retries left)")
+            time.sleep(2)
+    else:
+        print("WARNING: Could not connect to database on startup. Proceeding anyway.")
 
     print(f"{settings.APP_NAME} v{settings.APP_VERSION} running")
     print("Docs available at /docs")
@@ -38,10 +53,16 @@ app = FastAPI(
     redoc_url="/redoc" if settings.DEBUG else None,
 )
 
+# FastAPI CORSMiddleware raises RuntimeError if "*" is in allow_origins while allow_credentials is True
+origins = settings.cors_origins_list
+allow_credentials = True
+if "*" in origins or not origins:
+    allow_credentials = False
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
-    allow_credentials=True,
+    allow_origins=origins if origins else ["*"],
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
