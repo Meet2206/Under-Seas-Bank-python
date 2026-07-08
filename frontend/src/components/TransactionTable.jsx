@@ -39,42 +39,48 @@ export default function TransactionTable({ accountId }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.slice(0, 5).map((t) => (
-                        <tr key={t.id} style={{ background: "var(--gray-50)", borderRadius: "12px", transition: "all 0.2s ease" }}>
-                            <td style={{ border: "none", borderRadius: "12px 0 0 12px", padding: "12px 16px" }}>
-                                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                                    <div style={{ 
-                                        width: "40px", 
-                                        height: "40px", 
-                                        borderRadius: "50%", 
-                                        background: t.transaction_type === 'Deposit' ? '#ecfdf5' : '#fef2f2',
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center"
+                    {transactions.slice(0, 5).map((t) => {
+                        const isCredit = t.transaction_type?.toLowerCase() === 'deposit' || 
+                                         (t.transaction_type?.toLowerCase() === 'transfer' && t.to_account_id == accountId);
+                        return (
+                            <tr key={t.id} style={{ background: "var(--gray-50)", borderRadius: "12px", transition: "all 0.2s ease" }}>
+                                <td style={{ border: "none", borderRadius: "12px 0 0 12px", padding: "12px 16px" }}>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                                        <div style={{ 
+                                            width: "40px", 
+                                            height: "40px", 
+                                            borderRadius: "50%", 
+                                            background: isCredit ? '#ecfdf5' : '#fef2f2',
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center"
+                                        }}>
+                                            {isCredit ? (
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5"><path d="M7 13l5 5 5-5M12 18V6"/></svg>
+                                            ) : (
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2.5"><path d="M7 11l5-5 5 5M12 6v12"/></svg>
+                                            )}
+                                        </div>
+                                        <div>
+                                            <div style={{ fontWeight: "600", color: "var(--navy-900)", fontSize: "14px" }}>
+                                                {t.transaction_type ? t.transaction_type.charAt(0).toUpperCase() + t.transaction_type.slice(1) : ''}
+                                            </div>
+                                            <div style={{ fontSize: "11px", color: "var(--gray-400)" }}>Mar 18 • #{t.id.toString().slice(-4)}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style={{ border: "none", borderRadius: "0 12px 12px 0", padding: "12px 16px", textAlign: "right" }}>
+                                    <span style={{ 
+                                        fontWeight: "700", 
+                                        fontSize: "15px",
+                                        color: isCredit ? 'var(--success)' : 'var(--danger)'
                                     }}>
-                                        {t.transaction_type === 'Deposit' ? (
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5"><path d="M7 13l5 5 5-5M12 18V6"/></svg>
-                                        ) : (
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2.5"><path d="M7 11l5-5 5 5M12 6v12"/></svg>
-                                        )}
-                                    </div>
-                                    <div>
-                                        <div style={{ fontWeight: "600", color: "var(--navy-900)", fontSize: "14px" }}>{t.transaction_type}</div>
-                                        <div style={{ fontSize: "11px", color: "var(--gray-400)" }}>Mar 18 • #{t.id.toString().slice(-4)}</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style={{ border: "none", borderRadius: "0 12px 12px 0", padding: "12px 16px", textAlign: "right" }}>
-                                <span style={{ 
-                                    fontWeight: "700", 
-                                    fontSize: "15px",
-                                    color: t.transaction_type === 'Deposit' ? 'var(--success)' : 'var(--navy-900)'
-                                }}>
-                                    {t.transaction_type === 'Deposit' ? '+' : '-'}₹{t.amount.toLocaleString()}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
+                                        {isCredit ? '+' : '-'}₹{t.amount.toLocaleString()}
+                                    </span>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>

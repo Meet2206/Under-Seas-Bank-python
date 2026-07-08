@@ -252,19 +252,6 @@ export default function Login() {
 
                 {/* Feature cards */}
                 <div className="brand-features">
-
-                    <div className="brand-feature">
-                        <div className="brand-feature-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg>
-                        </div>
-                        <div className="brand-feature-content">
-                            <span>256-bit AES Encryption</span>
-                            <span className="brand-feature-desc">Military-grade data protection</span>
-                        </div>
-                    </div>
-
                     <div className="brand-feature">
                         <div className="brand-feature-icon">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -313,9 +300,7 @@ export default function Login() {
                 {/* Footer */}
                 <div className="brand-footer">
                     <div className="dot"></div>
-                    <span>System Status: Operational</span>
-                    <span>•</span>
-                    <span>v2.0.0</span>
+                    <span>v1.0.0</span>
                 </div>
 
                 {/* Animated ocean waves */}
@@ -360,15 +345,15 @@ export default function Login() {
                     <div className="auth-card-header">
                         <h2>
                             {activeTab === "login" ? "Welcome Back" :
-                             activeTab === "register" ? "Create Account" :
-                             "Verify Email"}
+                                activeTab === "register" ? "Create Account" :
+                                    "Verify Email"}
                         </h2>
                         <p>
                             {activeTab === "login"
                                 ? "Enter your credentials to access your account"
                                 : activeTab === "register"
-                                ? "Join Underseas Bank — it takes less than a minute"
-                                : `We sent a 6-digit OTP to ${verifyEmail}`}
+                                    ? "Join Underseas Bank — it takes less than a minute"
+                                    : `We sent a 6-digit OTP to ${verifyEmail}`}
                         </p>
                     </div>
 
@@ -647,31 +632,6 @@ export default function Login() {
                         </form>
 
                     )}
-
-
-                    {/* Security badges */}
-                    <div className="auth-security">
-                        <div className="security-badge">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg>
-                            Secure Session
-                        </div>
-                        <div className="security-badge">
-                            <svg viewBox="0 0 24 24">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                            </svg>
-                            AES-256
-                        </div>
-                        <div className="security-badge">
-                            <svg viewBox="0 0 24 24">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                            RBI Compliant
-                        </div>
-                    </div>
-
                 </div>
 
             </div>

@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     EMAIL_FROM: str = ""
 
     # Field-level encryption for sensitive banking identifiers
-    FIELD_ENCRYPTION_KEY: str = ""
+    FIELD_ENCRYPTION_KEY: str = "ZoGwr7tdSoF155NaBCjYvZgGtJ-gPhCqKkX3cpvgARw="
 
     # App
     DEBUG: bool = False

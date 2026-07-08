@@ -86,22 +86,28 @@ export default function Transactions() {
                             </tr>
                         </thead>
                         <tbody>
-                            {transactions.map((t) => (
-                                <tr key={t.id}>
-                                    <td style={{ fontFamily: "monospace", fontSize: "12px" }}>#{t.id.toString().padStart(6, '0')}</td>
-                                    <td>
-                                        <div style={{ fontWeight: "600", color: "var(--navy-900)" }}>{t.transaction_type}</div>
-                                        <span style={{ fontSize: "11px", color: "var(--gray-400)" }}>Underseas Digital Payment</span>
-                                    </td>
-                                    <td style={{ color: "var(--gray-500)", fontSize: "13px" }}>Mar 18, 2026</td>
-                                    <td style={{ textAlign: "right", fontWeight: "700", color: t.transaction_type === 'Deposit' ? 'var(--success)' : 'var(--navy-900)' }}>
-                                        {t.transaction_type === 'Deposit' ? '+' : '-'}₹{t.amount.toLocaleString()}
-                                    </td>
-                                    <td style={{ textAlign: "right" }}>
-                                        <span className="badge badge-success">Completed</span>
-                                    </td>
-                                </tr>
-                            ))}
+                            {transactions.map((t) => {
+                                const isCredit = t.transaction_type?.toLowerCase() === 'deposit' || 
+                                                 (t.transaction_type?.toLowerCase() === 'transfer' && t.to_account_id == accountId);
+                                return (
+                                    <tr key={t.id}>
+                                        <td style={{ fontFamily: "monospace", fontSize: "12px" }}>#{t.id.toString().padStart(6, '0')}</td>
+                                        <td>
+                                            <div style={{ fontWeight: "600", color: "var(--navy-900)" }}>
+                                                {t.transaction_type ? t.transaction_type.charAt(0).toUpperCase() + t.transaction_type.slice(1) : ''}
+                                            </div>
+                                            <span style={{ fontSize: "11px", color: "var(--gray-400)" }}>Underseas Digital Payment</span>
+                                        </td>
+                                        <td style={{ color: "var(--gray-500)", fontSize: "13px" }}>Mar 18, 2026</td>
+                                        <td style={{ textAlign: "right", fontWeight: "700", color: isCredit ? 'var(--success)' : 'var(--danger)' }}>
+                                            {isCredit ? '+' : '-'}₹{t.amount.toLocaleString()}
+                                        </td>
+                                        <td style={{ textAlign: "right" }}>
+                                            <span className="badge badge-success">Completed</span>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 )}
