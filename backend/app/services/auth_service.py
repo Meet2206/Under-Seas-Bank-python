@@ -62,13 +62,13 @@ def register_user(data, db: Session):
 def login_user(data, db: Session):
 
     user = db.query(User).filter(
-        User.phone_number == data.phone_number
+        User.email == data.email
     ).first()
 
     if not user:
         raise HTTPException(
             status_code=401,
-            detail="Invalid phone number or MPIN"
+            detail="Invalid email or MPIN"
         )
 
     if user.is_locked:
@@ -88,7 +88,7 @@ def login_user(data, db: Session):
 
         raise HTTPException(
             status_code=401,
-            detail="Invalid phone number or MPIN"
+            detail="Invalid email or MPIN"
         )
 
     user.failed_attempts = 0

@@ -1,32 +1,126 @@
 import { useState, useEffect } from "react"
 import MainLayout from "../layout/MainLayout"
-import { transferMoney, deposit, withdraw, getAccounts } from "../services/api"
+import { transferMoney, deposit, withdraw, getAccounts, getBeneficiaries, lookupAccountByNumber } from "../services/api"
 
 export default function Transfer() {
     const [accounts, setAccounts] = useState([])
+    const [beneficiaries, setBeneficiaries] = useState([])
     const [mode, setMode] = useState("transfer") // transfer, deposit, withdraw
     const [loading, setLoading] = useState(false)
 
     // Transfer fields
     const [fromAccount, setFromAccount] = useState("")
-    const [toAccount, setToAccount] = useState("")
+    const [toSelectionValue, setToSelectionValue] = useState("") // "own-<id>", "beneficiary-<accNum>", "manual"
+    const [toAccount, setToAccount] = useState("") // resolved ID
+    const [manualAccountNumber, setManualAccountNumber] = useState("")
     const [amount, setAmount] = useState("")
 
     // Deposit / Withdraw fields
     const [selectedAccount, setSelectedAccount] = useState("")
     const [dwAmount, setDwAmount] = useState("")
 
+    const loadData = async () => {
+        try {
+            const [accs, bens] = await Promise.all([
+                getAccounts(),
+                getBeneficiaries().catch(() => [])
+            ])
+            setAccounts(accs)
+            setBeneficiaries(bens)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
-        const load = async () => {
+        loadData()
+    }, [])
+
+    const handleToAccountSelection = async (val) => {
+        setToSelectionValue(val)
+        if (!val) {
+            setToAccount("")
+            return
+        }
+        if (val.startsWith("own-")) {
+            const accId = val.replace("own-", "")
+            setToAccount(accId)
+        } else if (val.startsWith("beneficiary-")) {
+            const accNum = val.replace("beneficiary-", "")
+            setLoading(true)
             try {
-                const data = await getAccounts()
-                setAccounts(data)
+                const resolved = await lookupAccountByNumber(accNum)
+                setToAccount(resolved.id)
             } catch (err) {
-                console.log(err)
+                alert("Could not resolve beneficiary account ID: " + err.message)
+                setToAccount("")
+            } finally {
+                setLoading(false)
+            }
+        } else if (val === "manual") {
+            setToAccount("")
+        }
+    }
+
+    const handleTransferSubmit = async () => {
+        let finalToAccountId = toAccount
+
+        if (toSelectionValue === "manual") {
+            if (!manualAccountNumber) {
+                alert("Please enter a destination account number")
+                return
+            }
+            setLoading(true)
+            try {
+                const resolved = await lookupAccountByNumber(manualAccountNumber)
+                finalToAccountId = resolved.id
+            } catch (err) {
+                alert("Recipient account number not found: " + err.message)
+                setLoading(false)
+                return
             }
         }
-        load()
-    }, [])
+
+        if (!fromAccount) {
+            alert("Please select a source account")
+            setLoading(false)
+            return
+        }
+        if (!finalToAccountId) {
+            alert("Please select a destination account")
+            setLoading(false)
+            return
+        }
+        if (Number(fromAccount) === Number(finalToAccountId)) {
+            alert("Cannot transfer to the same account")
+            setLoading(false)
+            return
+        }
+        if (!amount || Number(amount) <= 0) {
+            alert("Please enter a valid transfer amount")
+            setLoading(false)
+            return
+        }
+
+        setLoading(true)
+        try {
+            await transferMoney({
+                from_account_id: Number(fromAccount),
+                to_account_id: Number(finalToAccountId),
+                amount: Number(amount)
+            })
+            alert("Transfer Successful!")
+            setAmount("")
+            setManualAccountNumber("")
+            setToSelectionValue("")
+            setToAccount("")
+            await loadData()
+        } catch (err) {
+            alert(err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const handleAction = async (actionFn, fields) => {
         setLoading(true)
@@ -37,8 +131,7 @@ export default function Transfer() {
             setAmount("")
             setDwAmount("")
             // Refresh accounts
-            const data = await getAccounts()
-            setAccounts(data)
+            await loadData()
         } catch (err) {
             alert(err.message)
         } finally {
@@ -85,14 +178,43 @@ export default function Transfer() {
                                 </select>
                             </div>
                             <div className="form-field">
-                                <label>Recipient Account ID</label>
-                                <input
-                                    type="number"
-                                    placeholder="Enter 10-digit ID"
-                                    value={toAccount}
-                                    onChange={(e) => setToAccount(e.target.value)}
-                                />
+                                <label>To Account</label>
+                                <select value={toSelectionValue} onChange={(e) => handleToAccountSelection(e.target.value)}>
+                                    <option value="">Select Destination Account</option>
+                                    {accounts.filter(acc => acc.id !== Number(fromAccount)).length > 0 && (
+                                        <optgroup label="My Other Accounts">
+                                            {accounts
+                                                .filter(acc => acc.id !== Number(fromAccount))
+                                                .map(acc => (
+                                                    <option key={acc.id} value={`own-${acc.id}`}>{acc.account_type} - {acc.account_number} (₹{acc.balance})</option>
+                                                ))
+                                            }
+                                        </optgroup>
+                                    )}
+                                    {beneficiaries.length > 0 && (
+                                        <optgroup label="My Beneficiaries">
+                                            {beneficiaries.map(b => (
+                                                <option key={b.id} value={`beneficiary-${b.account_number}`}>{b.name} ({b.bank_name})</option>
+                                            ))}
+                                        </optgroup>
+                                    )}
+                                    <option value="manual">Enter Account Number Manually...</option>
+                                </select>
                             </div>
+
+                            {toSelectionValue === "manual" && (
+                                <div className="form-field">
+                                    <label>Recipient Account Number</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter recipient account number"
+                                        value={manualAccountNumber}
+                                        onChange={(e) => setManualAccountNumber(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            )}
+
                             <div className="form-field">
                                 <label>Amount (INR)</label>
                                 <input
@@ -103,7 +225,7 @@ export default function Transfer() {
                                 />
                             </div>
                             <button
-                                onClick={() => handleAction(transferMoney, { from_account_id: Number(fromAccount), to_account_id: Number(toAccount), amount: Number(amount) })}
+                                onClick={handleTransferSubmit}
                                 style={{ width: "100%", justifyContent: "center" }}
                                 disabled={loading}
                             >
@@ -143,6 +265,7 @@ export default function Transfer() {
                         </>
                     )}
                 </div>
+
 
                 <div className="panel">
                     <h3>Quick Tips</h3>

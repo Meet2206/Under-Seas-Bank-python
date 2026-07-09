@@ -10,12 +10,15 @@ from app.schemas.auth_schema import (
     VerifyPhoneOTPRequest,
     SendEmailOTPRequest,
     VerifyEmailOTPRequest,
+    ResetMpinRequest,
 )
 from app.services.auth_service import register_user, login_user
 from app.services.otp_service import send_phone_otp, send_email_otp, verify_otp
 from app.services.email_service import get_email_status, test_brevo_connection
 from app.middleware.auth_middleware import get_current_user
 from app.models.user_model import User
+from app.utils.password_hash import hash_password
+
 
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
@@ -139,3 +142,29 @@ def verify_email_endpoint(
         db.commit()
 
     return {"message": "Email verified successfully", "verified": True}
+
+
+@router.post("/reset-mpin")
+def reset_mpin_endpoint(
+    data: ResetMpinRequest,
+    db: Session = Depends(get_db),
+):
+    """Verify OTP and update user's MPIN (Forget Password flow)."""
+    # 1. Verify OTP
+    if not verify_otp(data.email, data.otp):
+        raise HTTPException(status_code=400, detail="Invalid or expired OTP")
+
+    # 2. Find User
+    user = db.query(User).filter(User.email == data.email).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Registered email not found")
+
+    # 3. Update MPIN and reset failed login attempts / lock status
+    user.mpin_hash = hash_password(data.new_mpin)
+    user.failed_attempts = 0
+    user.is_locked = False
+    
+    db.commit()
+
+    return {"message": "MPIN reset successfully. You can now log in.", "success": True}
+

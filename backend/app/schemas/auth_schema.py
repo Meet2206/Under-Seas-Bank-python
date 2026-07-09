@@ -16,8 +16,14 @@ class RegisterRequest(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    phone_number: PHONE
+    email: EmailStr
     mpin: MPIN
+
+
+class ResetMpinRequest(BaseModel):
+    email: EmailStr
+    otp: OTP
+    new_mpin: MPIN
 
 
 class AuthResponse(BaseModel):

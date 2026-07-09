@@ -60,6 +60,21 @@ export const login = async (data) => {
     return result
 }
 
+// RESET MPIN (Forget Password)
+export const resetMpin = async (data) => {
+    const res = await fetch(`${API}/auth/reset-mpin`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    const result = await res.json()
+    if (!res.ok) {
+        throw new Error(result.detail || "Reset failed")
+    }
+    return result
+}
+
+
 // REGISTER
 export const register = async (data) => {
 
@@ -103,6 +118,10 @@ export const getStatement = (accountId) =>
 // GET PASSBOOK
 export const getPassbook = (accountId) =>
     authFetch(`/accounts/passbook/${accountId}`)
+
+// LOOK UP ACCOUNT BY ACCOUNT NUMBER (for transfer dropdown)
+export const lookupAccountByNumber = (account_number) =>
+    authFetch(`/accounts/lookup?account_number=${encodeURIComponent(account_number)}`)
 
 
 // ═══════════════════════════════════

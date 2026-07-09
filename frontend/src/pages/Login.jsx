@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { login, register, sendEmailOTP, verifyEmailOTP } from "../services/api"
+import { login, register, sendEmailOTP, verifyEmailOTP, resetMpin } from "../services/api"
 
 import "./auth.css"
 
@@ -9,11 +9,11 @@ export default function Login() {
 
     const navigate = useNavigate()
 
-    // Tab state: "login" | "register" | "verify-otp"
+    // Tab state: "login" | "register" | "verify-otp" | "forgot-password" | "verify-reset-otp"
     const [activeTab, setActiveTab] = useState("login")
 
     // Login fields
-    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
     const [mpin, setMpin] = useState("")
     const [showMpin, setShowMpin] = useState(false)
 
@@ -23,6 +23,11 @@ export default function Login() {
     const [regPhone, setRegPhone] = useState("")
     const [regMpin, setRegMpin] = useState("")
     const [showRegMpin, setShowRegMpin] = useState(false)
+
+    // Forgot password / Reset fields
+    const [resetEmail, setResetEmail] = useState("")
+    const [newMpin, setNewMpin] = useState("")
+    const [showNewMpin, setShowNewMpin] = useState(false)
 
     // OTP verification fields
     const [otpDigits, setOtpDigits] = useState(["", "", "", "", "", ""])
@@ -50,7 +55,7 @@ export default function Login() {
         setLoading(true)
 
         try {
-            const data = await login({ phone_number: phone, mpin: mpin })
+            const data = await login({ email: email, mpin: mpin })
             if (data.verification_required) {
                 localStorage.removeItem("token")
                 setPendingAuthToken(data.access_token)
@@ -93,6 +98,59 @@ export default function Login() {
             setActiveTab("verify-otp")
             setSuccess("Account created! Check your email for the OTP.")
 
+        } catch (err) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
+    const handleForgotPasswordRequest = async (e) => {
+        e.preventDefault()
+        setError("")
+        setSuccess("")
+        setLoading(true)
+
+        try {
+            await sendEmailOTP(resetEmail)
+            setVerifyEmail(resetEmail)
+            setOtpTimer(300)
+            setOtpDigits(["", "", "", "", "", ""])
+            setActiveTab("verify-reset-otp")
+            setSuccess("OTP code sent to your registered email.")
+        } catch (err) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
+    const handleResetPasswordSubmit = async (e) => {
+        e.preventDefault()
+        setError("")
+        setSuccess("")
+        setLoading(true)
+
+        const otp = otpDigits.join("")
+        if (otp.length !== 6) {
+            setError("Please enter all 6 digits of the OTP")
+            setLoading(false)
+            return
+        }
+
+        try {
+            await resetMpin({
+                email: resetEmail,
+                otp: otp,
+                new_mpin: newMpin
+            })
+            setSuccess("MPIN reset successfully! You can now log in.")
+            setEmail(resetEmail)
+            setTimeout(() => {
+                switchTab("login")
+            }, 2000)
         } catch (err) {
             setError(err.message)
         } finally {
@@ -346,6 +404,8 @@ export default function Login() {
                         <h2>
                             {activeTab === "login" ? "Welcome Back" :
                                 activeTab === "register" ? "Create Account" :
+                                activeTab === "forgot-password" ? "Reset MPIN" :
+                                activeTab === "verify-reset-otp" ? "Reset MPIN" :
                                     "Verify Email"}
                         </h2>
                         <p>
@@ -353,12 +413,16 @@ export default function Login() {
                                 ? "Enter your credentials to access your account"
                                 : activeTab === "register"
                                     ? "Join Underseas Bank — it takes less than a minute"
-                                    : `We sent a 6-digit OTP to ${verifyEmail}`}
+                                    : activeTab === "forgot-password"
+                                        ? "Enter your email to receive a password reset OTP"
+                                        : activeTab === "verify-reset-otp"
+                                            ? `Enter the OTP sent to ${verifyEmail} and set your new MPIN`
+                                            : `We sent a 6-digit OTP to ${verifyEmail}`}
                         </p>
                     </div>
 
-                    {/* Tab Toggle (hidden during OTP verify) */}
-                    {activeTab !== "verify-otp" && (
+                    {/* Tab Toggle (hidden during OTP verification and forgot password views) */}
+                    {activeTab !== "verify-otp" && activeTab !== "forgot-password" && activeTab !== "verify-reset-otp" && (
                         <div className="auth-tabs">
                             <button
                                 className={`auth-tab ${activeTab === "login" ? "active" : ""}`}
@@ -401,19 +465,19 @@ export default function Login() {
                         <form className="auth-form" onSubmit={handleLogin}>
 
                             <div className="form-group">
-                                <label>Phone Number</label>
+                                <label>Email Address</label>
                                 <div className="input-wrapper">
                                     <div className="input-icon">
                                         <svg viewBox="0 0 24 24">
-                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                            <polyline points="22,6 12,13 2,6" />
                                         </svg>
                                     </div>
                                     <input
-                                        type="tel"
-                                        placeholder="Enter 10-digit phone number"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        maxLength={10}
+                                        type="email"
+                                        placeholder="name@example.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
                                 </div>
@@ -422,7 +486,9 @@ export default function Login() {
                             <div className="form-group">
                                 <div className="form-row">
                                     <label>MPIN</label>
-                                    <span className="forgot-link">Forgot MPIN?</span>
+                                    <span className="forgot-link" onClick={() => switchTab("forgot-password")} style={{ cursor: "pointer" }}>
+                                        Forgot MPIN?
+                                    </span>
                                 </div>
                                 <div className="input-wrapper">
                                     <div className="input-icon">
@@ -586,7 +652,129 @@ export default function Login() {
                     )}
 
 
-                    {/* ── OTP VERIFICATION FORM ── */}
+                    {/* ── FORGOT PASSWORD FORM ── */}
+                    {activeTab === "forgot-password" && (
+
+                        <form className="auth-form" onSubmit={handleForgotPasswordRequest}>
+
+                            <div className="form-group">
+                                <label>Registered Email Address</label>
+                                <div className="input-wrapper">
+                                    <div className="input-icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                            <polyline points="22,6 12,13 2,6" />
+                                        </svg>
+                                    </div>
+                                    <input
+                                        type="email"
+                                        placeholder="name@example.com"
+                                        value={resetEmail}
+                                        onChange={(e) => setResetEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="auth-submit"
+                                disabled={loading}
+                            >
+                                {loading ? "Sending OTP..." : "Send Verification OTP"}
+                            </button>
+
+                            <button
+                                type="button"
+                                className="auth-submit"
+                                style={{ marginTop: "10px", background: "transparent", color: "var(--gray-500)", border: "1px solid var(--gray-300)" }}
+                                onClick={() => switchTab("login")}
+                            >
+                                Back to Login
+                            </button>
+
+                        </form>
+
+                    )}
+
+
+                    {/* ── VERIFY RESET OTP & CHANGE PASSWORD ── */}
+                    {activeTab === "verify-reset-otp" && (
+
+                        <form className="auth-form" onSubmit={handleResetPasswordSubmit}>
+
+                            <div className="form-group">
+                                <label>Enter 6-digit OTP</label>
+                                <div className="otp-input-group">
+                                    {otpDigits.map((digit, i) => (
+                                        <input
+                                            key={i}
+                                            id={`otp-${i}`}
+                                            type="text"
+                                            inputMode="numeric"
+                                            maxLength={1}
+                                            value={digit}
+                                            onChange={(e) => handleOtpChange(i, e.target.value.replace(/\D/g, ""))}
+                                            onKeyDown={(e) => handleOtpKeyDown(i, e)}
+                                            className="otp-input"
+                                            autoFocus={i === 0}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Set New MPIN (4 digits)</label>
+                                <div className="input-wrapper">
+                                    <div className="input-icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                        </svg>
+                                    </div>
+                                    <input
+                                        type={showNewMpin ? "text" : "password"}
+                                        placeholder="Enter new 4-digit MPIN"
+                                        value={newMpin}
+                                        onChange={(e) => setNewMpin(e.target.value)}
+                                        maxLength={4}
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        className="toggle-password"
+                                        onClick={() => setShowNewMpin(!showNewMpin)}
+                                    >
+                                        {showNewMpin ? (
+                                            <svg viewBox="0 0 24 24">
+                                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                                                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                                                <line x1="1" y1="1" x2="23" y2="23" />
+                                            </svg>
+                                        ) : (
+                                            <svg viewBox="0 0 24 24">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                <circle cx="12" cy="12" r="3" />
+                                            </svg>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="auth-submit"
+                                disabled={loading}
+                            >
+                                {loading ? "Updating MPIN..." : "Reset MPIN & Save"}
+                            </button>
+
+                        </form>
+
+                    )}
+
+
+                    {/* ── OTP VERIFICATION FORM (REGULAR SIGNUP) ── */}
                     {activeTab === "verify-otp" && (
 
                         <form className="auth-form" onSubmit={handleVerifyOTP}>
