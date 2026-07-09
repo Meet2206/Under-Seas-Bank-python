@@ -284,15 +284,14 @@ export default function Login() {
                 {/* Logo */}
                 <div className="brand-logo">
                     <div className="brand-logo-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7v2h20V7L12 2zM4 11v7c0 2.21 3.58 4 8 4s8-1.79 8-4v-7H4zm8 9c-3.87 0-6-1.35-6-2v-4.47C7.36 14.43 9.53 15 12 15s4.64-.57 6-1.47V18c0 .65-2.13 2-6 2z" />
-                        </svg>
+                        <img src="/underseas logo.jpeg" alt="Underseas Bank Logo" />
                     </div>
                     <div className="brand-logo-text">
                         <h1>Underseas Bank</h1>
                         <p>Digital Banking</p>
                     </div>
                 </div>
+
 
                 {/* Headline */}
                 <div className="brand-headline">
