@@ -22,8 +22,9 @@ class Settings(BaseSettings):
     # OTP
     OTP_EXPIRE_SECONDS: int = 300
 
-    # Email — Resend API (replaces SMTP; Gmail SMTP is blocked on cloud IPs)
-    RESEND_API_KEY: str = ""
+    # Email — Brevo (Sendinblue) API
+    # Brevo allows sending to any recipient on free tier (no domain verification needed)
+    BREVO_API_KEY: str = ""
 
     # Legacy SMTP fields (kept for reference, no longer used for sending)
     SMTP_HOST: str = "smtp.gmail.com"

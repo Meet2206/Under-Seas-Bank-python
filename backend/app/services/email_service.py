@@ -1,7 +1,9 @@
 """
-Email Service — sends emails via Resend API in a background thread.
-Resend is used instead of SMTP because Gmail SMTP silently drops emails
-from cloud provider IPs (Render, Railway, etc.) due to IP reputation.
+Email Service — sends emails via Brevo (Sendinblue) API in a background thread.
+Brevo is used because:
+  - Gmail SMTP is silently dropped by cloud provider IPs (Render, Railway, etc.)
+  - Resend free tier restricts delivery to the account owner's email only
+  - Brevo free tier sends to ANY recipient, only requiring sender email verification
 Gracefully handles missing API key (logs warning, never crashes).
 """
 
@@ -14,42 +16,45 @@ from app.config import get_settings
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
+SENDER_EMAIL = "try.meet.2427@gmail.com"
+SENDER_NAME  = "Underseas Bank"
+
 
 def email_is_configured() -> bool:
-    """Return whether Resend API key is present."""
-    return bool(getattr(settings, "RESEND_API_KEY", None))
+    """Return whether Brevo API key is present."""
+    return bool(getattr(settings, "BREVO_API_KEY", None))
 
 
 def _send_email(to_email: str, subject: str, html_body: str):
-    """Internal: send email via Resend HTTP API. Runs in background thread."""
+    """Internal: send email via Brevo HTTP API. Runs in background thread."""
 
-    api_key = getattr(settings, "RESEND_API_KEY", None)
+    api_key = getattr(settings, "BREVO_API_KEY", None)
 
     if not api_key:
         logger.warning(
-            f"RESEND_API_KEY not set — skipping email to {to_email}. "
-            "Add RESEND_API_KEY to your Render environment variables."
+            f"BREVO_API_KEY not set — skipping email to {to_email}. "
+            "Add BREVO_API_KEY to your Render environment variables."
         )
         print(f"📧 [EMAIL SKIPPED] To: {to_email} | Subject: {subject}")
         return
 
     try:
         response = httpx.post(
-            "https://api.resend.com/emails",
+            "https://api.brevo.com/v3/smtp/email",
             headers={
-                "Authorization": f"Bearer {api_key}",
+                "api-key": api_key,
                 "Content-Type": "application/json",
             },
             json={
-                "from": "Underseas Bank <onboarding@resend.dev>",
-                "to": [to_email],
-                "subject": subject,
-                "html": html_body,
+                "sender":      {"name": SENDER_NAME, "email": SENDER_EMAIL},
+                "to":          [{"email": to_email}],
+                "subject":     subject,
+                "htmlContent": html_body,
             },
             timeout=10,
         )
         response.raise_for_status()
-        print(f"✅ [EMAIL SENT] To: {to_email} | Subject: {subject} | ID: {response.json().get('id')}")
+        print(f"✅ [EMAIL SENT] To: {to_email} | Subject: {subject} | ID: {response.json().get('messageId')}")
 
     except Exception as e:
         logger.error(f"Failed to send email to {to_email}: {e}")
