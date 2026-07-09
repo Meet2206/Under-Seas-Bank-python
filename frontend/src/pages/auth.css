@@ -972,11 +972,13 @@
   .auth-form-panel {
     max-width: 100%;
     min-width: auto;
-    padding: 40px 24px;
+    padding: 20px 24px 40px;
     height: auto;
     max-height: none;
+    justify-content: flex-start;
   }
 }
+
 
 @media (max-width: 480px) {
   .auth-brand {
