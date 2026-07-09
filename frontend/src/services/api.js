@@ -6,6 +6,12 @@ const authFetch = async (url, options = {}) => {
 
     const token = localStorage.getItem("token")
 
+    // No token → redirect to login immediately, don't hit the server
+    if (!token) {
+        window.location.href = "/"
+        throw new Error("No authentication token. Redirecting to login.")
+    }
+
     const res = await fetch(`${API}${url}`, {
         ...options,
         headers: {
@@ -16,6 +22,13 @@ const authFetch = async (url, options = {}) => {
     })
 
     const result = await res.json()
+
+    // Token expired or invalid → clear storage and redirect
+    if (res.status === 401) {
+        localStorage.removeItem("token")
+        window.location.href = "/"
+        throw new Error("Session expired. Please log in again.")
+    }
 
     if (!res.ok) {
         throw new Error(result.detail || "Request failed")

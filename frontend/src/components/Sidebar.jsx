@@ -1,13 +1,17 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
 
     const location = useLocation()
     const navigate = useNavigate()
 
     const isActive = (path) => location.pathname === path
 
+    const handleNav = () => {
+        // Close sidebar on mobile after navigating
+        if (onClose) onClose()
+    }
 
     const handleLogout = () => {
 
@@ -19,7 +23,7 @@ export default function Sidebar() {
 
     return (
 
-        <div className="sidebar">
+        <div className={`sidebar${isOpen ? " sidebar-open" : ""}`}>
 
             {/* Logo */}
             <div className="sidebar-logo">
@@ -43,17 +47,17 @@ export default function Sidebar() {
 
                 <div className="sidebar-section-label">Main</div>
 
-                <Link to="/dashboard" className={`sidebar-link ${isActive("/dashboard") ? "active" : ""}`}>
+                <Link to="/dashboard" className={`sidebar-link ${isActive("/dashboard") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>
                     Dashboard
                 </Link>
 
-                <Link to="/accounts" className={`sidebar-link ${isActive("/accounts") ? "active" : ""}`}>
+                <Link to="/accounts" className={`sidebar-link ${isActive("/accounts") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2z" /><path d="M16 2v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V2" /></svg>
                     Accounts
                 </Link>
 
-                <Link to="/analytics" className={`sidebar-link ${isActive("/analytics") ? "active" : ""}`}>
+                <Link to="/analytics" className={`sidebar-link ${isActive("/analytics") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
                     Analytics
                 </Link>
@@ -61,12 +65,12 @@ export default function Sidebar() {
 
                 <div className="sidebar-section-label">Banking</div>
 
-                <Link to="/transfer" className={`sidebar-link ${isActive("/transfer") ? "active" : ""}`}>
+                <Link to="/transfer" className={`sidebar-link ${isActive("/transfer") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
                     Transfer
                 </Link>
 
-                <Link to="/transactions" className={`sidebar-link ${isActive("/transactions") ? "active" : ""}`}>
+                <Link to="/transactions" className={`sidebar-link ${isActive("/transactions") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
                     Transactions
                 </Link>
@@ -74,17 +78,17 @@ export default function Sidebar() {
 
                 <div className="sidebar-section-label">Products</div>
 
-                <Link to="/loans" className={`sidebar-link ${isActive("/loans") ? "active" : ""}`}>
+                <Link to="/loans" className={`sidebar-link ${isActive("/loans") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></svg>
                     Loans
                 </Link>
 
-                <Link to="/fd" className={`sidebar-link ${isActive("/fd") ? "active" : ""}`}>
+                <Link to="/fd" className={`sidebar-link ${isActive("/fd") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="M12 12h.01" /><path d="M17 12h.01" /><path d="M7 12h.01" /></svg>
                     Fixed Deposits
                 </Link>
 
-                <Link to="/credit-card" className={`sidebar-link ${isActive("/credit-card") ? "active" : ""}`}>
+                <Link to="/credit-card" className={`sidebar-link ${isActive("/credit-card") ? "active" : ""}`} onClick={handleNav}>
                     <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>
                     Credit Card
                 </Link>

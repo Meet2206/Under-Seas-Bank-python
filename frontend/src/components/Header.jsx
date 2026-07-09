@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import { getMe, getAccounts, getTransactions } from "../services/api"
 
 
-export default function Header({ title, subtitle }) {
+export default function Header({ title, subtitle, onMenuToggle }) {
 
     const [user, setUser] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
@@ -129,6 +129,10 @@ export default function Header({ title, subtitle }) {
         <div className="header">
 
             <div className="header-left">
+                {/* Hamburger — mobile only */}
+                <button className="hamburger-btn" onClick={onMenuToggle} aria-label="Open menu">
+                    <span /><span /><span />
+                </button>
                 <h3>{title || "Underseas Bank"}</h3>
                 {subtitle && <p>{subtitle}</p>}
             </div>
