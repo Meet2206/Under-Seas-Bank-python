@@ -22,7 +22,10 @@ class Settings(BaseSettings):
     # OTP
     OTP_EXPIRE_SECONDS: int = 300
 
-    # Email
+    # Email — Resend API (replaces SMTP; Gmail SMTP is blocked on cloud IPs)
+    RESEND_API_KEY: str = ""
+
+    # Legacy SMTP fields (kept for reference, no longer used for sending)
     SMTP_HOST: str = "smtp.gmail.com"
     SMTP_PORT: int = 587
     SMTP_USER: str = ""

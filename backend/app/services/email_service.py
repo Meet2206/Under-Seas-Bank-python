@@ -1,13 +1,13 @@
 """
-Email Service — sends emails via SMTP in a background thread.
-Gracefully handles missing/invalid SMTP config (logs warning, never crashes).
+Email Service — sends emails via Resend API in a background thread.
+Resend is used instead of SMTP because Gmail SMTP silently drops emails
+from cloud provider IPs (Render, Railway, etc.) due to IP reputation.
+Gracefully handles missing API key (logs warning, never crashes).
 """
 
-import smtplib
 import threading
 import logging
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import httpx
 
 from app.config import get_settings
 
@@ -16,35 +16,40 @@ settings = get_settings()
 
 
 def email_is_configured() -> bool:
-    """Return whether SMTP credentials are present."""
-    return bool(settings.SMTP_USER and settings.SMTP_PASSWORD)
+    """Return whether Resend API key is present."""
+    return bool(getattr(settings, "RESEND_API_KEY", None))
 
 
 def _send_email(to_email: str, subject: str, html_body: str):
-    """Internal: send email via SMTP. Runs in background thread."""
+    """Internal: send email via Resend HTTP API. Runs in background thread."""
 
-    if not email_is_configured():
+    api_key = getattr(settings, "RESEND_API_KEY", None)
+
+    if not api_key:
         logger.warning(
-            f"SMTP not configured — skipping email to {to_email}. "
-            "Set SMTP_USER and SMTP_PASSWORD in .env"
+            f"RESEND_API_KEY not set — skipping email to {to_email}. "
+            "Add RESEND_API_KEY to your Render environment variables."
         )
         print(f"📧 [EMAIL SKIPPED] To: {to_email} | Subject: {subject}")
-        print(f"   (Configure SMTP_USER & SMTP_PASSWORD in .env to send real emails)")
         return
 
     try:
-        msg = MIMEMultipart("alternative")
-        msg["From"] = settings.EMAIL_FROM or settings.SMTP_USER
-        msg["To"] = to_email
-        msg["Subject"] = subject
-        msg.attach(MIMEText(html_body, "html"))
-
-        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
-            server.starttls()
-            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-            server.send_message(msg)
-
-        print(f"✅ [EMAIL SENT] To: {to_email} | Subject: {subject}")
+        response = httpx.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "from": "Underseas Bank <onboarding@resend.dev>",
+                "to": [to_email],
+                "subject": subject,
+                "html": html_body,
+            },
+            timeout=10,
+        )
+        response.raise_for_status()
+        print(f"✅ [EMAIL SENT] To: {to_email} | Subject: {subject} | ID: {response.json().get('id')}")
 
     except Exception as e:
         logger.error(f"Failed to send email to {to_email}: {e}")
