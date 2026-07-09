@@ -110,7 +110,7 @@ def test_brevo_connection() -> dict:
 def send_welcome_email(to_email: str, user_name: str):
     """Send a beautiful HTML welcome email to a newly registered user."""
 
-    subject = "🏦 Welcome to Underseas Bank!"
+    subject = "Welcome to Underseas Bank"
 
     html = f"""
     <!DOCTYPE html>
@@ -119,74 +119,90 @@ def send_welcome_email(to_email: str, user_name: str):
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f0f1a;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0f0f1a; padding: 40px 20px;">
+    <body style="margin: 0; padding: 0; font-family: Georgia, 'Times New Roman', serif; background-color: #f4f2ec;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f2ec; padding: 48px 20px;">
             <tr>
                 <td align="center">
-                    <table width="600" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+                    <table width="580" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border: 1px solid #e3ded0;">
 
                         <!-- Header -->
                         <tr>
-                            <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 40px 30px; text-align: center;">
-                                <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 16px; margin: 0 auto 16px; line-height: 60px; font-size: 28px;">
-                                    🏦
-                                </div>
-                                <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px;">
-                                    Welcome to Underseas Bank
-                                </h1>
-                                <p style="color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 14px;">
-                                    Digital Banking · Secure · Intelligent
+                            <td style="background-color: #0b2b2a; padding: 44px 44px 36px; text-align: left;">
+                                <p style="color: #c9a24b; margin: 0 0 6px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-family: Georgia, serif;">
+                                    Underseas Bank
                                 </p>
+                                <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 400; font-family: Georgia, serif; letter-spacing: 0.3px;">
+                                    Your account is open.
+                                </h1>
                             </td>
+                        </tr>
+
+                        <!-- Accent rule -->
+                        <tr>
+                            <td style="height: 4px; background-color: #c9a24b; line-height: 4px; font-size: 0;">&nbsp;</td>
                         </tr>
 
                         <!-- Body -->
                         <tr>
-                            <td style="padding: 40px;">
-                                <h2 style="color: #e0e0ff; margin: 0 0 16px; font-size: 22px;">
-                                    Hello, {user_name}! 👋
-                                </h2>
-                                <p style="color: #a0a0c0; font-size: 15px; line-height: 1.7; margin: 0 0 24px;">
-                                    Your account has been created successfully. Welcome to the future of digital banking — where security meets simplicity.
+                            <td style="padding: 44px 44px 8px; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+                                <p style="color: #14181a; margin: 0 0 20px; font-size: 16px; line-height: 1.6;">
+                                    Dear {user_name},
+                                </p>
+                                <p style="color: #4a5259; font-size: 15px; line-height: 1.75; margin: 0 0 32px;">
+                                    Thank you for choosing Underseas Bank. Your account has been created and is ready to use. Below is a short summary of what's included.
                                 </p>
 
-                                <!-- Feature Cards -->
-                                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+                                <!-- Feature list -->
+                                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 36px;">
                                     <tr>
-                                        <td style="padding: 16px; background: rgba(102, 126, 234, 0.1); border-radius: 12px; border-left: 3px solid #667eea; margin-bottom: 12px;">
-                                            <strong style="color: #667eea; font-size: 14px;">🔐 Bank-Grade Security</strong>
-                                            <p style="color: #8888aa; font-size: 13px; margin: 6px 0 0;">
-                                                256-bit AES encryption protects every transaction.
-                                            </p>
+                                        <td style="padding: 18px 0; border-top: 1px solid #e8e5dc;">
+                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="28" style="vertical-align: top; color: #c9a24b; font-size: 15px; font-weight: 700;">01</td>
+                                                   
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
-                                    <tr><td style="height: 12px;"></td></tr>
                                     <tr>
-                                        <td style="padding: 16px; background: rgba(118, 75, 162, 0.1); border-radius: 12px; border-left: 3px solid #764ba2;">
-                                            <strong style="color: #764ba2; font-size: 14px;">⚡ Instant Transfers</strong>
-                                            <p style="color: #8888aa; font-size: 13px; margin: 6px 0 0;">
-                                                Send money 24/7 with zero delays.
-                                            </p>
+                                        <td style="padding: 18px 0; border-top: 1px solid #e8e5dc;">
+                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="28" style="vertical-align: top; color: #c9a24b; font-size: 15px; font-weight: 700;">02</td>
+                                                    <td>
+                                                        <strong style="color: #14181a; font-size: 14.5px;">Instant transfers</strong>
+                                                        <p style="color: #75808a; font-size: 13.5px; margin: 4px 0 0; line-height: 1.6;">
+                                                            Send and receive money any time, with no delays.
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
-                                    <tr><td style="height: 12px;"></td></tr>
                                     <tr>
-                                        <td style="padding: 16px; background: rgba(72, 187, 120, 0.1); border-radius: 12px; border-left: 3px solid #48bb78;">
-                                            <strong style="color: #48bb78; font-size: 14px;">📊 Smart Analytics</strong>
-                                            <p style="color: #8888aa; font-size: 13px; margin: 6px 0 0;">
-                                                AI-powered insights to grow your wealth.
-                                            </p>
+                                        <td style="padding: 18px 0; border-top: 1px solid #e8e5dc; border-bottom: 1px solid #e8e5dc;">
+                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="28" style="vertical-align: top; color: #c9a24b; font-size: 15px; font-weight: 700;">03</td>
+                                                    <td>
+                                                        <strong style="color: #14181a; font-size: 14.5px;">Smart insights</strong>
+                                                        <p style="color: #75808a; font-size: 13.5px; margin: 4px 0 0; line-height: 1.6;">
+                                                            Track spending patterns and grow your savings with ease.
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
                                 </table>
 
                                 <!-- CTA -->
-                                <table width="100%" cellpadding="0" cellspacing="0">
+                                <table cellpadding="0" cellspacing="0" style="margin-bottom: 8px;">
                                     <tr>
-                                        <td align="center" style="padding: 8px 0;">
+                                        <td style="background-color: #0b2b2a;">
                                             <a href="http://localhost:5173/dashboard"
-                                               style="display: inline-block; padding: 14px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 15px; letter-spacing: 0.5px;">
-                                                Open Dashboard →
+                                               style="display: inline-block; padding: 14px 34px; color: #ffffff; text-decoration: none; font-size: 13.5px; letter-spacing: 1px; text-transform: uppercase; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+                                                Open Dashboard
                                             </a>
                                         </td>
                                     </tr>
@@ -196,11 +212,9 @@ def send_welcome_email(to_email: str, user_name: str):
 
                         <!-- Footer -->
                         <tr>
-                            <td style="padding: 24px 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
-                                <p style="color: #555577; font-size: 12px; margin: 0;">
-                                    © 2026 Underseas Bank · Digital Banking Platform
-                                </p>
-                                <p style="color: #444466; font-size: 11px; margin: 8px 0 0;">
+                            <td style="padding: 28px 44px 40px; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+                                <p style="color: #9aa1a8; font-size: 12px; margin: 0; line-height: 1.6;">
+                                    &copy; 2026 Underseas Bank &middot; Digital Banking Platform<br>
                                     This is an automated message. Please do not reply.
                                 </p>
                             </td>
@@ -220,7 +234,7 @@ def send_welcome_email(to_email: str, user_name: str):
 def send_otp_email(to_email: str, otp_code: str):
     """Send OTP code via email for verification."""
 
-    subject = "🔑 Your Underseas Bank Verification Code"
+    subject = "Your Underseas Bank Verification Code"
 
     html = f"""
     <!DOCTYPE html>
@@ -228,37 +242,49 @@ def send_otp_email(to_email: str, otp_code: str):
     <head>
         <meta charset="utf-8">
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f0f1a;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0f0f1a; padding: 40px 20px;">
+    <body style="margin: 0; padding: 0; font-family: Georgia, 'Times New Roman', serif; background-color: #f4f2ec;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f2ec; padding: 48px 20px;">
             <tr>
                 <td align="center">
-                    <table width="500" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 16px; overflow: hidden;">
+                    <table width="460" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border: 1px solid #e3ded0;">
 
+                        <!-- Header -->
                         <tr>
-                            <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
-                                <h1 style="color: #fff; margin: 0; font-size: 22px;">🔑 Verification Code</h1>
+                            <td style="background-color: #0b2b2a; padding: 32px 40px; text-align: left;">
+                                <p style="color: #c9a24b; margin: 0 0 4px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;">
+                                    Underseas Bank
+                                </p>
+                                <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 400;">
+                                    Verify your identity
+                                </h1>
                             </td>
                         </tr>
 
                         <tr>
-                            <td style="padding: 40px; text-align: center;">
-                                <p style="color: #a0a0c0; font-size: 15px; margin: 0 0 24px;">
-                                    Use the code below to verify your identity:
+                            <td style="height: 4px; background-color: #c9a24b; line-height: 4px; font-size: 0;">&nbsp;</td>
+                        </tr>
+
+                        <!-- Body -->
+                        <tr>
+                            <td style="padding: 40px; text-align: center; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+                                <p style="color: #4a5259; font-size: 14.5px; margin: 0 0 28px; line-height: 1.6;">
+                                    Enter the code below to confirm it's really you:
                                 </p>
-                                <div style="background: rgba(102, 126, 234, 0.15); border: 2px dashed #667eea; border-radius: 12px; padding: 20px; display: inline-block;">
-                                    <span style="font-size: 36px; font-weight: 700; color: #667eea; letter-spacing: 8px; font-family: monospace;">
+                                <div style="border: 1px solid #e3ded0; padding: 22px; display: inline-block; min-width: 200px;">
+                                    <span style="font-size: 34px; font-weight: 700; color: #0b2b2a; letter-spacing: 10px; font-family: 'Courier New', monospace;">
                                         {otp_code}
                                     </span>
                                 </div>
-                                <p style="color: #666688; font-size: 13px; margin: 20px 0 0;">
-                                    This code expires in <strong style="color: #e0e0ff;">5 minutes</strong>.
+                                <p style="color: #9aa1a8; font-size: 12.5px; margin: 22px 0 0;">
+                                    This code expires in <strong style="color: #14181a;">5 minutes</strong>.
                                 </p>
                             </td>
                         </tr>
 
+                        <!-- Footer -->
                         <tr>
-                            <td style="padding: 20px 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
-                                <p style="color: #444466; font-size: 11px; margin: 0;">
+                            <td style="padding: 0 40px 32px; text-align: center; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+                                <p style="color: #9aa1a8; font-size: 11.5px; margin: 0; line-height: 1.6;">
                                     If you didn't request this, please ignore this email.
                                 </p>
                             </td>
