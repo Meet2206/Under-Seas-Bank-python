@@ -13,7 +13,7 @@ from app.schemas.auth_schema import (
 )
 from app.services.auth_service import register_user, login_user
 from app.services.otp_service import send_phone_otp, send_email_otp, verify_otp
-from app.services.email_service import get_email_status
+from app.services.email_service import get_email_status, test_brevo_connection
 from app.middleware.auth_middleware import get_current_user
 from app.models.user_model import User
 
@@ -57,8 +57,14 @@ def get_me(current_user=Depends(get_current_user)):
 
 @router.get("/email-status")
 def email_status():
-    """Return safe SMTP configuration status for setup checks."""
+    """Return Brevo configuration status for setup checks."""
     return get_email_status()
+
+
+@router.get("/test-email-connection")
+def test_email_connection():
+    """Live-test the Brevo API key. Returns exact error if 401/403. Use for diagnostics."""
+    return test_brevo_connection()
 
 
 # ═══════════════════════════════════

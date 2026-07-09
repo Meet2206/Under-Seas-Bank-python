@@ -72,13 +72,39 @@ def send_email_async(to_email: str, subject: str, html_body: str):
 
 
 def get_email_status() -> dict:
-    """Expose safe SMTP status for setup verification."""
+    """Expose Brevo configuration status for setup verification."""
+    api_key = getattr(settings, "BREVO_API_KEY", "") or ""
+    key_preview = f"{api_key[:6]}...{api_key[-4:]}" if len(api_key) > 10 else ("(empty)" if not api_key else "(too short)")
     return {
+        "provider": "Brevo",
         "configured": email_is_configured(),
-        "smtp_host": settings.SMTP_HOST,
-        "smtp_port": settings.SMTP_PORT,
-        "sender": settings.EMAIL_FROM or settings.SMTP_USER or None,
+        "sender_email": SENDER_EMAIL,
+        "brevo_key_preview": key_preview,
+        "brevo_key_length": len(api_key),
     }
+
+
+def test_brevo_connection() -> dict:
+    """Make a live test call to Brevo and return the exact result — use for diagnostics."""
+    api_key = getattr(settings, "BREVO_API_KEY", "") or ""
+    if not api_key:
+        return {"ok": False, "error": "BREVO_API_KEY is empty or not set"}
+    try:
+        resp = httpx.get(
+            "https://api.brevo.com/v3/account",
+            headers={"api-key": api_key},
+            timeout=10,
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            return {
+                "ok": True,
+                "plan": data.get("plan", []),
+                "email": data.get("email"),
+            }
+        return {"ok": False, "status": resp.status_code, "body": resp.text}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
 
 
 def send_welcome_email(to_email: str, user_name: str):
