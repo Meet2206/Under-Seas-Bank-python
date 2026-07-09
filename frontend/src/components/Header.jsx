@@ -132,10 +132,6 @@ export default function Header({ title, subtitle, onMenuToggle }) {
         <div className="header">
 
             <div className="header-left">
-                {/* Hamburger — mobile only */}
-                <button className="hamburger-btn" onClick={onMenuToggle} aria-label="Open menu">
-                    <span /><span /><span />
-                </button>
                 <h3>
                     <span className="desktop-title">{title || "Underseas Bank"}</span>
                     <span className="mobile-title" onClick={() => navigate("/dashboard")} style={{ cursor: "pointer" }}>
@@ -143,6 +139,7 @@ export default function Header({ title, subtitle, onMenuToggle }) {
                     </span>
                 </h3>
                 {subtitle && <p className="desktop-subtitle">{subtitle}</p>}
+
 
             </div>
 
