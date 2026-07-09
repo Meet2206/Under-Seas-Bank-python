@@ -1,8 +1,11 @@
 import { useEffect, useState, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import { getMe, getAccounts, getTransactions } from "../services/api"
 
 
 export default function Header({ title, subtitle, onMenuToggle }) {
+
+    const navigate = useNavigate()
 
     const [user, setUser] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
@@ -133,8 +136,14 @@ export default function Header({ title, subtitle, onMenuToggle }) {
                 <button className="hamburger-btn" onClick={onMenuToggle} aria-label="Open menu">
                     <span /><span /><span />
                 </button>
-                <h3>{title || "Underseas Bank"}</h3>
-                {subtitle && <p>{subtitle}</p>}
+                <h3>
+                    <span className="desktop-title">{title || "Underseas Bank"}</span>
+                    <span className="mobile-title" onClick={() => navigate("/dashboard")} style={{ cursor: "pointer" }}>
+                        Underseas Bank
+                    </span>
+                </h3>
+                {subtitle && <p className="desktop-subtitle">{subtitle}</p>}
+
             </div>
 
             <div className="header-right">

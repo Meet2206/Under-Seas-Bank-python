@@ -296,10 +296,22 @@ a {
   letter-spacing: -0.2px;
 }
 
+.header-left h3 .mobile-title {
+  display: none;
+}
+
+.header-left h3 .desktop-title {
+  display: inline;
+}
+
 .header-left p {
   font-size: 12px;
   color: var(--gray-400);
-  margin-top: 1px;
+  margin-top: 2px;
+}
+
+.header-left p.desktop-subtitle {
+  display: block;
 }
 
 .header-right {
@@ -1453,6 +1465,21 @@ button:hover {
   .header-left h3 {
     font-size: 16px;
   }
+
+  .header-left h3 .desktop-title {
+    display: none !important;
+  }
+
+  .header-left h3 .mobile-title {
+    display: inline !important;
+    font-weight: 700;
+    color: var(--navy-900);
+  }
+
+  .header-left p.desktop-subtitle {
+    display: none !important;
+  }
+
 
   /* Hide user info text on very small screens */
   .header-user-info {
