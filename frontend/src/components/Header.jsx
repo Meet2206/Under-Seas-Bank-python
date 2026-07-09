@@ -11,7 +11,10 @@ export default function Header({ title, subtitle, onMenuToggle }) {
     const [isOpen, setIsOpen] = useState(false)
     const [notifications, setNotifications] = useState([])
     const [hasUnread, setHasUnread] = useState(false)
+    const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
     const wrapperRef = useRef(null)
+    const profileRef = useRef(null)
+
 
     const loadNotifications = async () => {
         try {
@@ -100,12 +103,21 @@ export default function Header({ title, subtitle, onMenuToggle }) {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
                 setIsOpen(false)
             }
+            if (profileRef.current && !profileRef.current.contains(event.target)) {
+                setProfileDropdownOpen(false)
+            }
         }
         document.addEventListener("mousedown", handleClickOutside)
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
+
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        navigate("/")
+    }
+
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen)
@@ -194,19 +206,32 @@ export default function Header({ title, subtitle, onMenuToggle }) {
                     )}
                 </div>
 
-                {/* User Info */}
-                <div className="header-user">
-
-                    <div className="header-avatar">
-                        {getInitials(user?.name)}
+                {/* User Info with Dropdown */}
+                <div className="header-user-wrapper" ref={profileRef} style={{ position: "relative" }}>
+                    <div className="header-user" onClick={() => setProfileDropdownOpen(!profileDropdownOpen)} style={{ cursor: "pointer" }}>
+                        <div className="header-avatar">
+                            {getInitials(user?.name)}
+                        </div>
+                        <div className="header-user-info">
+                            <p>{user?.name || "User"}</p>
+                            <span>Customer</span>
+                        </div>
                     </div>
 
-                    <div className="header-user-info">
-                        <p>{user?.name || "User"}</p>
-                        <span>Customer</span>
-                    </div>
-
+                    {profileDropdownOpen && (
+                        <div className="profile-dropdown">
+                            <div className="profile-dropdown-header">
+                                <p className="profile-name">{user?.name || "User"}</p>
+                                <p className="profile-email">{user?.email || "customer@underseas.com"}</p>
+                            </div>
+                            <div className="profile-dropdown-item" onClick={handleLogout}>
+                                <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
+                                Sign Out
+                            </div>
+                        </div>
+                    )}
                 </div>
+
 
             </div>
 
