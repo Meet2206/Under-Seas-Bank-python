@@ -13,7 +13,9 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 </p>
 
-**Under Seas Bank** is a comprehensive, production-ready digital banking platform built with **FastAPI** and **React 19**, featuring secure OTP-based authentication, real-time transactions, loan management, credit cards, fixed deposits, expense analytics, and a modern glassmorphic UI.
+**Under Seas Bank** is a comprehensive, production-ready digital banking platform built with **FastAPI** and **React 19**, featuring secure OTP-based authentication, real-time transactions, loan management, credit cards, fixed deposits, and AI-powered financial analytics.
+
+**Live Demo:** [https://underseas-bank.vercel.app](https://underseas-bank.vercel.app)
 
 ---
 
@@ -108,14 +110,13 @@
 | [Docker](https://www.docker.com/) | Containerization |
 | [Docker Compose](https://docs.docker.com/compose/) | Multi-container orchestration |
 | [Nginx](https://nginx.org/) | Reverse proxy |
-| [Redis](https://redis.io/) | Celery broker + result backend |
 
 ---
 
 ## 📂 Project Structure
 
 ```
-Under Seas Bank/
+Under-Seas-Bank-python/
 ├── backend/
 │   ├── app/
 │   │   ├── analytics/               # Financial intelligence modules
@@ -194,7 +195,7 @@ Under Seas Bank/
 │   │   │   ├── FixedDeposit.jsx      # FD management
 │   │   │   ├── CreditCard.jsx        # Credit card management
 │   │   │   ├── Analytics.jsx         # Expense analytics & charts
-│   │   │   └── auth.css              # Authentication page styles
+│   │   │   └── Beneficiaries.jsx     # Beneficiary management
 │   │   ├── services/
 │   │   │   └── api.js                # Centralized API client (fetch wrapper)
 │   │   ├── App.jsx                   # Root component with routing
@@ -212,6 +213,7 @@ Under Seas Bank/
 │   └── build_showcase_docs.py        # Documentation generator script
 │
 ├── LICENSE                           # MIT License
+├── .gitignore                        # Git ignore rules
 └── README.md                         # This file
 ```
 
@@ -232,8 +234,8 @@ Under Seas Bank/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Meet2206/Under-Seas-Bank-.git
-   cd Under-Seas-Bank-
+   git clone https://github.com/Meet2206/Under-Seas-Bank-python.git
+   cd Under-Seas-Bank-python
    ```
 
 2. **Create environment file**
@@ -256,8 +258,8 @@ Under Seas Bank/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Meet2206/Under-Seas-Bank-.git
-   cd Under-Seas-Bank-
+   git clone https://github.com/Meet2206/Under-Seas-Bank-python.git
+   cd Under-Seas-Bank-python
    ```
 
 2. **Backend setup**
@@ -346,8 +348,7 @@ All endpoints are prefixed and documented via Swagger at `/docs` when `DEBUG=Tru
 | `POST` | `/auth/register` | Register a new user (name, email, phone, MPIN) |
 | `POST` | `/auth/login` | Login with phone number + MPIN → JWT token |
 | `GET` | `/auth/me` | Get current authenticated user profile |
-| `GET` | `/auth/email-status` | SMTP configuration health check |
-| `POST` | `/auth/send-phone-otp` | Send OTP to phone number (console/SMS) |
+| `POST` | `/auth/send-phone-otp` | Send OTP to phone number |
 | `POST` | `/auth/verify-phone` | Verify phone OTP → marks user as phone-verified |
 | `POST` | `/auth/send-email-otp` | Send OTP to registered email |
 | `POST` | `/auth/verify-email` | Verify email OTP → marks user as email-verified |
@@ -419,7 +420,6 @@ erDiagram
     USERS ||--o{ BENEFICIARIES : saves
     ACCOUNTS ||--o{ TRANSACTIONS : records
     ACCOUNTS ||--o{ FIXED_DEPOSITS : opens
-    ACCOUNTS ||--o{ LOANS : secures
 
     USERS {
         int id PK
@@ -605,6 +605,7 @@ npm run dev
 | `/fd` | Fixed Deposits | Create, view, and close fixed deposits |
 | `/credit-card` | Credit Cards | Apply, make purchases, pay bills |
 | `/analytics` | Analytics | Expense breakdown charts and financial insights |
+| `/beneficiaries` | Beneficiaries | Add and manage saved beneficiaries |
 
 ---
 
@@ -669,7 +670,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 **Meet Limbachiya**
 
 - GitHub: [@Meet2206](https://github.com/Meet2206)
-- Repository: [Under-Seas-Bank-](https://github.com/Meet2206/Under-Seas-Bank-)
+- Repository: [Under-Seas-Bank-python](https://github.com/Meet2206/Under-Seas-Bank-python)
 
 ---
 
