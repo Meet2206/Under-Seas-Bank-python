@@ -1792,8 +1792,7 @@ select:focus-visible,
 .landing-products h2,
 .landing-security h2,
 .landing-final h2,
-.landing-vault-card strong,
-.bank-card-balance h2 {
+.landing-vault-card strong {
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 500;
   letter-spacing: 0;
@@ -1945,8 +1944,11 @@ th {
 }
 
 .bank-card-balance h2 {
-  font-size: 40px;
-  line-height: 48px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-size: 30px !important;
+  line-height: 36px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
 }
 
 .bank-card-skeleton {

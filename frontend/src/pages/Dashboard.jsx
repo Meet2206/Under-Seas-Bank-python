@@ -95,10 +95,23 @@ export default function Dashboard() {
                                     <span style={{ fontSize: "11px", opacity: 0.7 }}>AVAILABLE BALANCE</span>
                                     <h2>₹{acc.balance.toLocaleString()}</h2>
                                 </div>
-                                <div style={{ fontSize: "12px", background: "rgba(255,255,255,0.2)", padding: "4px 8px", borderRadius: "6px" }}>
+                                <div style={{ 
+                                    fontSize: "11px", 
+                                    fontWeight: "700",
+                                    color: "#2fe0c9",
+                                    background: "rgba(47, 224, 201, 0.12)", 
+                                    border: "1px solid rgba(47, 224, 201, 0.24)",
+                                    padding: "4px 10px", 
+                                    borderRadius: "12px",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.05em",
+                                    flexShrink: 0,
+                                    whiteSpace: "nowrap"
+                                }}>
                                     Active
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 ))}
