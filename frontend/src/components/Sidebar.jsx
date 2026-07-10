@@ -26,7 +26,7 @@ export default function Sidebar({ isOpen, onClose }) {
         <div className={`sidebar${isOpen ? " sidebar-open" : ""}`}>
 
             {/* Logo */}
-            <div className="sidebar-logo">
+            <div className="sidebar-logo" onClick={() => navigate("/dashboard")} style={{ cursor: "pointer" }}>
 
                 <div className="sidebar-logo-icon">
                     <img src="/underseas logo.jpeg" alt="Underseas Bank Logo" />
@@ -38,6 +38,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 </div>
 
             </div>
+
 
 
 
@@ -105,7 +106,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
                 <div className="sidebar-status">
                     <div className="status-dot"></div>
-                    <span>All systems operational</span>
+                    <span>© 2026 Meet Limbachiya</span>
                 </div>
 
             </div>
