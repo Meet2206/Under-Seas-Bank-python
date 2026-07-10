@@ -671,7 +671,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 - GitHub: [@Meet2206](https://github.com/Meet2206)
 - Repository: [Under-Seas-Bank-python](https://github.com/Meet2206/Under-Seas-Bank-python)
-- If you've made it till here, have loook here too: https://github.com/Meet2206/Under-Seas-Bank-python/blob/e2d507eb81ee98ec2d69cb65120e7943a712f7ea/Documents/3%20AM%20Developer%20Edition.md
+- If you've made it till here, have loook here too: [3AM DEVELOPER EDITION](https://github.com/Meet2206/Under-Seas-Bank-python/blob/e2d507eb81ee98ec2d69cb65120e7943a712f7ea/Documents/3%20AM%20Developer%20Edition.md)
 
 ---
 
