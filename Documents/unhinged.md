@@ -1,222 +1,270 @@
 🏦 Underseas Bank
-A Digital Banking Platform Built By Someone Who Checks His Bank Balance Before Ordering Domino's.
+A Digital Banking Platform Built By Someone Who Checked His Bank Balance Before Ordering Domino's.
 
-"I built a banking system to manage millions of rupees. The only problem is... none of them are mine."
+"I built a banking system capable of managing millions of rupees... while my own account politely suggested I reconsider buying iced coffee." 💀
 
-<p align="center">
-🏦 Live • 💀 Deployment Lore • ☕ Coffee Powered • 😭 Character Development
-</p>
+<p align="center"> <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=28&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM.;Works+on+Production.;Still+Can't+Afford+Starbucks.;Character+Development+Simulator." /> </p> <p align="center"> <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="280"/> </p>
 🎭 The Irony
 
 Things I built:
 
 ✅ Authentication
 ✅ JWT Security
-✅ PostgreSQL Database
+✅ PostgreSQL
 ✅ Redis
 ✅ Money Transfers
 ✅ Fixed Deposits
 ✅ Credit Cards
 ✅ Loan EMI Calculator
 ✅ Financial Analytics
+✅ Production Deployment
 
 Things I don't have:
 
 ❌ Fixed Deposit
+
 ❌ Credit Card
+
 ❌ Loan Eligibility
+
 ❌ Money
-📈 Banking Statistics
-Money in Database:
-₹14,72,58,390
+💰 Financial Report
+Money Stored Inside Database
 
-Money in my account:
-"Insufficient Balance"
+███████████████████████████████████
 
+Money Inside My Wallet
 
-Peak software engineering.
+█
 
-🔥 Development Timeline
-Week 1
+Current Financial Status:
 
-Me:
+Available Balance
 
-"This is basically CRUD."
+₹127.43
 
-Week 2
+Minimum Balance Required
 
-FastAPI:
+Also ₹127.43
 
-401 Unauthorized
+Peak Software Engineering.
 
-Me:
+🔥 Development Journey
+💡 Random Idea
+      │
+      ▼
+"This should take 2 weeks."
+      │
+      ▼
+Week 1 😃
+      │
+      ▼
+Week 3 🙂
+      │
+      ▼
+Month 2 😐
+      │
+      ▼
+Month 3 🤡
+      │
+      ▼
+Production 🚀
+<p align="center"> <img src="https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif" width="420"/> </p>
+☕ Coffee Architecture
+Coffee ☕
+     │
+     ▼
+Coding
+     │
+     ▼
+Bug
+     │
+     ▼
+Stack Overflow
+     │
+     ▼
+Claude
+     │
+     ▼
+Codex
+     │
+     ▼
+ChatGPT
+     │
+     ▼
+"It works."
 
-"But I literally authenticated..."
+Nobody knows why.
+🐘 PostgreSQL
 
-Week 3
-
-PostgreSQL:
+Database:
 
 role "username" does not exist
 
 Me:
 
-"Neither does my will to live."
+BROTHER...
 
-Week 5
+YOU ARE THE DATABASE.
+🔐 JWT Authentication
 
-Redis:
+JWT:
 
-Connected Successfully
-
-Finally...
-
-Something likes me.
-
-Week 6
-
-Frontend:
-
-Looks Amazing ✨
-
-Backend:
-
-500 Internal Server Error
-Week 7
-
-Render:
-
-Build Successful
+401 Unauthorized
 
 Me:
 
-🥳🥳🥳🥳
+But...
+
+I literally created you...
+
+JWT:
+
+Didn't ask.
+☁️ Render Deployment
 
 Render:
 
-Deployment Failed
+✅ Build Successful
+
+Me:
+
+LET'S GOOOOOOOOOOOOOOOO
+
+Render:
+
+❌ Deployment Failed
 
 Me:
 
 ...
-Week 8
-
-Vercel:
-
-Deployment Successful
 
 Render:
 
-Application exited with status 1
+Figure it out.
+<p align="center"> <img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" width="320"/> </p>
+▲ Vercel
+
+Vercel:
+
+Deployment Successful.
 
 Me:
 
-Can you... not?
-Week 9
+WAIT...
 
-Everything works.
+THAT'S IT?
 
-I don't trust it.
+Vercel:
 
-☕ Coffee Architecture
-        Coffee
-           │
-           ▼
-     Debugging Session
-           │
-           ▼
-     Stack Overflow
-           │
-           ▼
-      Claude / Codex
-           │
-           ▼
-     "It works now."
-           │
-           ▼
-    Nobody knows why.
-🏗 System Architecture
-                User
-                  │
-                  ▼
-        "Login doesn't work"
-                  │
-                  ▼
-            React Frontend
-                  │
-          "API Failed"
-                  │
-                  ▼
-           FastAPI Backend
-                  │
-          "Database Error"
-                  │
-                  ▼
-            PostgreSQL
-                  │
-          "Connection Lost"
-                  │
-                  ▼
-                 Me
-                  │
-          Opens Stack Overflow
-💸 Financial Analytics
-Database Balance
+Yes.
 
-██████████████████████████
+Me:
 
-Developer Wallet
+...
 
-█
+Render:
+
+Skill Issue.
+🌐 Production
+
+Localhost:
+
+Everything Works.
+
+Production:
+
+500 Internal Server Error
+
+Me:
+
+IT LITERALLY WORKED
+12 SECONDS AGO.
+🤖 AI Debugging Pipeline
+Bug Appears
+      │
+      ▼
+Google 🔍
+      │
+Didn't Work
+      ▼
+Claude 🤖
+      │
+Almost Fixed
+      ▼
+Codex 🤖
+      │
+Almost Fixed
+      ▼
+ChatGPT 🤖
+      │
+Actually Fixed
+      ▼
+Me:
+
+"I knew that."
 📊 Deployment Analytics
-
-Platforms tried:
-
 Localhost        ✅
+
 Render           💀
+
 Render Again     💀
+
 Render Again     💀
+
 Render Again     💀
+
 Render Again     💀
+
 Render Finally   ✅
+
 Vercel           😎
-🧠 AI Architecture
-Problem occurs
-      │
-      ▼
-Google
-      │
-      ▼
-Didn't work
-      │
-      ▼
-Claude
-      │
-      ▼
-Almost worked
-      │
-      ▼
-Codex
-      │
-      ▼
-Almost worked
-      │
-      ▼
-ChatGPT
-      │
-      ▼
-Actually worked
-      │
-      ▼
-I claim I fixed it.
-🛠 Tech Stack
+📈 Technical Statistics
+
+Development Time
+
+≈ 3 Months
+
+Deployments
+
+Lost Count
+
+Git Commits
+
+Concerning Amount
+
+Coffee Consumed
+
+Industrial Quantities
+
+Hours Debugging
+
+Yes.
+
+Hours Coding
+
+Surprisingly Less.
+
+Stack Overflow Tabs
+
+47
+
+Times I Restarted Render
+
+Don't Ask.
+
+Times I Whispered
+
+"Please just work..."
+Daily.
+⚙️ Tech Stack
 Frontend
 ⚛ React
 ⚡ Vite
 🎨 Figma
 ✨ Antigravity
 
-Difficulty:
+Difficulty
 
 ⭐⭐⭐☆☆
 Backend
@@ -225,16 +273,17 @@ Backend
 🔴 Redis
 🌿 Celery
 🔐 JWT
+📧 Brevo
 
-Difficulty:
+Difficulty
 
 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
 Cloud
 ▲ Vercel
 
-"Looks good."
-
 Deploys.
+
+Leaves.
 ☁ Render
 
 Build Successful.
@@ -242,64 +291,58 @@ Build Successful.
 Deployment Failed.
 
 Good Luck.
-🤝 Special Thanks
+🏗 System Architecture
+                 User 😃
+                    │
+                    ▼
+           React Frontend
+                    │
+                    ▼
+            FastAPI Backend
+                    │
+        PostgreSQL Database
+                    │
+                    ▼
+         Everything Works ✅
+                    │
+                    ▼
+Developer Opens Logs Every 5 Minutes
+Just To Be Sure
+👥 Special Thanks
 
 Huge thanks to Y.
 
-Without him, I'd probably still be looking at Render logs pretending to understand them.
+Without him...
 
-📊 Project Statistics
-Development Time
+I'd probably still be staring at Render logs pretending to understand them.
 
-≈ 3 Months
-
-Coffee
-
-Enough.
-
-Git Commits
-
-A worrying amount.
-
-Deployments
-
-Lost count.
-
-CORS Errors
-
-Yes.
-
-Times I restarted Render
-
-Don't ask.
-
-Hours debugging
-
-Yes.
-
-Hours coding
-
-Surprisingly less.
 🐛 Known Issues
-Developer still flinches when Render sends an email.
+Developer now gets anxiety when Render sends an email.
 
-Occasionally opens production logs just to make sure the server is alive.
+Trust issues with Environment Variables.
 
-Trust issues with PostgreSQL.
+Randomly opens production logs
+to check if the backend is still alive.
 
-Mild PTSD from environment variables.
-
-Still says:
+Still says
 
 "It works on my machine."
-💀 TODO
-☐ Become rich
 
-☐ Put actual money into the banking app
+Still doesn't know why it works.
+💸 Investment Portfolio
+Invested:
 
-☐ Sleep
+✅ Time
 
-☑ Accidentally become a backend developer
+✅ Coffee
+
+✅ Sleep
+
+✅ Sanity
+
+Returns:
+
+GitHub Repository.
 📜 License
 
 MIT License
@@ -312,34 +355,84 @@ Learn from it.
 
 Improve it.
 
+Deploy it.
+
 If deployment fails...
 
-You're on your own.
+Welcome to the club.
+📋 TODO
+☐ Become Rich
+
+☐ Put Actual Money
+Inside My Banking System
+
+☐ Sleep
+
+☑ Accidentally Become
+A Backend Developer
 📝 Final Thoughts
 
 This project started with:
 
-"I'll build a simple banking app."
+"Let's build a banking application."
 
 It ended with:
 
-"I understand why banks hire 500 software engineers."
+"I completely understand why banks have entire engineering departments."
 
-Built with
+<p align="center"> <img src="https://media.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif" width="260"/> </p>
+❤️ Built With
 ☕ Coffee
+
 😭 Render Logs
+
 🐍 Python
+
 ⚛ React
+
 💀 Questionable Decisions
-🤝 Friends
+
 📚 Stack Overflow
+
 🤖 Claude
+
 🤖 Codex
+
 🤖 ChatGPT
+
+🤝 Friends
+
+🚀 Vercel
+
+☁ Render
+
+and approximately
+
+2–3 months of
+
+"It works on localhost."
+💀 Final Rating
+Documentation         ██░░░░░░░░ 15%
+
+Character Development ███████████████████████ 100%
+
+Coffee                ███████████████████████
+
+Questionable Decisions ███████████████████████
+
+Sanity                ░░░░░░░░░░
+
+Production            ✅
+🫡 Last Words
+
+"I TOOK A LOT OF QUESTIONABLE DECISIONS...
+
+**...BUT I APPRECIATE EVERY SINGLE ONE OF THEM." ❤️
+
 P.S.
 
 Yes...
 
-I built a banking system before I built my bank balance.
+I built a banking system before I built my bank balance. Peak Startup Founder Behaviour
 
-The irony is fully intentional.
+And honestly... I'd do it all over again. 🚀💙
