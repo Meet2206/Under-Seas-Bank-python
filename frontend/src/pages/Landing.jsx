@@ -27,14 +27,23 @@ export default function Landing() {
         alert("Underseas Bank Legal Notice:\n\nThis application is a digital banking clone project. All transactions, balances, loans, cards, and portfolios are virtual and simulated for demonstration purposes. No real money or financial liabilities are involved.")
     }
 
+    const scrollToTop = (e) => {
+        e.preventDefault()
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
     return (
+
 
         <main className="landing-page">
             <nav className="landing-nav">
-                <Link to="/" className="landing-brand">
-                    <img src="/underseas logo.jpeg" alt="Logo" className="landing-brand-mark" />
+                <Link to="/" className="landing-brand" onClick={scrollToTop}>
+                    <div className="landing-brand-mark">
+                        <img src="/underseas logo.jpeg" alt="Logo" />
+                    </div>
                     <span>Underseas Bank</span>
                 </Link>
+
 
                 <div className="landing-links">
                     <a href="#products">Products</a>
@@ -141,7 +150,7 @@ export default function Landing() {
 
             <footer className="landing-footer">
                 <div className="landing-footer-links">
-                    <Link to="/">Underseas Bank</Link>
+                    <Link to="/" onClick={scrollToTop}>Underseas Bank</Link>
                     <a href="#products">Product</a>
                     <a href="#security">Security</a>
                     <a href="#legal" onClick={showLegalNotice}>Legal</a>
