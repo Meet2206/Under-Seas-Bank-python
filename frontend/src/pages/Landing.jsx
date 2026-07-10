@@ -22,13 +22,20 @@ const productSections = [
 ]
 
 export default function Landing() {
+    const showLegalNotice = (e) => {
+        e.preventDefault()
+        alert("Underseas Bank Legal Notice:\n\nThis application is a digital banking clone project. All transactions, balances, loans, cards, and portfolios are virtual and simulated for demonstration purposes. No real money or financial liabilities are involved.")
+    }
+
     return (
+
         <main className="landing-page">
             <nav className="landing-nav">
                 <Link to="/" className="landing-brand">
-                    <span className="landing-brand-mark">U</span>
+                    <img src="/underseas logo.jpeg" alt="Logo" className="landing-brand-mark" />
                     <span>Underseas Bank</span>
                 </Link>
+
                 <div className="landing-links">
                     <a href="#products">Products</a>
                     <a href="#security">Security</a>
@@ -133,12 +140,18 @@ export default function Landing() {
             </section>
 
             <footer className="landing-footer">
-                <span>Underseas Bank</span>
-                <span>Product</span>
-                <span>Security</span>
-                <span>Legal</span>
-                <span>Contact</span>
+                <div className="landing-footer-links">
+                    <Link to="/">Underseas Bank</Link>
+                    <a href="#products">Product</a>
+                    <a href="#security">Security</a>
+                    <a href="#legal" onClick={showLegalNotice}>Legal</a>
+                    <a href="mailto:support@underseas.com">Contact</a>
+                </div>
+                <p className="landing-footer-copyright">
+                    &copy; {new Date().getFullYear()} Underseas Bank. All rights reserved to Meet Limbachiya.
+                </p>
             </footer>
+
         </main>
     )
 }

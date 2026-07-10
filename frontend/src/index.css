@@ -2169,12 +2169,11 @@ td strong,
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(47,224,201,0.12);
-  color: var(--bioluminescent-400);
-  border: 1px solid rgba(47,224,201,0.24);
+  object-fit: cover;
+  transform: scale(1.35);
+  overflow: hidden;
 }
+
 
 .landing-links a {
   color: rgba(255,255,255,0.68);
@@ -2455,12 +2454,40 @@ td strong,
 .landing-footer {
   min-height: 96px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 28px;
+  justify-content: space-between;
+  gap: 24px;
   color: rgba(255,255,255,0.48);
   background: var(--abyss-950);
   border-top: 1px solid rgba(255,255,255,0.08);
 }
+
+.landing-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.landing-footer-links a {
+  color: rgba(255, 255, 255, 0.48);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.landing-footer-links a:hover {
+  color: var(--bioluminescent-400);
+}
+
+.landing-footer-copyright {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+}
+
 
 @keyframes vaultDrift {
   from { transform: translate3d(-6%, -4%, 0); }
