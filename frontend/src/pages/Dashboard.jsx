@@ -3,27 +3,21 @@ import { useNavigate } from "react-router-dom"
 import MainLayout from "../layout/MainLayout"
 import ExpenseChart from "../components/ExpenseChart"
 import TransactionTable from "../components/TransactionTable"
-import { getAccounts, getMyLoans, getMyFDs, getMe } from "../services/api"
+import { getAccounts, getMe } from "../services/api"
 
 export default function Dashboard() {
     const navigate = useNavigate()
     const [user, setUser] = useState(null)
     const [accounts, setAccounts] = useState([])
-    const [loanCount, setLoanCount] = useState(0)
-    const [fdCount, setFdCount] = useState(0)
     const [loading, setLoading] = useState(true)
 
     const loadData = async () => {
         try {
-            const [accs, loans, fds, userData] = await Promise.all([
+            const [accs, userData] = await Promise.all([
                 getAccounts(),
-                getMyLoans().catch(() => []),
-                getMyFDs().catch(() => []),
                 getMe().catch(() => null)
             ])
             setAccounts(accs)
-            setLoanCount(loans.length)
-            setFdCount(fds.length)
             setUser(userData)
         } catch (err) {
             console.log(err)
@@ -45,18 +39,12 @@ export default function Dashboard() {
         return "Good Evening"
     }
 
-    const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0)
-
     const quickActions = [
         { label: "Transfer", icon: <svg viewBox="0 0 24 24"><path d="M16 3l4 4-4 4M21 7H9M8 21l-4-4 4-4M3 17h12"/></svg>, path: "/transfer" },
         { label: "Deposit", icon: <svg viewBox="0 0 24 24"><path d="M12 2v10M12 12l-4-4M12 12l4-4M2 17h20v2H2z"/></svg>, path: "/transfer" }, // Maps to Transfer page tabs
         { label: "Withdraw", icon: <svg viewBox="0 0 24 24"><path d="M12 22V12M12 12l-4 4M12 12l4 4M2 7h20V5H2z"/></svg>, path: "/transfer" },
-        { label: "Accounts", icon: <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>, path: "/accounts" },
-        { label: "Analytics", icon: <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>, path: "/analytics" },
-        { label: "Transactions", icon: <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>, path: "/transactions" },
-        { label: "Loans", icon: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></svg>, path: "/loans" },
-        { label: "Fixed Deposit", icon: <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="M12 12h.01" /><path d="M17 12h.01" /><path d="M7 12h.01" /></svg>, path: "/fd" },
         { label: "Credit Card", icon: <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>, path: "/credit-card" },
+        { label: "Pay Bills", icon: <svg viewBox="0 0 24 24"><path d="M7 3h10l2 3v15l-3-2-3 2-3-2-3 2-3-2V6z" /><path d="M8 9h8M8 13h8" /></svg>, path: "/transactions" },
     ]
 
 
@@ -65,7 +53,7 @@ export default function Dashboard() {
             
             {/* Greeting */}
             <div className="greeting-section">
-                <h1>{getGreeting()}, {user?.name?.split(" ")[0] || "User"} 👋</h1>
+                <h1>{getGreeting()}, {user?.name?.split(" ")[0] || "User"}</h1>
                 <p>Ready to manage your finances today?</p>
             </div>
 
@@ -81,7 +69,15 @@ export default function Dashboard() {
 
             {/* Account Cards Grid */}
             <div className="account-cards-grid">
-                {accounts.map((acc, i) => (
+                {loading && accounts.length === 0 && (
+                    <div className="bank-card bank-card-skeleton">
+                        <div className="skeleton-line wide"></div>
+                        <div className="skeleton-line"></div>
+                        <div className="skeleton-line short"></div>
+                    </div>
+                )}
+
+                {accounts.map((acc) => (
                     <div key={acc.id} className={`bank-card ${acc.account_type.toLowerCase()}`}>
                         <div>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -108,7 +104,7 @@ export default function Dashboard() {
                 ))}
 
                 {/* Stat Summary Card for small metrics if no accounts */}
-                {accounts.length === 0 && (
+                {!loading && accounts.length === 0 && (
                     <div className="stat-card primary" style={{ height: "200px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                         <h4>Total Balance</h4>
                         <div className="stat-value">₹0.00</div>
@@ -119,8 +115,11 @@ export default function Dashboard() {
 
             {/* AI Insight Banner */}
             <div className="insight-banner">
+                <div className="insight-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2v20M4 8h16M6 16h12" /></svg>
+                </div>
                 <div className="insight-content">
-                    <h3>💡 Smart Financial Suggestion</h3>
+                    <h3>Smart Financial Suggestion</h3>
                     <p>
                         Your current balance is among the top 10% of users this month. 
                         Consider moving <strong>₹5,000</strong> to a Fixed Deposit to earn up to <strong>7.5% APY</strong>.

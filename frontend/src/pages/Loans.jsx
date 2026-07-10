@@ -9,7 +9,7 @@ export default function Loans() {
 
     const [accountId, setAccountId] = useState("")
     const [amount, setAmount] = useState("")
-    const [rate, setRate] = useState("7.5")
+    const [rate] = useState("7.5")
     const [months, setMonths] = useState("12")
 
     const loadData = async () => {
@@ -77,11 +77,7 @@ export default function Loans() {
                     <div className="grid-2">
                         <div className="form-field">
                             <label>Interest Rate (%)</label>
-                            <input
-                                type="number"
-                                value={rate}
-                                onChange={(e) => setRate(e.target.value)}
-                            />
+                            <div className="readonly-rate-pill">7.5% p.a.</div>
                         </div>
                         <div className="form-field">
                             <label>Tenure (Months)</label>
@@ -100,12 +96,12 @@ export default function Loans() {
                     </button>
                 </div>
 
-                <div className="panel">
+                <div className="panel calc-panel">
                     <h3>Loan Calculator Info</h3>
                     <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                        <div style={{ padding: "12px", background: "var(--gray-50)", borderRadius: "8px", border: "1px solid var(--gray-200)" }}>
-                            <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase", color: "var(--gray-400)" }}>Est. Monthly EMI</span>
-                            <div style={{ fontSize: "20px", fontWeight: "700", color: "var(--navy-900)" }}>
+                        <div className="calc-result">
+                            <span>Est. Monthly EMI</span>
+                            <div>
                                 ₹{amount ? (Number(amount) * (1 + (Number(rate)/100)) / Number(months)).toFixed(2) : "0.00"}
                             </div>
                         </div>

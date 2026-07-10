@@ -9,7 +9,7 @@ export default function FixedDeposit() {
 
     const [accountId, setAccountId] = useState("")
     const [amount, setAmount] = useState("")
-    const [rate, setRate] = useState("6.5")
+    const [rate] = useState("6.5")
     const [months, setMonths] = useState("12")
 
     const loadData = async () => {
@@ -77,12 +77,7 @@ export default function FixedDeposit() {
                     <div className="grid-2">
                         <div className="form-field">
                             <label>Annual Interest (% p.a.)</label>
-                            <input
-                                type="number"
-                                value={rate}
-                                onChange={(e) => setRate(e.target.value)}
-                                disabled
-                            />
+                            <div className="readonly-rate-pill gold">6.5% p.a.</div>
                         </div>
                         <div className="form-field">
                             <label>Duration</label>
@@ -101,17 +96,17 @@ export default function FixedDeposit() {
                     </button>
                 </div>
 
-                <div className="panel">
+                <div className="panel calc-panel gold">
                     <h3>Investment Value</h3>
                     <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                        <div style={{ padding: "12px", background: "var(--success-bg)", borderRadius: "8px", border: "1px solid rgba(16, 185, 129, 0.2)" }}>
-                            <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase", color: "var(--success)" }}>Est. Maturity Amount</span>
-                            <div style={{ fontSize: "20px", fontWeight: "700", color: "var(--navy-900)" }}>
+                        <div className="calc-result gold">
+                            <span>Est. Maturity Amount</span>
+                            <div>
                                 ₹{amount ? (Number(amount) * (1 + (Number(rate)/100) * (Number(months)/12))).toFixed(2) : "0.00"}
                             </div>
                         </div>
                         <p style={{ fontSize: "12px", color: "var(--gray-500)", lineHeight: "1.5" }}>
-                            Underseas Bank 🛡️ Secure Deposit scheme is insured up to ₹250,000 for your peace of mind.
+                            Underseas Bank Secure Deposit scheme is insured up to ₹250,000 for your peace of mind.
                         </p>
                     </div>
                 </div>

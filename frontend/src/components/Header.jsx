@@ -91,8 +91,10 @@ export default function Header({ title, subtitle, onMenuToggle }) {
                 console.log(err)
             }
         }
-        load()
-        loadNotifications()
+        queueMicrotask(() => {
+            load()
+            loadNotifications()
+        })
         
         const interval = setInterval(loadNotifications, 20000)
         return () => clearInterval(interval)
@@ -115,7 +117,7 @@ export default function Header({ title, subtitle, onMenuToggle }) {
 
     const handleLogout = () => {
         localStorage.removeItem("token")
-        navigate("/")
+        navigate("/login")
     }
 
 
@@ -144,6 +146,11 @@ export default function Header({ title, subtitle, onMenuToggle }) {
         <div className="header">
 
             <div className="header-left">
+                <button className="hamburger-btn" onClick={onMenuToggle} aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <h3>
                     <span className="desktop-title">{title || "Underseas Bank"}</span>
                     <span className="mobile-title" onClick={() => navigate("/dashboard")} style={{ cursor: "pointer" }}>

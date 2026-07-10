@@ -69,8 +69,8 @@ export default function CreditCard() {
                         </select>
                     </div>
 
-                    <div style={{ marginBottom: "20px", display: "flex", gap: "12px", alignItems: "center" }}>
-                        <div style={{ width: "24px", height: "16px", background: "gold", borderRadius: "2px" }}></div>
+                    <div className="premium-note">
+                        <div></div>
                         <span style={{ fontSize: "12px", color: "var(--gray-500)" }}>Enjoy 2% Cashback on all purchases</span>
                     </div>
 
@@ -79,7 +79,7 @@ export default function CreditCard() {
                     </button>
                 </div>
 
-                <div className="panel" style={{ background: "linear-gradient(135deg, var(--gray-800), var(--gray-900))", color: "white", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div className="panel credit-vault-card">
                     <div>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                             <span style={{ fontSize: "14px", fontWeight: "600", opacity: 0.8 }}>Underseas Card</span>
