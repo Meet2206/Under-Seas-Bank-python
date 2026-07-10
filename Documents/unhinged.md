@@ -1,438 +1,440 @@
-🏦 Underseas Bank
-A Digital Banking Platform Built By Someone Who Checked His Bank Balance Before Ordering Domino's.
+# 🏦 Underseas Bank
 
-"I built a banking system capable of managing millions of rupees... while my own account politely suggested I reconsider buying iced coffee." 💀
+> A Digital Banking Platform Built By Someone Who Checked His Bank Balance Before Ordering Domino's.
 
-<p align="center"> <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=28&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM.;Works+on+Production.;Still+Can't+Afford+Starbucks.;Character+Development+Simulator." /> </p> <p align="center"> <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="280"/> </p>
-🎭 The Irony
+<div align="center">
 
-Things I built:
+**"I built a banking system capable of managing millions of rupees... while my own account politely suggested I reconsider buying iced coffee." 💀**
 
-✅ Authentication
-✅ JWT Security
-✅ PostgreSQL
-✅ Redis
-✅ Money Transfers
-✅ Fixed Deposits
-✅ Credit Cards
-✅ Loan EMI Calculator
-✅ Financial Analytics
-✅ Production Deployment
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM+with+Coffee;Production+Deployment+Roulette;Peak+Software+Engineering)
 
-Things I don't have:
+</div>
 
+---
+
+## 🎭 The Irony
+
+### Things I Built:
+✅ Authentication | ✅ JWT Security | ✅ PostgreSQL | ✅ Redis | ✅ Money Transfers | ✅ Fixed Deposits | ✅ Credit Cards | ✅ Loan EMI Calculator | ✅ Financial Analytics | ✅ Production Deployment
+
+### Things I Don't Have:
+
+```
 ❌ Fixed Deposit
-
 ❌ Credit Card
-
 ❌ Loan Eligibility
+❌ Money in Bank Account
+```
 
-❌ Money
-💰 Financial Report
-Money Stored Inside Database
+---
 
-███████████████████████████████████
+## 💰 Financial Report
 
-Money Inside My Wallet
+<div align="center">
 
-█
+| Category | Status |
+|----------|--------|
+| **Money in Database** | ███████████████████████████████ |
+| **Money in My Wallet** | █ |
+| **Available Balance** | ₹127.43 |
+| **Minimum Balance Required** | Also ₹127.43 |
 
-Current Financial Status:
+**Peak Software Engineering. 📊**
 
-Available Balance
+</div>
 
-₹127.43
+---
 
-Minimum Balance Required
+## 🔥 Development Journey
 
-Also ₹127.43
+<div align="center">
 
-Peak Software Engineering.
-
-🔥 Development Journey
-💡 Random Idea
-      │
-      ▼
-"This should take 2 weeks."
-      │
-      ▼
+```
+💡 Random Idea at 2AM
+       ↓
+"This should take 2 weeks." 😎
+       ↓
 Week 1 😃
-      │
-      ▼
+       ↓
 Week 3 🙂
-      │
-      ▼
+       ↓
 Month 2 😐
-      │
-      ▼
+       ↓
 Month 3 🤡
-      │
-      ▼
+       ↓
 Production 🚀
-<p align="center"> <img src="https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif" width="420"/> </p>
-☕ Coffee Architecture
+```
+
+![Coffee Developer](https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif)
+
+</div>
+
+---
+
+## ☕ Coffee Architecture
+
+<div align="center">
+
+```
 Coffee ☕
-     │
-     ▼
-Coding
-     │
-     ▼
-Bug
-     │
-     ▼
-Stack Overflow
-     │
-     ▼
-Claude
-     │
-     ▼
-Codex
-     │
-     ▼
-ChatGPT
-     │
-     ▼
-"It works."
-
-Nobody knows why.
-🐘 PostgreSQL
-
-Database:
-
-role "username" does not exist
-
-Me:
-
-BROTHER...
-
-YOU ARE THE DATABASE.
-🔐 JWT Authentication
-
-JWT:
-
-401 Unauthorized
-
-Me:
-
-But...
-
-I literally created you...
-
-JWT:
-
-Didn't ask.
-☁️ Render Deployment
-
-Render:
-
-✅ Build Successful
-
-Me:
-
-LET'S GOOOOOOOOOOOOOOOO
-
-Render:
-
-❌ Deployment Failed
-
-Me:
-
-...
-
-Render:
-
-Figure it out.
-<p align="center"> <img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" width="320"/> </p>
-▲ Vercel
-
-Vercel:
-
-Deployment Successful.
-
-Me:
-
-WAIT...
-
-THAT'S IT?
-
-Vercel:
-
-Yes.
-
-Me:
-
-...
-
-Render:
-
-Skill Issue.
-🌐 Production
-
-Localhost:
-
-Everything Works.
-
-Production:
-
-500 Internal Server Error
-
-Me:
-
-IT LITERALLY WORKED
-12 SECONDS AGO.
-🤖 AI Debugging Pipeline
-Bug Appears
-      │
-      ▼
-Google 🔍
-      │
-Didn't Work
-      ▼
+  ↓
+Coding 💻
+  ↓
+Bug 🐛
+  ↓
+Stack Overflow 🔍
+  ↓
 Claude 🤖
-      │
-Almost Fixed
-      ▼
+  ↓
 Codex 🤖
-      │
-Almost Fixed
-      ▼
+  ↓
 ChatGPT 🤖
-      │
-Actually Fixed
-      ▼
-Me:
+  ↓
+"It works." ✅
 
-"I knew that."
-📊 Deployment Analytics
-Localhost        ✅
+Nobody knows why. 👀
+```
 
-Render           💀
+</div>
 
-Render Again     💀
+---
 
-Render Again     💀
+## 🐘 PostgreSQL Drama
 
-Render Again     💀
+<div align="center">
 
-Render Again     💀
+**PostgreSQL:** `role "username" does not exist`
 
-Render Finally   ✅
+**Me:** BROTHER...
 
-Vercel           😎
-📈 Technical Statistics
+**Me:** YOU ARE THE DATABASE. 🤦‍♂️
 
-Development Time
+![Confused Developer](https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif)
 
-≈ 3 Months
+</div>
 
-Deployments
+---
 
-Lost Count
+## 🔐 JWT Authentication Crisis
 
-Git Commits
+<div align="center">
 
-Concerning Amount
+**JWT:** `401 Unauthorized`
 
-Coffee Consumed
+**Me:** But... I literally created you... 😭
 
-Industrial Quantities
+**JWT:** Didn't ask. 🚫
 
-Hours Debugging
+![JWT Rejection](https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif)
 
-Yes.
+</div>
 
-Hours Coding
+---
 
-Surprisingly Less.
+## ☁️ Deployment Saga
 
-Stack Overflow Tabs
+### Render vs Vercel
 
-47
+<div align="center">
 
-Times I Restarted Render
+| Platform | Experience | My Reaction |
+|----------|-------------|------------|
+| **Render Build** | ✅ Build Successful | LET'S GOOOOOOOOOOOOOOOO 🚀 |
+| **Render Deploy** | ❌ Deployment Failed | Figure it out. 💀 |
+| **Render Again** | 💀 | *whispers softly* |
+| **Render Again** | 💀 | *internal screaming* |
+| **Render Finally** | ✅ Success! | FINALLY! 😭 |
+| **Vercel Deploy** | ✅ Deployment Successful | Wait... that's it? 🤔 |
+| **Vercel Result** | Yes. | SKILL ISSUE -Render 😎 |
 
-Don't Ask.
+![Deployment Stress](https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif)
 
-Times I Whispered
+</div>
 
-"Please just work..."
-Daily.
-⚙️ Tech Stack
-Frontend
-⚛ React
-⚡ Vite
-🎨 Figma
-✨ Antigravity
+---
 
-Difficulty
+## 🌐 The Production Paradox
 
-⭐⭐⭐☆☆
-Backend
-🐍 FastAPI
-🐘 PostgreSQL
-🔴 Redis
-🌿 Celery
-🔐 JWT
-📧 Brevo
+<div align="center">
 
-Difficulty
+**Localhost:** Everything Works ✅
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-Cloud
-▲ Vercel
+**Production:** 500 Internal Server Error ❌
 
-Deploys.
+**Me:** IT LITERALLY WORKED 12 SECONDS AGO!!! 😤
 
-Leaves.
-☁ Render
+![Panic Developer](https://media.giphy.com/media/xT9IgEx8SbQ0teblYM/giphy.gif)
 
-Build Successful.
+</div>
 
-Deployment Failed.
+---
 
-Good Luck.
-🏗 System Architecture
-                 User 😃
-                    │
-                    ▼
-           React Frontend
-                    │
-                    ▼
-            FastAPI Backend
-                    │
-        PostgreSQL Database
-                    │
-                    ▼
-         Everything Works ✅
-                    │
-                    ▼
+## 🤖 AI Debugging Pipeline
+
+<div align="center">
+
+```
+Bug Appears 🐛
+    ↓
+Google 🔍 → Didn't Work ✗
+    ↓
+Claude 🤖 → Almost Fixed ~
+    ↓
+Codex 🤖 → Almost Fixed ~
+    ↓
+ChatGPT 🤖 → Actually Fixed ✓
+    ↓
+Me: "I knew that." 🤓
+```
+
+</div>
+
+---
+
+## 📊 Deployment Analytics
+
+<div align="center">
+
+```
+Localhost        ✅ (Obviously)
+Render           💀 (RIP)
+Render Again     💀 (Poor Soul)
+Render Again     💀 (Why Bother)
+Render Again     💀 (Question Reality)
+Render Finally   ✅ (VINDICATION!)
+Vercel           😎 (Smooth Operator)
+```
+
+</div>
+
+---
+
+## 📈 Technical Statistics
+
+<div align="center">
+
+| Metric | Value |
+|--------|-------|
+| **Development Time** | ~3 Months 🗓️ |
+| **Number of Deployments** | Lost Count 📊 |
+| **Git Commits** | Concerning Amount 😅 |
+| **Coffee Consumed** | Industrial Quantities ☕☕☕ |
+| **Hours Debugging** | Yes. ✓ |
+| **Hours Coding** | Surprisingly Less. 🤷 |
+| **Stack Overflow Tabs** | 47 🔍 |
+| **Render Restart Attempts** | Don't Ask. 🙅 |
+| **Times Whispered "Please Work"** | Daily. 🙏 |
+
+</div>
+
+---
+
+## ⚙️ Tech Stack
+
+<div align="center">
+
+### Frontend ⚛️
+```
+React | Vite | Figma | ✨ Antigravity
+Difficulty: ⭐⭐⭐☆☆
+```
+
+### Backend 🐍
+```
+FastAPI | PostgreSQL | Redis | Celery | JWT | Brevo
+Difficulty: ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+(Translation: PAIN)
+```
+
+### Cloud ☁️
+```
+▲ Vercel → Deploys & Leaves
+☁️ Render → Build OK, Deploy RIP, Good Luck
+```
+
+### Language Composition
+- **JavaScript:** 41.9% 📱
+- **Python:** 35.6% 🐍
+- **CSS:** 22.3% 🎨
+- **Other:** 0.2% ✨
+
+</div>
+
+---
+
+## 🏗️ System Architecture
+
+<div align="center">
+
+```
+User 😃
+  ↓
+React Frontend ⚛️
+  ↓
+FastAPI Backend 🐍
+  ↓
+PostgreSQL Database 🐘
+  ↓
+Everything Works ✅
+  ↓
 Developer Opens Logs Every 5 Minutes
-Just To Be Sure
-👥 Special Thanks
+Just To Be Sure 👀
+```
 
-Huge thanks to Y.
+</div>
 
-Without him...
+---
 
-I'd probably still be staring at Render logs pretending to understand them.
+## 👥 Special Thanks
 
-🐛 Known Issues
-Developer now gets anxiety when Render sends an email.
+<div align="center">
 
-Trust issues with Environment Variables.
+**Huge thanks to Y.** 🙏
 
-Randomly opens production logs
-to check if the backend is still alive.
+*Without him...*
 
-Still says
+*I'd probably still be staring at Render logs pretending to understand them.* 😭
 
-"It works on my machine."
+![Gratitude](https://media.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif)
 
-Still doesn't know why it works.
-💸 Investment Portfolio
-Invested:
+</div>
 
-✅ Time
+---
 
-✅ Coffee
+## 🐛 Known Issues
 
-✅ Sleep
+```
+✓ Developer now gets anxiety when Render sends an email
+✓ Trust issues with Environment Variables
+✓ Randomly opens production logs to check if backend is still alive
+✓ Still says "It works on my machine." (like it's a feature)
+✓ Still doesn't know why it works
+✓ Occasional existential crisis while reviewing git history
+```
 
-✅ Sanity
+---
 
-Returns:
+## 💸 Investment Portfolio
 
-GitHub Repository.
-📜 License
+<div align="center">
 
-MIT License
+### Invested:
+- ✅ Time (3 months)
+- ✅ Coffee (dangerous amounts ☕)
+- ✅ Sleep (what's that?)
+- ✅ Sanity (gone, reduced to atoms 💀)
+
+### Returns:
+- GitHub Repository ✨
+- Knowledge (expensive, painful knowledge 📚)
+- Questionable Life Choices 🤡
+
+</div>
+
+---
+
+## 📜 License
+
+**MIT License**
 
 Translation:
-
+```
 Take the code.
-
 Learn from it.
-
 Improve it.
-
 Deploy it.
-
 If deployment fails...
+Welcome to the club. 👋
+```
 
-Welcome to the club.
-📋 TODO
-☐ Become Rich
+---
 
-☐ Put Actual Money
-Inside My Banking System
+## 📋 TODO
 
-☐ Sleep
+- ☐ Become Rich 💰
+- ☐ Put Actual Money Inside My Banking System 🏦
+- ☐ Sleep 😴
+- ☑ Accidentally Become A Backend Developer 🐍
+- ☐ Understand Why Render Exists 🤔
+- ☐ Recover from Deployment PTSD 🏥
 
-☑ Accidentally Become
-A Backend Developer
-📝 Final Thoughts
+---
+
+## 📝 Final Thoughts
+
+<div align="center">
 
 This project started with:
 
-"Let's build a banking application."
+**"Let's build a banking application."**
 
 It ended with:
 
-"I completely understand why banks have entire engineering departments."
+**"I completely understand why banks have entire engineering departments."**
 
-<p align="center"> <img src="https://media.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif" width="260"/> </p>
-❤️ Built With
-☕ Coffee
+---
 
-😭 Render Logs
+![Victory Dance](https://media.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif)
 
-🐍 Python
+</div>
 
-⚛ React
+---
 
-💀 Questionable Decisions
+## ❤️ Built With
 
-📚 Stack Overflow
+| What | Why |
+|------|-----|
+| ☕ Coffee | Fuel for the soul |
+| 😭 Render Logs | Masochism |
+| 🐍 Python | Backend excellence |
+| ⚛️ React | Frontend magic |
+| 💀 Questionable Decisions | Character building |
+| 📚 Stack Overflow | Lifesaver |
+| 🤖 Claude, Codex, ChatGPT | AI Debugging Trinity |
+| 🤝 Friends | Support system |
+| 🚀 Vercel & Render | Deployment Roulette |
+| ⏰ 2-3 Months | Time investment |
+| 🗣️ "It works on localhost." | Universal truth |
 
-🤖 Claude
+---
 
-🤖 Codex
+## 💀 Final Rating
 
-🤖 ChatGPT
+<div align="center">
 
-🤝 Friends
+| Category | Rating |
+|----------|--------|
+| Documentation | ██░░░░░░░░ 15% |
+| Character Development | ██████████ 100% |
+| Coffee Consumed | ██████████ ∞ |
+| Questionable Decisions | ██████████ 100% |
+| Sanity | ░░░░░░░░░░ 0% |
+| Production Ready | ✅ ABSOLUTELY |
 
-🚀 Vercel
+</div>
 
-☁ Render
+---
 
-and approximately
+## 🫡 Last Words
 
-2–3 months of
+<div align="center">
 
-"It works on localhost."
-💀 Final Rating
-Documentation         ██░░░░░░░░ 15%
+**"I TOOK A LOT OF QUESTIONABLE DECISIONS...**
 
-Character Development ███████████████████████ 100%
+**...BUT I APPRECIATE EVERY SINGLE ONE OF THEM." ❤️**
 
-Coffee                ███████████████████████
+---
 
-Questionable Decisions ███████████████████████
+**P.S.** 👀
 
-Sanity                ░░░░░░░░░░
+*Yes... I built a banking system before I built my bank balance.*
 
-Production            ✅
-🫡 Last Words
+**Peak Startup Founder Behavior 📊**
 
-"I TOOK A LOT OF QUESTIONABLE DECISIONS...
+*And honestly... I'd do it all over again.* 🚀💙
 
-**...BUT I APPRECIATE EVERY SINGLE ONE OF THEM." ❤️
+---
 
-P.S.
+*Built with ☕, 😭, and a healthy dose of questionable decision-making* 💀
 
-Yes...
-
-I built a banking system before I built my bank balance. Peak Startup Founder Behaviour
-
-And honestly... I'd do it all over again. 🚀💙
+</div>
