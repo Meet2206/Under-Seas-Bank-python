@@ -1,1 +1,47 @@
+Text 1)
 
+Built a fintech application.
+
+The funniest part?
+
+My bank account has been on "low balance" throughout development. 💀
+
+After 2–3 months, countless bugs, and enough deployment errors to question my life choices...
+
+Underseas Bank is finally LIVE. 🏦🚀
+
+What started as a random idea slowly turned into a full-stack banking platform with:
+
+• Secure Authentication 🔐
+• Account Management 💳
+• Money Transfers 💸
+• Loans 🏦
+• Fixed Deposits 📈
+• Credit Cards 💳
+• Financial Analytics 📊
+
+There were days when I spent 4 hours fixing a bug... only to discover I had forgotten a comma.
+
+There were nights where "Deploy" basically meant:
+
+Deploy
+Crash
+Google
+Stack Overflow
+Claude
+Codex
+Repeat
+
+Built with:
+
+⚡ FastAPI
+⚛️ React
+🐘 PostgreSQL
+🔴 Redis
+🌿 Celery
+▲ Vercel
+🎨 Figma
+☁️ Render
+🟢 NeonDB
+📧 Brevo
+😭 Sanity
