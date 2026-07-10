@@ -16,8 +16,8 @@ const productSections = [
     {
         title: "Credit, deposits, and cards in one vault",
         copy: "Loans, fixed deposits, and premium card workflows share a single product language, so every decision feels consistent.",
-        metric: "256-bit",
-        label: "encrypted sessions"
+        metric: "Zero",
+        label: "hidden fees"
     }
 ]
 
