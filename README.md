@@ -671,7 +671,6 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 - GitHub: [@Meet2206](https://github.com/Meet2206)
 - Repository: [Under-Seas-Bank-python](https://github.com/Meet2206/Under-Seas-Bank-python)
-- Link 🔗: [underseas-bank.vercel.app]
 
 ---
 
