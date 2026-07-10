@@ -1,5 +1,4 @@
 Text 1)
-
 Built a fintech application.
 
 The funniest part?
@@ -30,18 +29,274 @@ Google
 Stack Overflow
 Claude
 Codex
+lost Sanity
 Repeat
 
-Built with:
+Text 2)
+Me at 3:04 AM:
 
-⚡ FastAPI
-⚛️ React
-🐘 PostgreSQL
-🔴 Redis
-🌿 Celery
-▲ Vercel
-🎨 Figma
-☁️ Render
-🟢 NeonDB
-📧 Brevo
-😭 Sanity
+"One last deployment."
+
+Me at 4:52 AM:
+
+ERROR:
+Internal Server Error
+
+Me at 5:37 AM:
+
+"It works on localhost."
+
+Me at 6:12 AM:
+
+"WHO TOUCHED THE ENV VARIABLES?"
+
+Anyway...
+
+After 2–3 months of building, debugging, deploying, redeploying, and questioning every life decision...
+
+Underseas Bank is finally live.
+
+Built while learning.
+Broke it multiple times.
+Fixed it (mostly).
+
+Somehow ended up deploying an entire banking system before figuring out my own finances. 😂
+
+Text 3)
+Built a banking platform.
+
+Things I invested:
+
+✅ Time
+✅ Coffee
+✅ Sleep
+✅ Sanity
+
+Things I didn't invest:
+
+❌ Money
+
+(Ironically, I built the investment module anyway. 💀)
+
+After 2–3 months...
+
+Underseas Bank is finally live.
+
+From a random idea to a deployed full-stack application.
+
+There were bugs.
+There were deployment failures.
+There were "why is it working locally?" moments.
+
+But every bug taught me something new.
+
+Text 4) 
+Built a fintech app.
+
+Bro's net worth: ₹47. 💀
+
+Anyway...
+
+After 2–3 months of:
+
+fixing bugs
+creating new bugs
+blaming CORS
+blaming Render
+blaming Vercel
+realizing it was my fault
+
+Underseas Bank is finally LIVE.
+
+Huge thanks to Y for helping with deployment because at one point my backend had stronger emotional boundaries than my API.
+
+Text 5)
+1. Fintech Irony
+
+Built a fintech application.
+
+Balance in my own account: ₹73.42.
+
+Peak irony.
+
+2. Deployment Starter Pack
+
+Deploy.
+
+❌ Failed.
+
+Fix.
+
+Deploy.
+
+❌ Failed.
+
+Google.
+
+Claude.
+
+Codex.
+
+Coffee.
+
+Deploy.
+
+✅ "Works on localhost."
+
+3. 3 AM Developer
+
+Me at 3:12 AM:
+
+"One last deployment."
+
+Me at 6:41 AM:
+
+"Good morning."
+
+4. Fintech Developer Logic
+
+Built:
+
+✅ Loan module
+✅ Fixed Deposits
+✅ Credit Cards
+✅ Financial Analytics
+
+Can't decide whether to order Domino's because it's ₹50 extra.
+
+5. My Relationship Status
+
+Relationship Status:
+
+Committed to resolving deployment errors.
+
+6. Render Be Like
+
+Render:
+
+"Deploy failed."
+
+Me:
+
+"Why?"
+
+Render:
+
+"Figure it out."
+
+7. Every Developer
+
+95% of development:
+
+print()
+print()
+print()
+print()
+print()
+WHY ISN'T IT PRINTING?!
+8. The Real Tech Stack
+
+Tech Stack:
+
+FastAPI
+React
+PostgreSQL
+Redis
+Celery
+Stack Overflow
+"Bro, come here once."
+9. CORS
+
+Every bug:
+
+"It's CORS."
+
+Narrator:
+
+It wasn't CORS.
+
+10. AI Tools
+
+People:
+
+"AI will replace developers."
+
+Me:
+
+"Claude and Codex watched me make the same mistake six different ways."
+
+11. Production
+
+Localhost:
+
+😎
+
+Production:
+
+💀
+
+12. Mental Health
+
+My project has:
+
+Better authentication
+Better validation
+Better error handling
+
+than my emotional stability during deployment.
+
+13. Biggest Achievement
+
+Biggest flex isn't building the banking system.
+
+Biggest flex is not deleting the whole project after the 47th deployment error.
+
+14. The Friend
+
+10% Coding
+
+90%:
+
+"Bro... just come on Google Meet once."
+
+15. Reality
+
+Started this project thinking:
+
+"I'll finish in two weeks."
+
+Git history:
+
+2–3 months of character development.
+
+16. Git
+
+Git:
+
+"Are you sure?"
+
+Me:
+
+"No."
+
+git push --force
+
+17. Backend
+
+My backend:
+
+Enterprise architecture.
+
+My sleep schedule:
+
+Deprecated.
+
+18. Final One (My Favorite 😂)
+
+Built a digital banking platform...
+
+...while being financially sponsored by my parents.
+
+Peak startup founder experience. 💀
+
+LAST BUT NOT THE LEAST!! I TOOK ALOT OF QUESTIONABLE DECISIONS BUT I APPRICIATE
