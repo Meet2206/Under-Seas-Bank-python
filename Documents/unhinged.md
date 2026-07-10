@@ -7,6 +7,7 @@
 **"I built a banking system capable of managing millions of rupees... while my own account politely suggested I reconsider buying iced coffee." 💀**
 
 ![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM+with+Coffee;Production+Deployment+Roulette;Peak+Software+Engineering)
+ <p align="center"> <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="280"/> </p>
 
 </div>
 
