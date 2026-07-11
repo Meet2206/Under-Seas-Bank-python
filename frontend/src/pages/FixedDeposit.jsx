@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import MainLayout from "../layout/MainLayout"
-import { createFD, getMyFDs, getAccounts } from "../services/api"
+import { createFD, getMyFDs, getAccounts, closeFD } from "../services/api"
 
 export default function FixedDeposit() {
     const [accounts, setAccounts] = useState([])
@@ -43,6 +43,19 @@ export default function FixedDeposit() {
             setAmount("")
         } catch (err) {
             alert(err.message)
+        }
+    }
+
+    const handleCloseFD = async (fdId) => {
+        if (!window.confirm("Are you sure you want to close this Fixed Deposit early? This will credit the maturity amount back to your account.")) {
+            return
+        }
+        try {
+            await closeFD(fdId)
+            alert("Fixed Deposit closed successfully!")
+            loadData()
+        } catch (err) {
+            alert(err.message || "Failed to close Fixed Deposit")
         }
     }
 
@@ -134,7 +147,8 @@ export default function FixedDeposit() {
                                 <th>Interest Rate</th>
                                 <th>Duration</th>
                                 <th>Maturity Amount</th>
-                                <th style={{ textAlign: "right" }}>Status</th>
+                                <th>Status</th>
+                                <th style={{ textAlign: "right" }}>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,8 +159,41 @@ export default function FixedDeposit() {
                                     <td>{fd.interest_rate}%</td>
                                     <td>{fd.duration_months} mo</td>
                                     <td><span style={{ color: "var(--success)", fontWeight: "700" }}>₹{fd.maturity_amount.toLocaleString()}</span></td>
+                                    <td>
+                                        <span className={`badge ${fd.status === 'closed' ? 'badge-danger' : 'badge-success'}`}>
+                                            {fd.status ? fd.status.charAt(0).toUpperCase() + fd.status.slice(1) : 'Active'}
+                                        </span>
+                                    </td>
                                     <td style={{ textAlign: "right" }}>
-                                        <span className="badge badge-success">{fd.status || 'Active'}</span>
+                                        {(!fd.status || fd.status === 'active') && (
+                                            <button
+                                                onClick={() => handleCloseFD(fd.id)}
+                                                style={{
+                                                    padding: "6px 12px",
+                                                    fontSize: "12px",
+                                                    background: "var(--danger-bg, #fef2f2)",
+                                                    color: "#dc2626",
+                                                    border: "1.5px solid #fca5a5",
+                                                    borderRadius: "var(--border-radius-xs, 4px)",
+                                                    cursor: "pointer",
+                                                    fontWeight: "600",
+                                                    transition: "all 0.2s ease",
+                                                    display: "inline-flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                }}
+                                                onMouseOver={(e) => {
+                                                    e.currentTarget.style.background = "#fee2e2";
+                                                    e.currentTarget.style.borderColor = "#f87171";
+                                                }}
+                                                onMouseOut={(e) => {
+                                                    e.currentTarget.style.background = "var(--danger-bg, #fef2f2)";
+                                                    e.currentTarget.style.borderColor = "#fca5a5";
+                                                }}
+                                            >
+                                                Close FD
+                                            </button>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
