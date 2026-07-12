@@ -4,6 +4,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Geist:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Poppins:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 /* ── Reset ── */
 * {
@@ -2729,4 +2730,135 @@ td strong,
     display: none !important;
   }
 }
+
+/* ═══════════════════════════════════
+   ILLUSTRATED BANK CARDS
+   ═══════════════════════════════════ */
+.new-bank-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 360 / 227;
+  max-width: 360px;
+  min-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 48px -16px rgba(0,0,0,0.65),
+    0 6px 16px -6px rgba(0,0,0,0.55);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.new-bank-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 32px 64px -16px rgba(0,0,0,0.75),
+    0 12px 24px -6px rgba(0,0,0,0.65);
+}
+
+.new-bank-card svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.new-bank-card-info {
+  position: absolute;
+  inset: 0;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.new-bank-card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.new-bank-card-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.new-bank-card-tier-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.new-bank-card-tier-sub {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 3px;
+}
+
+.new-bank-card-middle-row {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.new-bank-card-balance span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  display: block;
+}
+
+.new-bank-card-balance h2 {
+  font-family: 'Space Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 2px;
+  letter-spacing: -0.5px;
+}
+
+.new-bank-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.new-bank-card-holder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.new-bank-card-holder-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.new-bank-card-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.new-bank-card-chip-mini {
+  width: 28px;
+  height: 20px;
+  display: block;
+  flex-shrink: 0;
+}
+
 

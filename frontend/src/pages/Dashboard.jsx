@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import MainLayout from "../layout/MainLayout"
 import ExpenseChart from "../components/ExpenseChart"
 import TransactionTable from "../components/TransactionTable"
+import BankCard from "../components/BankCard"
 import { getAccounts, getMe } from "../services/api"
 
 export default function Dashboard() {
@@ -78,42 +79,13 @@ export default function Dashboard() {
                 )}
 
                 {accounts.map((acc) => (
-                    <div key={acc.id} className={`bank-card ${acc.account_type.toLowerCase()}`}>
-                        <div>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <div className="bank-card-logo">Underseas Bank</div>
-                                <div className="bank-card-type">{acc.account_type}</div>
-                            </div>
-                            <div className="bank-card-chip"></div>
-                        </div>
-                        <div>
-                            <div className="bank-card-number">
-                                •••• •••• •••• {acc.account_number.slice(-4)}
-                            </div>
-                            <div className="bank-card-footer">
-                                <div className="bank-card-balance">
-                                    <span style={{ fontSize: "11px", opacity: 0.7 }}>AVAILABLE BALANCE</span>
-                                    <h2>₹{acc.balance.toLocaleString()}</h2>
-                                </div>
-                                <div style={{ 
-                                    fontSize: "11px", 
-                                    fontWeight: "700",
-                                    color: "#2fe0c9",
-                                    background: "rgba(47, 224, 201, 0.12)", 
-                                    border: "1px solid rgba(47, 224, 201, 0.24)",
-                                    padding: "4px 10px", 
-                                    borderRadius: "12px",
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.05em",
-                                    flexShrink: 0,
-                                    whiteSpace: "nowrap"
-                                }}>
-                                    Active
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    <BankCard
+                        key={acc.id}
+                        type={acc.account_type?.toLowerCase() === 'current' ? 'current' : 'shoal'}
+                        balance={`₹${acc.balance.toLocaleString()}`}
+                        cardNumber={`•••• •••• •••• ${acc.account_number.slice(-4)}`}
+                        holderName={user?.name || "VALUED CUSTOMER"}
+                    />
                 ))}
 
                 {/* Stat Summary Card for small metrics if no accounts */}

@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react"
 import MainLayout from "../layout/MainLayout"
-import { applyCreditCard, getCreditCards, getAccounts } from "../services/api"
+import BankCard from "../components/BankCard"
+import { applyCreditCard, getCreditCards, getAccounts, getMe } from "../services/api"
 
 export default function CreditCard() {
     const [accounts, setAccounts] = useState([])
     const [cards, setCards] = useState([])
     const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState(null)
 
     const [accountId, setAccountId] = useState("")
     const [creditLimit, setCreditLimit] = useState("5000")
 
     const loadData = async () => {
         try {
-            const [accs, myCards] = await Promise.all([
+            const [accs, myCards, userData] = await Promise.all([
                 getAccounts(),
-                getCreditCards()
+                getCreditCards(),
+                getMe().catch(() => null)
             ])
             setAccounts(accs)
             setCards(Array.isArray(myCards) ? myCards : (myCards ? [myCards] : []))
+            setUser(userData)
             if (accs.length > 0) setAccountId(accs[0].id)
         } catch (err) {
             console.log(err)
@@ -79,18 +83,16 @@ export default function CreditCard() {
                     </button>
                 </div>
 
-                <div className="panel credit-vault-card">
-                    <div>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                            <span style={{ fontSize: "14px", fontWeight: "600", opacity: 0.8 }}>Underseas Card</span>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-                        </div>
-                        <div style={{ marginTop: "40px", fontSize: "18px", letterSpacing: "2px", fontFamily: "monospace" }}>•••• •••• •••• 1234</div>
-                    </div>
-                    <div>
-                        <div style={{ fontSize: "10px", textTransform: "uppercase", opacity: 0.5 }}>Card Holder</div>
-                        <div style={{ fontSize: "14px", fontWeight: "600" }}>VALUED CUSTOMER</div>
-                    </div>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <BankCard
+                        type="abyss"
+                        balance={cards.length > 0 
+                            ? `₹${(cards[0].credit_limit - cards[0].used_credit).toLocaleString()}` 
+                            : `₹${Number(creditLimit).toLocaleString()}`
+                        }
+                        cardNumber={cards.length > 0 ? cards[0].card_number : "•••• •••• •••• 1234"}
+                        holderName={user?.name || "VALUED CUSTOMER"}
+                    />
                 </div>
             </div>
 
