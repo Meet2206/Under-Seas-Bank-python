@@ -2861,4 +2861,14 @@ td strong,
     height: 22px;
 }
 
+@media (max-width: 768px) {
+  .quick-action-item {
+    min-width: 0;
+  }
+
+  .app-content {
+    padding: 20px 16px;
+  }
+}
+
 
