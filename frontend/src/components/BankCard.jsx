@@ -1,7 +1,10 @@
+import { useId } from "react"
+
 export default function BankCard({ type, balance, cardNumber, holderName, onClick }) {
     const isAbyss = type === "abyss";
     const isCurrent = type === "current";
     const isShoal = type === "shoal";
+    const uid = useId().replace(/:/g, "");
 
     let tierName = "Shoal";
     let tierSub = "Everyday Debit";
@@ -23,21 +26,21 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
     return (
         <div className={`new-bank-card ${type}`} onClick={onClick}>
             {isShoal && (
-                <svg className="new-bank-card-bg" width="100%" height="100%" viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="skyShoal" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#CDEFE6"/>
-                      <stop offset="45%" stop-color="#5FC2C9"/>
-                      <stop offset="100%" stop-color="#12707F"/>
+                    <linearGradient id={`skyShoal-${uid}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#CDEFE6"/>
+                      <stop offset="45%" stopColor="#5FC2C9"/>
+                      <stop offset="100%" stopColor="#12707F"/>
                     </linearGradient>
-                    <radialGradient id="sunShoal" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#FFE1B8"/>
-                      <stop offset="60%" stop-color="#FF9B5C"/>
-                      <stop offset="100%" stop-color="#FF9B5C" stop-opacity="0"/>
+                    <radialGradient id={`sunShoal-${uid}`} cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#FFE1B8"/>
+                      <stop offset="60%" stopColor="#FF9B5C"/>
+                      <stop offset="100%" stopColor="#FF9B5C" stopOpacity="0"/>
                     </radialGradient>
                   </defs>
-                  <rect width="360" height="227" fill="url(#skyShoal)"/>
-                  <circle cx="270" cy="58" r="46" fill="url(#sunShoal)"/>
+                  <rect width="360" height="227" fill={`url(#skyShoal-${uid})`}/>
+                  <circle cx="270" cy="58" r="46" fill={`url(#sunShoal-${uid})`}/>
                   <circle cx="270" cy="58" r="20" fill="#FFDFA0"/>
                   <g fill="#0E4F5C" opacity="0.85">
                     <path d="M60 50 l10 -5 l0 10 z"/>
@@ -64,25 +67,25 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
             )}
 
             {isCurrent && (
-                <svg className="new-bank-card-bg" width="100%" height="100%" viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="skyCurrent" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#6A5AA8"/>
-                      <stop offset="50%" stop-color="#3B2E72"/>
-                      <stop offset="100%" stop-color="#170F3A"/>
+                    <linearGradient id={`skyCurrent-${uid}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#6A5AA8"/>
+                      <stop offset="50%" stopColor="#3B2E72"/>
+                      <stop offset="100%" stopColor="#170F3A"/>
                     </linearGradient>
-                    <radialGradient id="glowCurrent" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#FBD9A8"/>
-                      <stop offset="55%" stop-color="#E888B0"/>
-                      <stop offset="100%" stop-color="#E888B0" stop-opacity="0"/>
+                    <radialGradient id={`glowCurrent-${uid}`} cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#FBD9A8"/>
+                      <stop offset="55%" stopColor="#E888B0"/>
+                      <stop offset="100%" stopColor="#E888B0" stopOpacity="0"/>
                     </radialGradient>
                   </defs>
-                  <rect width="360" height="227" fill="url(#skyCurrent)"/>
-                  <circle cx="270" cy="55" r="48" fill="url(#glowCurrent)"/>
+                  <rect width="360" height="227" fill={`url(#skyCurrent-${uid})`}/>
+                  <circle cx="270" cy="55" r="48" fill={`url(#glowCurrent-${uid})`}/>
                   <circle cx="270" cy="55" r="18" fill="#FCE3C2"/>
                   <g opacity="0.9">
                     <ellipse cx="70" cy="55" rx="16" ry="11" fill="#F3B4D6"/>
-                    <path d="M58 60 Q60 78 56 92 M66 63 Q66 80 64 95 M74 63 Q76 80 78 95 M82 60 Q84 78 88 92" stroke="#F3B4D6" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+                    <path d="M58 60 Q60 78 56 92 M66 63 Q66 80 64 95 M74 63 Q76 80 78 95 M82 60 Q84 78 88 92" stroke="#F3B4D6" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.8"/>
                   </g>
                   <path d="M0 150 Q 70 115 150 145 T 360 140 V227 H0 Z" fill="#241B4E"/>
                   <path d="M0 175 Q 90 148 190 172 T 360 168 V227 H0 Z" fill="#180F38"/>
@@ -96,26 +99,26 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
             )}
 
             {isAbyss && (
-                <svg className="new-bank-card-bg" width="100%" height="100%" viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="skyAbyss" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#171208"/>
-                      <stop offset="100%" stop-color="#050402"/>
+                    <linearGradient id={`skyAbyss-${uid}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#171208"/>
+                      <stop offset="100%" stopColor="#050402"/>
                     </linearGradient>
-                    <radialGradient id="glowAbyss" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#FBE7B4"/>
-                      <stop offset="55%" stop-color="#D9B36C"/>
-                      <stop offset="100%" stop-color="#D9B36C" stop-opacity="0"/>
+                    <radialGradient id={`glowAbyss-${uid}`} cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#FBE7B4"/>
+                      <stop offset="55%" stopColor="#D9B36C"/>
+                      <stop offset="100%" stopColor="#D9B36C" stopOpacity="0"/>
                     </radialGradient>
                   </defs>
-                  <rect width="360" height="227" fill="url(#skyAbyss)"/>
-                  <circle cx="270" cy="55" r="50" fill="url(#glowAbyss)"/>
+                  <rect width="360" height="227" fill={`url(#skyAbyss-${uid})`}/>
+                  <circle cx="270" cy="55" r="50" fill={`url(#glowAbyss-${uid})`}/>
                   <circle cx="270" cy="55" r="16" fill="#FCEFC9"/>
                   <g fill="#0B0906">
                     <path d="M55 70 Q40 55 25 62 Q40 68 40 78 Q40 88 25 94 Q40 101 55 86 Q66 92 62 78 Q66 64 55 70 Z"/>
                     <circle cx="46" cy="74" r="2" fill="#2FE6C4"/>
                   </g>
-                  <path d="M55 68 Q40 40 34 30" stroke="#0B0906" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                  <path d="M55 68 Q40 40 34 30" stroke="#0B0906" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
                   <circle cx="34" cy="29" r="4" fill="#2FE6C4"/>
                   <circle cx="34" cy="29" r="8" fill="#2FE6C4" opacity="0.25"/>
                   <path d="M0 150 Q 70 122 150 148 T 360 143 V227 H0 Z" fill="#151007"/>
@@ -145,8 +148,8 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
                         <span className="new-bank-card-holder-name">{holderName}</span>
                         <span className="new-bank-card-num">{cardNumber}</span>
                     </div>
-                    <svg className="new-bank-card-chip-mini" width="26" height="19" viewBox="0 0 26 19">
-                        <rect x="0.5" y="0.5" width="25" height="18" rx="3.5" fill="#F3D89A" stroke="#8a6a34" stroke-width="0.5"/>
+                    <svg className="new-bank-card-chip-mini" viewBox="0 0 26 19">
+                        <rect x="0.5" y="0.5" width="25" height="18" rx="3.5" fill="#F3D89A" stroke="#8a6a34" strokeWidth="0.5"/>
                         <line x1="9" y1="0.5" x2="9" y2="18.5" stroke="#8a6a34" stroke-width="0.5"/>
                         <line x1="17" y1="0.5" x2="17" y2="18.5" stroke="#8a6a34" stroke-width="0.5"/>
                         <line x1="0.5" y1="7" x2="25.5" y2="7" stroke="#8a6a34" stroke-width="0.5"/>
