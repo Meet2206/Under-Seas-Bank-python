@@ -10,6 +10,8 @@ import Loans from "./pages/Loans"
 import FixedDeposit from "./pages/FixedDeposit"
 import CreditCard from "./pages/CreditCard"
 import Analytics from "./pages/Analytics"
+import Statements from "./pages/Statements"
+import Settings from "./pages/Settings"
 
 
 function App() {
@@ -39,6 +41,10 @@ function App() {
         <Route path="/credit-card" element={<CreditCard />} />
 
         <Route path="/analytics" element={<Analytics />} />
+
+        <Route path="/statements" element={<Statements />} />
+
+        <Route path="/settings" element={<Settings />} />
 
       </Routes>
 

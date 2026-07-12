@@ -1438,23 +1438,9 @@ button:hover {
     display: flex;
   }
 
-  /* Show overlay when sidebar is open */
-  .sidebar-overlay {
-    display: block;
-  }
-
-  /* Sidebar slides off-screen by default */
+  /* Hide desktop sidebar on mobile */
   .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 200;
-    box-shadow: none;
-  }
-
-  /* Sidebar slides in when open */
-  .sidebar.sidebar-open {
-    transform: translateX(0);
-    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.25);
+    display: none !important;
   }
 
   /* Main content takes full width */
@@ -2586,3 +2572,161 @@ td strong,
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ═══════════════════════════════════
+   MOBILE NAVIGATION DRAWER
+   ═══════════════════════════════════ */
+
+/* Backdrop overlay with 40% opacity */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1), visibility 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+}
+
+.mobile-drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Off-canvas sliding drawer container */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 320px;
+  background: #ffffff; /* light background */
+  z-index: 1001;
+  transform: translateX(-100%); /* slide from left */
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08); /* subtle shadow */
+  border-top-right-radius: 16px; /* rounded corners on sliding edge */
+  border-bottom-right-radius: 16px;
+  overflow: hidden;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fafbfc;
+}
+
+.mobile-drawer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.mobile-drawer-logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mobile-drawer-logo h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy-900);
+  margin: 0;
+}
+
+.mobile-drawer-user h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin: 0 0 2px 0;
+}
+
+.mobile-drawer-user p {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+.mobile-drawer-menu {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+/* Touch items: min-height 56px, vertically centered, icons aligned */
+.mobile-drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  min-height: 56px; /* 56px touch target height */
+  border-radius: 8px; /* rounded corners */
+  color: var(--gray-700);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-drawer-item:hover {
+  background: rgba(0, 0, 0, 0.03); /* soft hover effect */
+  color: var(--navy-900);
+}
+
+.mobile-drawer-item.active {
+  background: rgba(26, 117, 159, 0.08); /* active menu highlight */
+  color: var(--navy-900);
+  font-weight: 600;
+}
+
+.mobile-drawer-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* icons aligned perfectly */
+  text-align: center;
+}
+
+.mobile-drawer-label {
+  flex: 1;
+  display: flex;
+  align-items: center; /* text vertically centered */
+}
+
+/* Logout button styling at bottom */
+.mobile-drawer-item.logout-btn {
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 0;
+  padding-top: 16px;
+}
+
+/* Ensure no layout shift and drawer layout is clean */
+@media (min-width: 769px) {
+  .mobile-drawer-backdrop,
+  .mobile-drawer {
+    display: none !important;
+  }
+}
+
