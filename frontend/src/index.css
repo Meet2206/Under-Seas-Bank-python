@@ -2765,7 +2765,7 @@ td strong,
     0 12px 24px -6px rgba(0,0,0,0.65);
 }
 
-.new-bank-card svg {
+.new-bank-card-bg {
   position: absolute;
   inset: 0;
   width: 100% !important;
