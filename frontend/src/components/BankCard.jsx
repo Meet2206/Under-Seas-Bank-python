@@ -23,7 +23,7 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
     return (
         <div className={`new-bank-card ${type}`} onClick={onClick}>
             {isShoal && (
-                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100%" height="100%" viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="skyShoal" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stop-color="#CDEFE6"/>
@@ -64,7 +64,7 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
             )}
 
             {isCurrent && (
-                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100%" height="100%" viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="skyCurrent" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stop-color="#6A5AA8"/>
@@ -96,7 +96,7 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
             )}
 
             {isAbyss && (
-                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100%" height="100%" viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="skyAbyss" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stop-color="#171208"/>
@@ -145,7 +145,7 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
                         <span className="new-bank-card-holder-name">{holderName}</span>
                         <span className="new-bank-card-num">{cardNumber}</span>
                     </div>
-                    <svg className="new-bank-card-chip-mini" viewBox="0 0 26 19">
+                    <svg className="new-bank-card-chip-mini" width="26" height="19" viewBox="0 0 26 19">
                         <rect x="0.5" y="0.5" width="25" height="18" rx="3.5" fill="#F3D89A" stroke="#8a6a34" stroke-width="0.5"/>
                         <line x1="9" y1="0.5" x2="9" y2="18.5" stroke="#8a6a34" stroke-width="0.5"/>
                         <line x1="17" y1="0.5" x2="17" y2="18.5" stroke="#8a6a34" stroke-width="0.5"/>
