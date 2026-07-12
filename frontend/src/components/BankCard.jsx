@@ -1,27 +1,37 @@
 import { useId } from "react"
 
-export default function BankCard({ type, balance, cardNumber, holderName, onClick }) {
+export default function BankCard({ type, accountType, balance, cardNumber, holderName, onClick }) {
     const isAbyss = type === "abyss";
     const isCurrent = type === "current";
+    const isTide = type === "tide";
     const isShoal = type === "shoal";
     const uid = useId().replace(/:/g, "");
 
     let tierName = "Shoal";
-    let tierSub = "Everyday Debit";
+    let defaultSub = "Savings Account";
     let textColor = "#F4FBFA";
     let subColor = "#EAFBF7";
 
     if (isCurrent) {
         tierName = "Current";
-        tierSub = "Premium Debit";
+        defaultSub = "Current Account";
         textColor = "#F4FBFA";
         subColor = "#E3D8F5";
+    } else if (isTide) {
+        tierName = "Tide";
+        defaultSub = "Salary Account";
+        textColor = "#F4FBFA";
+        subColor = "#CFE3F5";
     } else if (isAbyss) {
         tierName = "Abyss";
-        tierSub = "Signature Credit";
+        defaultSub = "Signature Credit";
         textColor = "#F3D89A";
         subColor = "#C7AD79";
     }
+
+    // Show the real account type from your data if it's passed in,
+    // otherwise fall back to the tier's default label.
+    const tierSub = accountType || defaultSub;
 
     return (
         <div className={`new-bank-card ${type}`} onClick={onClick}>
@@ -94,6 +104,50 @@ export default function BankCard({ type, balance, cardNumber, holderName, onClic
                     <circle cx="140" cy="35" r="2.5"/>
                     <circle cx="160" cy="50" r="2"/>
                     <circle cx="120" cy="60" r="3"/>
+                  </g>
+                </svg>
+            )}
+
+            {isTide && (
+                <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id={`skyTide-${uid}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#1C3552"/>
+                      <stop offset="50%" stopColor="#122943"/>
+                      <stop offset="100%" stopColor="#081524"/>
+                    </linearGradient>
+                    <radialGradient id={`moonTide-${uid}`} cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#F4FBFF"/>
+                      <stop offset="55%" stopColor="#BFDCF2"/>
+                      <stop offset="100%" stopColor="#BFDCF2" stopOpacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  <rect width="360" height="227" fill={`url(#skyTide-${uid})`}/>
+                  <g fill="#EAF4FF" opacity="0.7">
+                    <circle cx="60" cy="24" r="1.4"/>
+                    <circle cx="110" cy="18" r="1"/>
+                    <circle cx="150" cy="34" r="1.4"/>
+                    <circle cx="190" cy="16" r="1"/>
+                    <circle cx="40" cy="42" r="1"/>
+                  </g>
+                  <circle cx="270" cy="55" r="50" fill={`url(#moonTide-${uid})`}/>
+                  <circle cx="270" cy="55" r="19" fill="#F4FBFF"/>
+                  <circle cx="278" cy="48" r="3.2" fill="#CFE3F5" opacity="0.6"/>
+                  <circle cx="264" cy="62" r="2.2" fill="#CFE3F5" opacity="0.5"/>
+                  <g fill="#DCEBF7" opacity="0.9">
+                    <path d="M50 70 l9 -4.5 l0 9 z"/>
+                    <path d="M64 66 l9 -4.5 l0 9 z"/>
+                    <path d="M78 70 l9 -4.5 l0 9 z"/>
+                    <path d="M58 80 l9 -4.5 l0 9 z"/>
+                    <path d="M72 84 l9 -4.5 l0 9 z"/>
+                  </g>
+                  <path d="M0 150 Q 65 118 140 144 T 360 138 V227 H0 Z" fill="#16283F"/>
+                  <path d="M0 176 Q 85 150 180 172 T 360 166 V227 H0 Z" fill="#0F1C2E"/>
+                  <path d="M0 200 Q 95 184 195 200 T 360 197 V227 H0 Z" fill="#0A121F"/>
+                  <g fill="#EAF4FF" opacity="0.35">
+                    <rect x="255" y="150" width="6" height="4" rx="1"/>
+                    <rect x="266" y="160" width="9" height="4" rx="1"/>
+                    <rect x="248" y="170" width="7" height="4" rx="1"/>
                   </g>
                 </svg>
             )}

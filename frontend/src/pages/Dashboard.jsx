@@ -78,15 +78,20 @@ export default function Dashboard() {
                     </div>
                 )}
 
-                {accounts.map((acc) => (
-                    <BankCard
-                        key={acc.id}
-                        type={acc.account_type?.toLowerCase() === 'current' ? 'current' : 'shoal'}
-                        balance={`₹${acc.balance.toLocaleString()}`}
-                        cardNumber={`•••• •••• •••• ${acc.account_number.slice(-4)}`}
-                        holderName={user?.name || "VALUED CUSTOMER"}
-                    />
-                ))}
+                {accounts.map((acc) => {
+                    const t = acc.account_type?.toLowerCase();
+                    const cardType = t === "current" ? "current" : t === "salary" ? "tide" : "shoal";
+                    return (
+                        <BankCard
+                            key={acc.id}
+                            type={cardType}
+                            accountType={acc.account_type}
+                            balance={`₹${acc.balance.toLocaleString()}`}
+                            cardNumber={`•••• •••• •••• ${acc.account_number.slice(-4)}`}
+                            holderName={user?.name || "VALUED CUSTOMER"}
+                        />
+                    );
+                })}
 
                 {/* Stat Summary Card for small metrics if no accounts */}
                 {!loading && accounts.length === 0 && (
