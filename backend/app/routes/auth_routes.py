@@ -55,6 +55,7 @@ def get_me(current_user=Depends(get_current_user)):
         "phone_number": current_user.phone_number,
         "is_email_verified": current_user.is_email_verified,
         "is_phone_verified": current_user.is_phone_verified,
+        "customer_id": current_user.customer_id,
     }
 
 
@@ -167,4 +168,38 @@ def reset_mpin_endpoint(
     db.commit()
 
     return {"message": "MPIN reset successfully. You can now log in.", "success": True}
+
+
+from pydantic import BaseModel
+
+class UpdateOnboardingStatusRequest(BaseModel):
+    flag: str
+
+
+@router.get("/onboarding-status")
+def get_onboarding_status(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
+    return {
+        "accountCreationNotificationShown": current_user.account_creation_notification_shown,
+        "welcomeRewardNotificationShown": current_user.welcome_reward_notification_shown,
+    }
+
+
+@router.post("/onboarding-status/update")
+def update_onboarding_status(
+    data: UpdateOnboardingStatusRequest,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
+):
+    if data.flag == "accountCreationNotificationShown":
+        current_user.account_creation_notification_shown = True
+    elif data.flag == "welcomeRewardNotificationShown":
+        current_user.welcome_reward_notification_shown = True
+    else:
+        raise HTTPException(status_code=400, detail="Invalid onboarding flag")
+    
+    db.commit()
+    return {"success": True}
 

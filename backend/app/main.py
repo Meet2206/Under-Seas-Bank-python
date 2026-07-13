@@ -32,6 +32,8 @@ async def lifespan(app: FastAPI):
     while retries > 0:
         try:
             Base.metadata.create_all(bind=engine)
+            from app.database import run_migrations
+            run_migrations()
             print("Database tables verified/created successfully!")
             break
         except OperationalError as e:

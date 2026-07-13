@@ -31,3 +31,48 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def run_migrations():
+    from sqlalchemy import text
+    with engine.connect() as conn:
+        # Add columns to users table
+        try:
+            conn.execute(text("ALTER TABLE users ADD COLUMN customer_id VARCHAR(12) UNIQUE"))
+            conn.commit()
+        except Exception:
+            pass
+        try:
+            conn.execute(text("ALTER TABLE users ADD COLUMN account_creation_notification_shown BOOLEAN DEFAULT FALSE"))
+            conn.commit()
+        except Exception:
+            pass
+        try:
+            conn.execute(text("ALTER TABLE users ADD COLUMN welcome_reward_notification_shown BOOLEAN DEFAULT FALSE"))
+            conn.commit()
+        except Exception:
+            pass
+
+        # Add columns to accounts table
+        try:
+            conn.execute(text("ALTER TABLE accounts ADD COLUMN ifsc_code VARCHAR(11) DEFAULT 'UNBS0000101'"))
+            conn.commit()
+        except Exception:
+            pass
+        try:
+            conn.execute(text("ALTER TABLE accounts ADD COLUMN status VARCHAR(20) DEFAULT 'Active'"))
+            conn.commit()
+        except Exception:
+            pass
+
+        # Add columns to transactions table
+        try:
+            conn.execute(text("ALTER TABLE transactions ADD COLUMN description VARCHAR(255)"))
+            conn.commit()
+        except Exception:
+            pass
+        try:
+            conn.execute(text("ALTER TABLE transactions ADD COLUMN status VARCHAR(50) DEFAULT 'Successful'"))
+            conn.commit()
+        except Exception:
+            pass

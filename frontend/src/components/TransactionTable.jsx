@@ -63,9 +63,11 @@ export default function TransactionTable({ accountId }) {
                                         </div>
                                         <div>
                                             <div style={{ fontWeight: "600", color: "var(--navy-900)", fontSize: "14px" }}>
-                                                {t.transaction_type ? t.transaction_type.charAt(0).toUpperCase() + t.transaction_type.slice(1) : ''}
+                                                {t.description || (t.transaction_type ? t.transaction_type.charAt(0).toUpperCase() + t.transaction_type.slice(1) : '')}
                                             </div>
-                                            <div style={{ fontSize: "11px", color: "var(--gray-400)" }}>Mar 18 • #{t.id.toString().slice(-4)}</div>
+                                            <div style={{ fontSize: "11px", color: "var(--gray-400)" }}>
+                                                {t.created_at ? new Date(t.created_at).toLocaleDateString([], { month: 'short', day: 'numeric' }) : 'Mar 18'} • #{t.id.toString().slice(-4)}
+                                            </div>
                                         </div>
                                     </div>
                                 </td>

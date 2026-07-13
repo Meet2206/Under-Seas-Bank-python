@@ -4,13 +4,14 @@ import MainLayout from "../layout/MainLayout"
 import ExpenseChart from "../components/ExpenseChart"
 import TransactionTable from "../components/TransactionTable"
 import BankCard from "../components/BankCard"
-import { getAccounts, getMe } from "../services/api"
+import { getAccounts, getMe, getOnboardingStatus, updateOnboardingStatus } from "../services/api"
 
 export default function Dashboard() {
     const navigate = useNavigate()
     const [user, setUser] = useState(null)
     const [accounts, setAccounts] = useState([])
     const [loading, setLoading] = useState(true)
+    const [activeNotification, setActiveNotification] = useState(null)
 
     const loadData = async () => {
         try {
@@ -27,11 +28,59 @@ export default function Dashboard() {
         }
     }
 
+    const checkOnboarding = async () => {
+        try {
+            const status = await getOnboardingStatus()
+            if (!status.accountCreationNotificationShown) {
+                setActiveNotification("created")
+            } else if (!status.welcomeRewardNotificationShown) {
+                setActiveNotification("reward")
+            }
+        } catch (err) {
+            console.error("Failed to check onboarding:", err)
+        }
+    }
+
     useEffect(() => {
         loadData()
+        checkOnboarding()
         const interval = setInterval(loadData, 15000)
         return () => clearInterval(interval)
     }, [])
+
+    useEffect(() => {
+        if (activeNotification !== "created") return
+        const timer = setTimeout(async () => {
+            try {
+                await updateOnboardingStatus("accountCreationNotificationShown")
+                setActiveNotification("reward")
+                loadData()
+            } catch (e) {
+                console.error(e)
+            }
+        }, 3000)
+        return () => clearTimeout(timer)
+    }, [activeNotification])
+
+    const handleDismissCreated = async () => {
+        try {
+            await updateOnboardingStatus("accountCreationNotificationShown")
+            setActiveNotification("reward")
+            loadData()
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    const handleDismissReward = async () => {
+        try {
+            await updateOnboardingStatus("welcomeRewardNotificationShown")
+            setActiveNotification(null)
+            loadData()
+        } catch (e) {
+            console.error(e)
+        }
+    }
 
     const getGreeting = () => {
         const hour = new Date().getHours()
@@ -140,6 +189,39 @@ export default function Dashboard() {
                     <ExpenseChart />
                 </div>
             </div>
+            {/* Onboarding Modals */}
+            {activeNotification === "created" && (
+                <div className="onboarding-modal-overlay">
+                    <div className="onboarding-modal-card">
+                        <span className="onboarding-modal-icon">🎉</span>
+                        <h2>Savings Account Created</h2>
+                        <p>
+                            Your Underseas Bank Savings Account has been successfully created.<br />
+                            An Initial Account Opening Deposit of ₹1,000 has been credited to activate your account.
+                        </p>
+                        <button className="onboarding-modal-button" onClick={handleDismissCreated}>
+                            View Account
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {activeNotification === "reward" && (
+                <div className="onboarding-modal-overlay">
+                    <div className="onboarding-modal-card">
+                        <span className="onboarding-modal-icon">🎁</span>
+                        <h2>Welcome Reward Received</h2>
+                        <p>
+                            Thank you for choosing Underseas Bank.<br />
+                            ₹100 has been credited to your Savings Account as a Welcome Reward.<br />
+                            Enjoy banking with Underseas Bank!
+                        </p>
+                        <button className="onboarding-modal-button" onClick={handleDismissReward}>
+                            Awesome!
+                        </button>
+                    </div>
+                </div>
+            )}
 
         </MainLayout>
     )

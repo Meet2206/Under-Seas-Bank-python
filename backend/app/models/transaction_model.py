@@ -17,5 +17,7 @@ class Transaction(Base):
     amount = Column(Numeric(14, 2))
 
     transaction_type = Column(String)
+    description = Column(String(255), nullable=True)
+    status = Column(String(50), default="Successful")
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())

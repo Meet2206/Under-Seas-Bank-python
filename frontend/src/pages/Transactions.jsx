@@ -96,14 +96,18 @@ export default function Transactions() {
                                             <div style={{ fontWeight: "600", color: "var(--navy-900)" }}>
                                                 {t.transaction_type ? t.transaction_type.charAt(0).toUpperCase() + t.transaction_type.slice(1) : ''}
                                             </div>
-                                            <span style={{ fontSize: "11px", color: "var(--gray-400)" }}>Underseas Digital Payment</span>
+                                            <span style={{ fontSize: "11px", color: "var(--gray-400)" }}>{t.description || 'Underseas Digital Payment'}</span>
                                         </td>
-                                        <td style={{ color: "var(--gray-500)", fontSize: "13px" }}>Mar 18, 2026</td>
+                                        <td style={{ color: "var(--gray-500)", fontSize: "13px" }}>
+                                            {t.created_at ? new Date(t.created_at).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : 'Mar 18, 2026'}
+                                        </td>
                                         <td style={{ textAlign: "right", fontWeight: "700", color: isCredit ? 'var(--success)' : 'var(--danger)' }}>
                                             {isCredit ? '+' : '-'}₹{t.amount.toLocaleString()}
                                         </td>
                                         <td style={{ textAlign: "right" }}>
-                                            <span className="badge badge-success">Completed</span>
+                                            <span className={`badge ${t.status?.toLowerCase() === 'failed' ? 'badge-danger' : 'badge-success'}`}>
+                                                {t.status || 'Completed'}
+                                            </span>
                                         </td>
                                     </tr>
                                 );

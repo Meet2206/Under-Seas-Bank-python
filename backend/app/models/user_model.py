@@ -22,4 +22,8 @@ class User(Base):
     is_email_verified = Column(Boolean, default=False)
     is_phone_verified = Column(Boolean, default=False)
 
+    customer_id = Column(String(12), unique=True, index=True, nullable=True)
+    account_creation_notification_shown = Column(Boolean, default=False)
+    welcome_reward_notification_shown = Column(Boolean, default=False)
+
     created_at = Column(DateTime(timezone=True), server_default=func.now())

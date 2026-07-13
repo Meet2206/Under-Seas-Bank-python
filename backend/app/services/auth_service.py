@@ -23,11 +23,20 @@ def register_user(data, db: Session):
 
     mpin_hash = hash_password(data.mpin)
 
+    # generate unique customer_id
+    import secrets
+    while True:
+        customer_id = "".join(str(secrets.randbelow(10)) for _ in range(8))
+        existing_cust = db.query(User).filter(User.customer_id == customer_id).first()
+        if not existing_cust:
+            break
+
     user = User(
         name=data.name,
         email=data.email,
         phone_number=data.phone_number,
-        mpin_hash=mpin_hash
+        mpin_hash=mpin_hash,
+        customer_id=customer_id
     )
 
     db.add(user)
@@ -42,6 +51,10 @@ def register_user(data, db: Session):
         )
 
     db.refresh(user)
+
+    # Automatically create Savings Account for newly registered user
+    from app.services.account_service import create_account
+    create_account(user.id, "Savings", db)
 
     # Send welcome email and required email OTP for new-user verification.
     send_welcome_email(user.email, user.name)

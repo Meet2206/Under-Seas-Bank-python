@@ -298,3 +298,13 @@ export const verifyEmailOTP = (email, otp) =>
         if (!res.ok) throw new Error(result.detail || "Verification failed")
         return result
     })
+
+// GET ONBOARDING STATUS
+export const getOnboardingStatus = () => authFetch("/auth/onboarding-status")
+
+// UPDATE ONBOARDING STATUS
+export const updateOnboardingStatus = (flag) =>
+    authFetch("/auth/onboarding-status/update", {
+        method: "POST",
+        body: JSON.stringify({ flag })
+    })

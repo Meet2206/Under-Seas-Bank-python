@@ -21,6 +21,14 @@ def generate_account_number(db: Session):
 
 
 def create_account(user_id: int, account_type: str, db: Session):
+    # Check if an account of this type already exists for the user to prevent duplicate creation
+    existing = db.query(Account).filter(
+        Account.user_id == user_id,
+        Account.account_type == account_type
+    ).first()
+    if existing:
+        return existing
+
     account_number = generate_account_number(db)
 
     account = Account(
@@ -29,11 +37,50 @@ def create_account(user_id: int, account_type: str, db: Session):
         account_type=account_type,
         balance=0,
         user_id=user_id,
+        ifsc_code="UNBS0000101",
+        status="Active"
     )
 
     db.add(account)
     db.commit()
     db.refresh(account)
+
+    # Process automated onboarding credits for new Savings accounts
+    if account_type == "Savings":
+        # Initial Account Opening Deposit (₹1,000)
+        init_dep = db.query(Transaction).filter(
+            Transaction.to_account_id == account.id,
+            Transaction.description == "Initial Account Opening Deposit"
+        ).first()
+        if not init_dep:
+            account.balance += 1000
+            t1 = Transaction(
+                to_account_id=account.id,
+                amount=1000,
+                transaction_type="deposit",
+                description="Initial Account Opening Deposit",
+                status="Successful"
+            )
+            db.add(t1)
+
+        # Welcome Reward (₹100)
+        welcome_rew = db.query(Transaction).filter(
+            Transaction.to_account_id == account.id,
+            Transaction.description == "Welcome Reward"
+        ).first()
+        if not welcome_rew:
+            account.balance += 100
+            t2 = Transaction(
+                to_account_id=account.id,
+                amount=100,
+                transaction_type="deposit",
+                description="Welcome Reward",
+                status="Successful"
+            )
+            db.add(t2)
+
+        db.commit()
+        db.refresh(account)
 
     return account
 
