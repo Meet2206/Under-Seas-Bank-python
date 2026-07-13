@@ -122,6 +122,26 @@ async def health_check():
     """Health endpoint for monitoring."""
     return {"status": "healthy"}
 
+
+from fastapi import Depends
+from app.database import get_db
+from sqlalchemy import inspect
+from sqlalchemy.orm import Session
+
+@app.get("/diag", tags=["Health"])
+async def diag_check(db: Session = Depends(get_db)):
+    try:
+        inspector = inspect(engine)
+        columns = [c["name"] for c in inspector.get_columns("accounts")]
+        users_cols = [c["name"] for c in inspector.get_columns("users")]
+        return {
+            "accounts_columns": columns,
+            "users_columns": users_cols,
+            "status": "success"
+        }
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 app.include_router(auth_router, tags=["Auth"])
 
 app.include_router(account_router, tags=["Accounts"])
