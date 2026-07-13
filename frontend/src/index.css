@@ -2996,6 +2996,23 @@ body,
   border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
+.transactions-header-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.transactions-header-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.transactions-select-wrapper {
+  min-width: 240px;
+}
+
 .recharts-responsive-container,
 .recharts-wrapper,
 .recharts-surface {
@@ -3172,6 +3189,17 @@ svg {
   .data-table-wrapper table,
   .transactions table {
     min-width: 620px;
+  }
+
+  .transactions-header-panel {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .transactions-select-wrapper {
+    min-width: 100%;
+    width: 100%;
   }
 }
 

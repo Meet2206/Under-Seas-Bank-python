@@ -43,9 +43,9 @@ export default function Transactions() {
 
     return (
         <MainLayout title="Transactions" subtitle="Review your account activity and history">
-            <div className="panel" style={{ marginBottom: "24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                    <div className="stat-card-icon blue" style={{ width: "40px", height: "40px" }}>
+            <div className="panel transactions-header-panel" style={{ marginBottom: "24px" }}>
+                <div className="transactions-header-title">
+                    <div className="stat-card-icon blue" style={{ width: "40px", height: "40px", flexShrink: 0 }}>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     </div>
                     <div>
@@ -54,7 +54,7 @@ export default function Transactions() {
                     </div>
                 </div>
                 
-                <div style={{ minWidth: "240px" }}>
+                <div className="transactions-select-wrapper">
                     <select value={accountId} onChange={(e) => setAccountId(e.target.value)}>
                         <option value="">Select Account</option>
                         {accounts.map((acc) => (
