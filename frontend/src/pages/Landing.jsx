@@ -1,60 +1,118 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Link } from "react-router-dom"
+import "./Landing.css"
 
-const productSections = [
+const reefAssets = {
+    heroVideo: "https://videos.pexels.com/video-files/3326928/3326928-uhd_2560_1440_24fps.mp4",
+    coralGarden: "https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=1200&q=85",
+    turtle: "https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=1100&q=85",
+    reefFish: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=1100&q=85",
+    blueDepth: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1300&q=85",
+    coralMacro: "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1100&q=85"
+}
+
+const reefCards = [
     {
-        depth: "40m",
-        title: "Accounts that live in the shallows",
-        copy: "Shoal, Current, and Tide — everyday spending, day-to-day checking, and salary, each with its own view of your money.",
-        cta: "Compare account tiers",
-        to: "/login"
+        image: reefAssets.turtle,
+        label: "Turtle-grade patience",
+        title: "Savings that cruise calmly",
+        copy: "Set aside money in current, shoal, and tide accounts with a clear view of every rupee moving through the reef."
     },
     {
-        depth: "800m",
-        title: "Transfers, without the murk",
-        copy: "Move money between accounts with readable states, precise references, and a record that stays legible months later.",
-        cta: "Open workspace",
-        to: "/login"
+        image: reefAssets.reefFish,
+        label: "Fish-school transfers",
+        title: "Money moves in formation",
+        copy: "Send funds between accounts with tidy references, readable confirmations, and activity alerts that do not hide in the dark."
     },
     {
-        depth: "2200m",
-        title: "Abyss Signature credit",
-        copy: "Apply straight from your dashboard, pick a limit that fits, and earn cashback on everything — no fine print buried in the trench.",
-        cta: "Apply for Abyss Signature",
-        to: "/login"
+        image: reefAssets.coralGarden,
+        label: "Coral vault security",
+        title: "Layered protection",
+        copy: "Encrypted sessions, authentication-first flows, and stable records give every balance a well-lit place to live."
     }
 ]
 
-function FishIcon({ color = "#DCEBF7", flip = false }) {
+const products = [
+    {
+        depth: "40m",
+        name: "Reef Current Account",
+        copy: "For everyday spending, salary flow, and quick balance checks. Bright, practical, and always close to the surface.",
+        stat: "24/7",
+        statLabel: "activity visibility"
+    },
+    {
+        depth: "800m",
+        name: "Pearl Fixed Deposits",
+        copy: "Lock funds into calm growth pools and track maturity, principal, and returns without spreadsheet fog.",
+        stat: "6.8%",
+        statLabel: "sample annual glow"
+    },
+    {
+        depth: "2200m",
+        name: "Abyss Signature Card",
+        copy: "A premium credit card concept with cashback, limits, repayments, and clean statements built into the dashboard.",
+        stat: "5%",
+        statLabel: "cashback reef rewards"
+    }
+]
+
+const mediaLinks = [
+    { text: "Hero reef video", href: reefAssets.heroVideo },
+    { text: "Coral garden image", href: reefAssets.coralGarden },
+    { text: "Sea turtle image", href: reefAssets.turtle },
+    { text: "Reef fish image", href: reefAssets.reefFish }
+]
+
+function Bubble({ style }) {
+    return <span className="ocean-bubble" style={style} />
+}
+
+function Fish({ className = "", color = "#9ff7ef", flip = false }) {
     return (
-        <svg viewBox="0 0 60 34" width="100%" height="100%" style={{ transform: flip ? "scaleX(-1)" : "none" }}>
-            <path
-                d="M4 17 C 4 9, 16 4, 30 8 C 40 4, 52 6, 58 12 L 50 17 L 58 22 C 52 28, 40 30, 30 26 C 16 30, 4 25, 4 17 Z"
-                fill={color}
-                opacity="0.92"
-            />
-            <circle cx="16" cy="15" r="1.6" fill="#0A1220" opacity="0.6" />
+        <svg className={`ocean-fish ${className}`} viewBox="0 0 90 48" aria-hidden="true" style={{ scale: flip ? "-1 1" : "1 1" }}>
+            <path d="M82 24C73 8 47 5 29 17L10 6l7 18-7 18 19-11c18 12 44 9 53-7Z" fill={color} />
+            <path d="M43 16c-7 7-7 18 0 25" fill="none" stroke="rgba(1, 20, 31, .28)" strokeWidth="4" strokeLinecap="round" />
+            <circle cx="65" cy="20" r="3" fill="#05233a" />
         </svg>
     )
 }
 
-function Bubble({ style }) {
-    return <span className="uw-bubble" style={style}></span>
+function Turtle() {
+    return (
+        <svg className="ocean-turtle" viewBox="0 0 210 130" aria-hidden="true">
+            <path d="M77 34C100 10 145 19 159 50c11 24-3 53-32 61-32 9-70-5-82-31C37 62 55 43 77 34Z" fill="#63d7b6" />
+            <path d="M82 41c17-13 48-9 63 11-9 7-16 20-16 39-22 3-47-4-62-20 7-11 11-21 15-30Z" fill="#216c64" opacity=".62" />
+            <path d="M158 53c17-7 33-2 40 9-8 11-24 15-40 7Z" fill="#8df0cf" />
+            <circle cx="187" cy="60" r="2.8" fill="#05233a" />
+            <path d="M68 36C47 19 23 18 10 32c15 18 37 20 58 11Z" fill="#54c8a6" />
+            <path d="M65 92c-24 5-41 20-43 39 24 0 43-11 55-31Z" fill="#54c8a6" />
+            <path d="M134 27c15-17 36-23 52-15-4 22-19 34-42 35Z" fill="#54c8a6" />
+            <path d="M132 101c17 10 38 11 52 0-9-18-25-25-48-20Z" fill="#54c8a6" />
+        </svg>
+    )
+}
+
+function Jellyfish({ className = "" }) {
+    return (
+        <svg className={`ocean-jelly ${className}`} viewBox="0 0 120 180" aria-hidden="true">
+            <path d="M20 73C21 35 38 14 62 14c27 0 42 25 40 59-9 7-22 11-41 11-18 0-31-4-41-11Z" fill="rgba(255, 137, 194, .78)" />
+            <path d="M23 72c13 12 61 13 77 0v16c-15 12-61 12-77 0Z" fill="rgba(255, 244, 190, .7)" />
+            <path d="M42 86c-9 25 17 39 3 74M61 86c-12 34 15 43 0 82M80 86c-8 23 14 38 1 70" fill="none" stroke="rgba(255, 169, 210, .82)" strokeWidth="5" strokeLinecap="round" />
+        </svg>
+    )
 }
 
 export default function Landing() {
     const [activeDepth, setActiveDepth] = useState(0)
-    const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
-
+    const sectionRefs = useRef([null, null, null, null])
     const depthMarkers = ["0m", "40m", "800m", "4000m"]
-    const depthLabels = ["Surface", "The Shallows", "The Twilight Zone", "The Abyss"]
 
     const bubbles = useMemo(() => {
-        return Array.from({ length: 16 }).map((_, i) => ({
-            left: `${Math.round(Math.random() * 96)}%`,
-            size: 4 + Math.round(Math.random() * 10),
-            duration: 9 + Math.round(Math.random() * 10),
-            delay: -Math.round(Math.random() * 14)
+        return Array.from({ length: 34 }).map((_, i) => ({
+            left: `${(i * 13 + 7) % 100}%`,
+            size: 5 + ((i * 5) % 18),
+            duration: 9 + ((i * 3) % 12),
+            delay: -((i * 2) % 16)
         }))
     }, [])
 
@@ -63,211 +121,214 @@ export default function Landing() {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const idx = sectionRefs.findIndex((r) => r.current === entry.target)
-                        if (idx !== -1) setActiveDepth(idx)
+                        const index = sectionRefs.current.findIndex((section) => section === entry.target)
+                        if (index !== -1) setActiveDepth(index)
                     }
                 })
             },
-            { threshold: 0.4 }
+            { threshold: 0.38 }
         )
-        sectionRefs.forEach((r) => r.current && observer.observe(r.current))
+
+        sectionRefs.current.forEach((section) => {
+            if (section) observer.observe(section)
+        })
+
         return () => observer.disconnect()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const showLegalNotice = (e) => {
-        e.preventDefault()
+    const showLegalNotice = (event) => {
+        event.preventDefault()
         alert("Underseas Bank Legal Notice:\n\nThis application is a digital banking clone project. All transactions, balances, loans, cards, and portfolios are virtual and simulated for demonstration purposes. No real money or financial liabilities are involved.")
     }
 
-    const scrollToTop = (e) => {
-        e.preventDefault()
+    const scrollToTop = (event) => {
+        event.preventDefault()
         window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
     return (
-        <main className="landing-page uw-page">
-
-            {/* ═══ DEPTH GAUGE (desktop only) ═══ */}
-            <div className="uw-depth-gauge" aria-hidden="true">
-                {depthMarkers.map((d, i) => (
-                    <div key={d} className={`uw-depth-tick ${activeDepth === i ? "active" : ""}`}>
-                        <span className="uw-depth-dot"></span>
-                        <span className="uw-depth-label">{d}</span>
-                    </div>
+        <main className="ocean-page">
+            <div className="ocean-depth-gauge" aria-hidden="true">
+                {depthMarkers.map((depth, index) => (
+                    <span key={depth} className={activeDepth === index ? "is-active" : ""}>
+                        <i />
+                        {depth}
+                    </span>
                 ))}
             </div>
 
-            {/* ═══ NAV ═══ */}
-            <nav className="landing-nav">
-                <Link to="/" className="landing-brand" onClick={scrollToTop}>
-                    <div className="landing-brand-mark">
-                        <img src="/underseas logo.jpeg" alt="Logo" />
-                    </div>
+            <nav className="ocean-nav">
+                <Link to="/" className="ocean-brand" onClick={scrollToTop}>
+                    <span className="ocean-brand-mark">
+                        <img src="/underseas logo.jpeg" alt="Underseas Bank logo" />
+                    </span>
                     <span>Underseas Bank</span>
                 </Link>
-
-                <div className="landing-links">
+                <div className="ocean-nav-links">
+                    <a href="#reef">Reef</a>
                     <a href="#products">Products</a>
                     <a href="#security">Security</a>
-                    <a href="#stats">Scale</a>
+                    <a href="#media">Media</a>
                 </div>
-                <div className="landing-actions">
-                    <Link to="/login" className="btn btn-ghost">Sign In</Link>
-                    <Link to="/login" className="btn btn-primary">Open Account</Link>
+                <div className="ocean-nav-actions">
+                    <Link to="/login" className="ocean-button ocean-button-soft">Sign In</Link>
+                    <Link to="/login" className="ocean-button ocean-button-bright">Open Account</Link>
                 </div>
             </nav>
 
-            {/* ═══ 0m — SURFACE / HERO ═══ */}
-            <section className="uw-hero" ref={sectionRefs[0]}>
-                <div className="uw-rays" aria-hidden="true">
-                    <span></span><span></span><span></span><span></span>
-                </div>
-
-                <div className="uw-bubbles" aria-hidden="true">
-                    {bubbles.map((b, i) => (
-                        <Bubble key={i} style={{
-                            left: b.left,
-                            width: b.size, height: b.size,
-                            animationDuration: `${b.duration}s`,
-                            animationDelay: `${b.delay}s`
-                        }} />
+            <section className="ocean-hero" ref={(node) => { sectionRefs.current[0] = node }}>
+                <video className="ocean-hero-video" src={reefAssets.heroVideo} autoPlay loop muted playsInline />
+                <div className="ocean-current" aria-hidden="true" />
+                <div className="ocean-rays" aria-hidden="true"><i /><i /><i /><i /></div>
+                <div className="ocean-bubbles" aria-hidden="true">
+                    {bubbles.map((bubble, index) => (
+                        <Bubble
+                            key={index}
+                            style={{
+                                left: bubble.left,
+                                width: bubble.size,
+                                height: bubble.size,
+                                animationDuration: `${bubble.duration}s`,
+                                animationDelay: `${bubble.delay}s`
+                            }}
+                        />
                     ))}
                 </div>
+                <Fish className="fish-one" color="#ffcf6f" />
+                <Fish className="fish-two" color="#6ff5df" flip />
+                <Fish className="fish-three" color="#ff7ca8" />
+                <Turtle />
+                <Jellyfish />
 
-                <div className="uw-fish-school" aria-hidden="true">
-                    <div className="uw-fish uw-fish-1"><FishIcon color="#DCEBF7" /></div>
-                    <div className="uw-fish uw-fish-2"><FishIcon color="#8FE3D6" /></div>
-                    <div className="uw-fish uw-fish-3"><FishIcon color="#FFB86B" flip /></div>
-                    <div className="uw-fish uw-fish-4"><FishIcon color="#DCEBF7" /></div>
-                    <div className="uw-fish uw-fish-5"><FishIcon color="#8FE3D6" flip /></div>
-                </div>
-
-                <div className="uw-hero-content">
-                    <p className="eyebrow">0m · The Surface</p>
-                    <h1>Banking that goes deeper than the surface.</h1>
-                    <p className="uw-hero-sub">
-                        Underseas Bank brings accounts, transfers, lending, deposits, and cards
-                        into one current — clear at the surface, secure all the way down.
+                <div className="ocean-hero-content">
+                    <p className="ocean-eyebrow">0m · Welcome to the living vault</p>
+                    <h1>Underseas Bank</h1>
+                    <p className="ocean-hero-copy">
+                        A banking experience imagined as a glowing ocean world: accounts in the reef,
+                        transfers in formation, savings like pearls, and security layered like coral.
                     </p>
-                    <div className="landing-hero-actions">
-                        <Link to="/login" className="btn btn-primary">Enter the Vault</Link>
-                        <a href="#products" className="btn btn-ghost">Explore Products</a>
+                    <div className="ocean-hero-actions">
+                        <Link to="/login" className="ocean-button ocean-button-bright">Dive Into Your Vault</Link>
+                        <a href="#reef" className="ocean-button ocean-button-glass">Explore the Reef</a>
                     </div>
-                    <div className="trust-row">
+                    <div className="ocean-trust-row">
                         <span>Encrypted sessions</span>
-                        <span>Continuous monitoring</span>
-                        <span>Designed for accessibility</span>
+                        <span>Real-time alerts</span>
+                        <span>Virtual demo bank</span>
                     </div>
                 </div>
 
-                <div className="uw-vault-card">
-                    <div className="uw-vault-card-glow"></div>
+                <aside className="ocean-vault-card" aria-label="Decorative account card">
                     <div>
-                        <span className="card-caption">Available Balance</span>
+                        <span>Coral Vault Balance</span>
                         <strong>₹84,250.00</strong>
                     </div>
-                    <div className="vault-card-chip"></div>
-                    <div className="vault-card-number">•••• •••• •••• 4821</div>
-                </div>
+                    <div className="ocean-card-chip" />
+                    <p>•••• •••• •••• 4821</p>
+                    <small>Cashback current · Pearl deposits · Abyss credit</small>
+                </aside>
 
-                <svg className="uw-kelp-bed" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
-                    <path d="M0 160 L0 100 Q 60 40 100 100 T 200 100 T 300 100 T 400 100 T 500 100 T 600 100 T 700 100 T 800 100 T 900 100 T 1000 100 T 1100 100 T 1200 100 T 1300 100 T 1440 100 L1440 160 Z" fill="#0A2A33" />
-                    <g className="uw-kelp-strand" style={{ transformOrigin: "120px 160px" }}>
-                        <path d="M120 160 Q 108 120 122 90 Q 134 62 118 30" stroke="#12594F" strokeWidth="6" fill="none" strokeLinecap="round" />
-                    </g>
-                    <g className="uw-kelp-strand uw-kelp-2" style={{ transformOrigin: "260px 160px" }}>
-                        <path d="M260 160 Q 274 118 258 86 Q 244 56 262 22" stroke="#0F4A42" strokeWidth="7" fill="none" strokeLinecap="round" />
-                    </g>
-                    <g className="uw-kelp-strand uw-kelp-3" style={{ transformOrigin: "1180px 160px" }}>
-                        <path d="M1180 160 Q 1168 116 1184 84 Q 1198 54 1180 20" stroke="#12594F" strokeWidth="6" fill="none" strokeLinecap="round" />
-                    </g>
-                    <g className="uw-kelp-strand uw-kelp-2" style={{ transformOrigin: "1330px 160px" }}>
-                        <path d="M1330 160 Q 1344 120 1328 88 Q 1314 58 1332 26" stroke="#0F4A42" strokeWidth="7" fill="none" strokeLinecap="round" />
-                    </g>
-                </svg>
-            </section>
-
-            <section className="uw-trustbar" id="stats">
-                <span>Digital account opening</span>
-                <span>Real-time activity alerts</span>
-                <span>Tabular financial reporting</span>
-                <span>Reduced-motion support</span>
-            </section>
-
-            {/* ═══ 40–2200m — SHALLOWS / PRODUCTS ═══ */}
-            <section className="uw-products" id="products" ref={sectionRefs[1]}>
-                <p className="eyebrow uw-section-eyebrow">40m · The Shallows</p>
-                {productSections.map((section) => (
-                    <article className="uw-product-feature" key={section.title}>
-                        <div className="product-copy">
-                            <p className="uw-depth-chip">{section.depth}</p>
-                            <h2>{section.title}</h2>
-                            <p>{section.copy}</p>
-                            <Link to={section.to}>{section.cta} →</Link>
-                        </div>
-                        <div className="uw-tidepool" aria-hidden="true">
-                            <div className="uw-tidepool-glow"></div>
-                            <div className="uw-tidepool-fish"><FishIcon color="#FFB86B" /></div>
-                        </div>
-                    </article>
-                ))}
-            </section>
-
-            {/* ═══ 800m — TWILIGHT ZONE / SECURITY ═══ */}
-            <section className="uw-security" id="security" ref={sectionRefs[2]}>
-                <p className="eyebrow">800m · The Twilight Zone</p>
-                <h2>Every surface down here is built to protect what's above it.</h2>
-                <div className="security-grid">
-                    <div>
-                        <span className="uw-pulse-dot"></span>
-                        <strong>Focused access</strong>
-                        <span>Authentication-first product flow with clear session handoff.</span>
-                    </div>
-                    <div>
-                        <span className="uw-pulse-dot"></span>
-                        <strong>Readable records</strong>
-                        <span>Transactions, loans, cards, and deposits use stable numeric alignment.</span>
-                    </div>
-                    <div>
-                        <span className="uw-pulse-dot"></span>
-                        <strong>Motion restraint</strong>
-                        <span>Interaction feedback is damped, calm, and reduced when requested.</span>
-                    </div>
+                <div className="ocean-seafloor" aria-hidden="true">
+                    <span /><span /><span /><span /><span /><span /><span /><span />
                 </div>
             </section>
 
-            {/* ═══ 4000m — THE ABYSS / FINAL CTA ═══ */}
-            <section className="uw-final" ref={sectionRefs[3]}>
-                <svg className="uw-anglerfish" viewBox="0 0 260 260" aria-hidden="true">
-                    <g fill="#0B0906">
-                        <path d="M110 130 Q80 100 50 114 Q80 126 80 146 Q80 166 50 178 Q80 192 110 162 Q132 174 124 146 Q132 118 110 130 Z" />
-                    </g>
-                    <path d="M110 126 Q80 70 68 50" stroke="#0B0906" strokeWidth="4" fill="none" strokeLinecap="round" />
-                    <circle cx="68" cy="48" r="7" fill="#2FE0C9" className="uw-lure-glow" />
-                    <circle cx="68" cy="48" r="16" fill="#2FE0C9" opacity="0.2" className="uw-lure-glow" />
-                </svg>
-                <p className="eyebrow">4000m · The Abyss</p>
-                <h2>Ready to enter your financial vault?</h2>
-                <Link to="/login" className="btn btn-primary">Sign In Securely</Link>
+            <section className="ocean-reef" id="reef" ref={(node) => { sectionRefs.current[1] = node }}>
+                <div className="ocean-section-heading">
+                    <p className="ocean-eyebrow">40m · The reef lobby</p>
+                    <h2>Every banking feature gets a creature, a color, and a reason to exist.</h2>
+                </div>
+                <div className="ocean-reef-grid">
+                    {reefCards.map((card) => (
+                        <article className="ocean-reef-card" key={card.title}>
+                            <img src={card.image} alt="" />
+                            <div>
+                                <span>{card.label}</span>
+                                <h3>{card.title}</h3>
+                                <p>{card.copy}</p>
+                            </div>
+                        </article>
+                    ))}
+                </div>
             </section>
 
-            <footer className="landing-footer uw-footer">
-                <svg className="uw-seafloor" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
-                    <path d="M0 60 L0 30 Q 100 10 220 28 T 460 24 T 700 30 T 940 22 T 1180 30 T 1440 24 L1440 60 Z" fill="#020509" />
-                </svg>
-                <div className="landing-footer-links">
+            <section className="ocean-products" id="products">
+                <div className="ocean-section-heading">
+                    <p className="ocean-eyebrow">800m · Product trench</p>
+                    <h2>Banking products shaped like an expedition.</h2>
+                </div>
+                <div className="ocean-product-shells">
+                    {products.map((product) => (
+                        <article className="ocean-product-shell" key={product.name}>
+                            <span className="ocean-depth-chip">{product.depth}</span>
+                            <h3>{product.name}</h3>
+                            <p>{product.copy}</p>
+                            <div>
+                                <strong>{product.stat}</strong>
+                                <span>{product.statLabel}</span>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <section className="ocean-security" id="security" ref={(node) => { sectionRefs.current[2] = node }}>
+                <div className="ocean-security-media">
+                    <img src={reefAssets.coralMacro} alt="" />
+                    <Jellyfish className="security-jelly" />
+                </div>
+                <div className="ocean-security-copy">
+                    <p className="ocean-eyebrow">2200m · Coral firewall</p>
+                    <h2>Beautiful, but still built like a vault.</h2>
+                    <p>
+                        The page can be playful because the app underneath stays practical: authentication-first entry,
+                        readable financial records, dashboard reporting, account management, transfers, loans, cards,
+                        deposits, and statement flows.
+                    </p>
+                    <div className="ocean-security-list">
+                        <span>Biometric-inspired sign-in gateway</span>
+                        <span>Clear tabular history for every transaction</span>
+                        <span>Accessible contrast with reduced-motion support</span>
+                    </div>
+                </div>
+            </section>
+
+            <section className="ocean-media" id="media">
+                <div className="ocean-section-heading">
+                    <p className="ocean-eyebrow">Asset tidepool</p>
+                    <h2>Real underwater media links are baked into the design.</h2>
+                </div>
+                <div className="ocean-media-board">
+                    <img src={reefAssets.blueDepth} alt="" />
+                    <div>
+                        {mediaLinks.map((link) => (
+                            <a key={link.text} href={link.href} target="_blank" rel="noreferrer">
+                                {link.text}
+                                <span>Open source asset</span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="ocean-final" ref={(node) => { sectionRefs.current[3] = node }}>
+                <Fish className="final-fish-left" color="#ffd166" />
+                <Fish className="final-fish-right" color="#9ff7ef" flip />
+                <p className="ocean-eyebrow">4000m · The glowing abyss</p>
+                <h2>Your money deserves a vault with a view.</h2>
+                <Link to="/login" className="ocean-button ocean-button-bright">Sign In Securely</Link>
+            </section>
+
+            <footer className="ocean-footer">
+                <div className="ocean-footer-links">
                     <Link to="/" onClick={scrollToTop}>Underseas Bank</Link>
-                    <a href="#products">Product</a>
+                    <a href="#products">Products</a>
                     <a href="#security">Security</a>
                     <a href="#legal" onClick={showLegalNotice}>Legal</a>
                     <a href="mailto:support@underseas.com">Contact</a>
                 </div>
-                <p className="landing-footer-copyright">
-                    &copy; {new Date().getFullYear()} Underseas Bank. All rights reserved to Meet Limbachiya.
-                </p>
+                <p>&copy; {new Date().getFullYear()} Underseas Bank. All rights reserved to Meet Limbachiya.</p>
             </footer>
-
         </main>
     )
 }

@@ -2872,6 +2872,329 @@ td strong,
 }
 
 /* ═══════════════════════════════════════════════════════════
+   APP-WIDE RESPONSIVE GUARDRAILS
+   Keeps every dashboard module inside the viewport on phones.
+   ═══════════════════════════════════════════════════════════ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body,
+#root,
+.app-layout,
+.app-main,
+.app-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+body,
+.app-layout {
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  body,
+  .app-layout {
+    overflow-x: clip;
+  }
+}
+
+.app-main,
+.app-content,
+.panel,
+.card,
+.form-section,
+.chart-box,
+.transactions,
+.data-table-wrapper,
+.stat-card,
+.insight-banner,
+.account-cards-grid,
+.grid-2,
+.grid-2-1,
+.grid-1-2,
+.charts {
+  min-width: 0;
+}
+
+.app-main {
+  width: calc(100% - var(--sidebar-width));
+}
+
+.app-content {
+  width: 100%;
+  max-width: min(1440px, 100%);
+  padding-inline: clamp(16px, 4vw, 64px);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-2-1 {
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+}
+
+.grid-1-2 {
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
+}
+
+.charts {
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+}
+
+.stat-cards,
+.account-cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.form-section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.panel-header,
+.page-header,
+.insight-banner,
+.bank-card-footer {
+  min-width: 0;
+}
+
+.panel-header h3,
+.page-header-left h2,
+.page-header-left p,
+.greeting-section h1,
+.greeting-section p,
+.bank-card-number,
+.bank-card-holder-name,
+.new-bank-card-num {
+  overflow-wrap: anywhere;
+}
+
+.data-table-wrapper,
+.transactions {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table-wrapper table,
+.transactions table {
+  display: table;
+  width: 100%;
+  min-width: 680px;
+}
+
+.panel > .data-table-wrapper {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.recharts-responsive-container,
+.recharts-wrapper,
+.recharts-surface {
+  max-width: 100% !important;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .grid-2,
+  .grid-2-1,
+  .grid-1-2,
+  .charts {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html,
+  body,
+  #root,
+  .app-layout {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .app-layout {
+    display: block;
+  }
+
+  .app-main {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  .app-content {
+    padding: 18px 14px 28px !important;
+  }
+
+  .header {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 14px !important;
+  }
+
+  .header-left,
+  .header-right {
+    min-width: 0;
+  }
+
+  .header-left h3 {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .notif-dropdown,
+  .profile-dropdown {
+    position: fixed !important;
+    top: 70px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  .page-header,
+  .panel-header,
+  .insight-banner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page-header-left h2,
+  .header-left h3 {
+    font-size: clamp(18px, 5vw, 22px);
+    line-height: 1.2;
+  }
+
+  .greeting-section {
+    margin-bottom: 28px;
+  }
+
+  .greeting-section h1 {
+    font-size: clamp(24px, 8vw, 32px);
+    line-height: 1.12;
+  }
+
+  .quick-actions {
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    overflow: visible;
+  }
+
+  .quick-action-item {
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  .quick-action-item span {
+    max-width: 100%;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .account-cards-grid,
+  .stat-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .new-bank-card,
+  .bank-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .bank-card-number,
+  .new-bank-card-num {
+    font-size: clamp(12px, 3.8vw, 18px);
+    letter-spacing: 0.05em;
+  }
+
+  .card,
+  .panel,
+  .form-section,
+  .chart-box,
+  .transactions,
+  .data-table-wrapper,
+  .stat-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .panel[style*="padding: 0"] {
+    padding: 0 !important;
+  }
+
+  .panel[style*="padding: 0"] .panel-header {
+    padding: 18px 18px 0 !important;
+  }
+
+  .panel > .data-table-wrapper {
+    padding: 0 18px 18px !important;
+  }
+
+  .btn-group {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .btn-tab {
+    min-width: 0;
+    padding-inline: 8px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  input,
+  select,
+  button,
+  .btn {
+    max-width: 100%;
+  }
+
+  .data-table-wrapper table,
+  .transactions table {
+    min-width: 620px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-content {
+    padding-inline: 12px !important;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .btn-group {
+    grid-template-columns: 1fr;
+  }
+
+  .data-table-wrapper table,
+  .transactions table {
+    min-width: 560px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    UNDERSEAS BANK — Depth Journey Landing Page
    ═══════════════════════════════════════════════════════════ */
 
@@ -3334,5 +3657,3 @@ td strong,
     width: 100%;
     height: 60px;
 }
-
-
