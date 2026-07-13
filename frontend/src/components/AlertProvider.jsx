@@ -68,6 +68,30 @@ export default function AlertProvider({ children }) {
         };
     }, []);
 
+    useEffect(() => {
+        const updateScrollLock = () => {
+            const hasOverlay = document.querySelector(".onboarding-modal-overlay");
+            if (hasOverlay) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "";
+            }
+        };
+
+        updateScrollLock();
+
+        const observer = new MutationObserver(() => {
+            updateScrollLock();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        return () => {
+            observer.disconnect();
+            document.body.style.overflow = "";
+        };
+    }, []);
+
     const removeToast = (id) => {
         setToasts(prev => prev.filter(t => t.id !== id));
     };

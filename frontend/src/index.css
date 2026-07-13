@@ -1257,18 +1257,17 @@ button:hover {
   }
 }
 
-/* ── Notification Dropdown ── */
 .notif-dropdown {
   position: absolute;
   top: 50px;
   right: 0;
   width: 320px;
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(24px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(30px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
   border-radius: var(--border-radius);
-  box-shadow: 0 8px 32px rgba(5, 10, 20, 0.15);
+  box-shadow: 0 16px 40px rgba(5, 10, 20, 0.25);
   z-index: 1000;
   overflow: hidden;
   animation: fadeIn 0.15s ease-out;
@@ -1609,12 +1608,12 @@ button:hover {
   right: 0;
   margin-top: 12px;
   width: 220px;
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(24px) saturate(120%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(120%) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(30px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(160%) !important;
   border-radius: var(--border-radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 8px 32px rgba(5, 10, 20, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 16px 40px rgba(5, 10, 20, 0.25);
   z-index: 1000;
   padding: 8px;
   animation: dropdownFadeIn 0.2s ease-out;
@@ -3719,8 +3718,9 @@ svg {
 .onboarding-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 25, 47, 0.55);
-  backdrop-filter: blur(8px);
+  background: rgba(3, 8, 18, 0.82);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   z-index: 9999;
   display: flex;
   align-items: center;
