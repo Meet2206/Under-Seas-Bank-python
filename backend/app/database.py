@@ -64,6 +64,21 @@ def run_migrations():
             conn.commit()
         except Exception:
             pass
+        try:
+            conn.execute(text("ALTER TABLE accounts ADD COLUMN closed_at TIMESTAMP WITH TIME ZONE"))
+            conn.commit()
+        except Exception:
+            pass
+        try:
+            conn.execute(text("ALTER TABLE accounts ADD COLUMN closed_by VARCHAR(50)"))
+            conn.commit()
+        except Exception:
+            pass
+        try:
+            conn.execute(text("ALTER TABLE accounts ADD COLUMN closure_reason VARCHAR(255)"))
+            conn.commit()
+        except Exception:
+            pass
 
         # Add columns to transactions table
         try:

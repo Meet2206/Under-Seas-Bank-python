@@ -13,6 +13,8 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(true)
     const [activeNotification, setActiveNotification] = useState(null)
 
+    const activeAccounts = accounts.filter(acc => acc.status !== "Closed")
+
     const loadData = async () => {
         try {
             const [accs, userData] = await Promise.all([
@@ -119,7 +121,7 @@ export default function Dashboard() {
 
             {/* Account Cards Grid */}
             <div className="account-cards-grid">
-                {loading && accounts.length === 0 && (
+                {loading && activeAccounts.length === 0 && (
                     <div className="bank-card bank-card-skeleton">
                         <div className="skeleton-line wide"></div>
                         <div className="skeleton-line"></div>
@@ -127,7 +129,7 @@ export default function Dashboard() {
                     </div>
                 )}
 
-                {accounts.map((acc) => {
+                {activeAccounts.map((acc) => {
                     const t = acc.account_type?.toLowerCase();
                     const cardType = t === "current" ? "current" : t === "salary" ? "tide" : "shoal";
                     return (
@@ -143,7 +145,7 @@ export default function Dashboard() {
                 })}
 
                 {/* Stat Summary Card for small metrics if no accounts */}
-                {!loading && accounts.length === 0 && (
+                {!loading && activeAccounts.length === 0 && (
                     <div className="stat-card primary" style={{ height: "200px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                         <h4>Total Balance</h4>
                         <div className="stat-value">₹0.00</div>
@@ -176,8 +178,8 @@ export default function Dashboard() {
                         <h3>Recent Transactions</h3>
                         <span className="view-all" onClick={() => navigate("/transactions")}>View All</span>
                     </div>
-                    {accounts.length > 0 && (
-                        <TransactionTable accountId={accounts[0].id} />
+                    {activeAccounts.length > 0 && (
+                        <TransactionTable accountId={activeAccounts[0].id} />
                     )}
                 </div>
 

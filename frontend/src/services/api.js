@@ -308,3 +308,16 @@ export const updateOnboardingStatus = (flag) =>
         method: "POST",
         body: JSON.stringify({ flag })
     })
+
+// VALIDATE ACCOUNT CLOSURE
+export const validateAccountClosure = (accountId) =>
+    authFetch(`/accounts/${accountId}/validate-closure`, {
+        method: "POST"
+    })
+
+// CLOSE ACCOUNT
+export const closeAccount = (accountId, reason) =>
+    authFetch(`/accounts/${accountId}/close`, {
+        method: "POST",
+        body: JSON.stringify({ reason })
+    })

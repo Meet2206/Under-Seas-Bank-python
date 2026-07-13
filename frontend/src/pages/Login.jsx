@@ -302,8 +302,7 @@ export default function Login() {
                     </h2>
                     <p className="brand-subtext">Digital Banking</p>
                     <p>
-                        Secure, effortless, and intelligent banking at your fingertips.
-                        Manage accounts, transfers, and investments — all in one place.
+                        Smart banking shouldn't be complicated. Manage your money, transfers, and investments in a single, secure app.
                     </p>
                 </div>
 
@@ -403,9 +402,9 @@ export default function Login() {
                         <h2>
                             {activeTab === "login" ? "Welcome Back" :
                                 activeTab === "register" ? "Create Account" :
-                                activeTab === "forgot-password" ? "Reset MPIN" :
-                                activeTab === "verify-reset-otp" ? "Reset MPIN" :
-                                    "Verify Email"}
+                                    activeTab === "forgot-password" ? "Reset MPIN" :
+                                        activeTab === "verify-reset-otp" ? "Reset MPIN" :
+                                            "Verify Email"}
                         </h2>
                         <p>
                             {activeTab === "login"

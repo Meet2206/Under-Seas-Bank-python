@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Numeric, String, ForeignKey
+from sqlalchemy import Column, Integer, Numeric, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from app.database import Base
 from app.utils.encryption import EncryptedString
@@ -20,5 +20,9 @@ class Account(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
 
     balance = Column(Numeric(14, 2), default=0)
+
+    closed_at = Column(DateTime(timezone=True), nullable=True)
+    closed_by = Column(String(50), nullable=True)
+    closure_reason = Column(String(255), nullable=True)
 
     user = relationship("User")
