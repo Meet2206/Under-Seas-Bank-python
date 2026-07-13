@@ -130,6 +130,31 @@ from sqlalchemy.orm import Session
 
 @app.get("/diag", tags=["Health"])
 async def diag_check(db: Session = Depends(get_db)):
+    migration_errors = []
+    try:
+        from sqlalchemy import text
+        with engine.connect() as conn:
+            # Try to run closed_at migration and catch error
+            try:
+                conn.execute(text("ALTER TABLE accounts ADD COLUMN closed_at TIMESTAMP WITH TIME ZONE"))
+                conn.commit()
+            except Exception as e:
+                migration_errors.append(f"closed_at error: {e}")
+                
+            try:
+                conn.execute(text("ALTER TABLE accounts ADD COLUMN closed_by VARCHAR(50)"))
+                conn.commit()
+            except Exception as e:
+                migration_errors.append(f"closed_by error: {e}")
+                
+            try:
+                conn.execute(text("ALTER TABLE accounts ADD COLUMN closure_reason VARCHAR(255)"))
+                conn.commit()
+            except Exception as e:
+                migration_errors.append(f"closure_reason error: {e}")
+    except Exception as e:
+        migration_errors.append(f"Connection/general error: {e}")
+
     try:
         inspector = inspect(engine)
         columns = [c["name"] for c in inspector.get_columns("accounts")]
@@ -137,10 +162,11 @@ async def diag_check(db: Session = Depends(get_db)):
         return {
             "accounts_columns": columns,
             "users_columns": users_cols,
+            "migration_errors": migration_errors,
             "status": "success"
         }
     except Exception as e:
-        return {"status": "error", "message": str(e)}
+        return {"status": "error", "message": str(e), "migration_errors": migration_errors}
 
 app.include_router(auth_router, tags=["Auth"])
 
