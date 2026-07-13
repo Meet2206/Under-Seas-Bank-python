@@ -2732,6 +2732,34 @@ td strong,
   padding-top: 16px;
 }
 
+.mobile-drawer-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gray-400);
+  padding: 16px 16px 4px;
+}
+
+.mobile-drawer-separator {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.06);
+  margin: 12px 16px;
+}
+
+.mobile-drawer-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  flex-shrink: 0;
+}
+
+.mobile-drawer-item.active .mobile-drawer-icon svg {
+  stroke-width: 2.2;
+}
+
 /* Ensure no layout shift and drawer layout is clean */
 @media (min-width: 769px) {
   .mobile-drawer-backdrop,
