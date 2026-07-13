@@ -302,7 +302,7 @@ export default function Login() {
                     </h2>
                     <p className="brand-subtext">Digital Banking</p>
                     <p>
-                        Smart banking shouldn't be complicated. Manage your money, transfers, and investments in a single, secure app.
+                        Smart banking should not be complicated. Manage your money, transfers, and investments in a single, secure app.
                     </p>
                 </div>
 
