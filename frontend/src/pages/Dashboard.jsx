@@ -17,12 +17,23 @@ export default function Dashboard() {
 
     const loadData = async () => {
         try {
-            const [accs, userData] = await Promise.all([
-                getAccounts(),
-                getMe().catch(() => null)
-            ])
+            const accs = await getAccounts().catch(err => {
+                console.error("Failed to load accounts in Dashboard:", err)
+                return []
+            })
             setAccounts(accs)
-            setUser(userData)
+        } catch (err) {
+            console.log(err)
+        }
+
+        try {
+            const userData = await getMe().catch(err => {
+                console.error("Failed to load user info in Dashboard:", err)
+                return null
+            })
+            if (userData) {
+                setUser(userData)
+            }
         } catch (err) {
             console.log(err)
         } finally {
