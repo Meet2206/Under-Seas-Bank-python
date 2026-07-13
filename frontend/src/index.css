@@ -2775,6 +2775,8 @@ td strong,
     width: 100%;
     max-width: 360px;
     aspect-ratio: 360 / 227;
+    height: auto;
+    align-self: center; /* Prevent flex/grid vertical stretching */
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
@@ -2782,6 +2784,20 @@ td strong,
         0 24px 48px -16px rgba(0, 0, 0, 0.65),
         0 6px 16px -6px rgba(0, 0, 0, 0.55);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Tier backgrounds matching the illustrated SVG gradients */
+.new-bank-card.shoal {
+    background: #12707F;
+}
+.new-bank-card.current {
+    background: #170F3A;
+}
+.new-bank-card.tide {
+    background: #081524;
+}
+.new-bank-card.abyss {
+    background: #050402;
 }
 
 .new-bank-card:hover {
