@@ -3790,3 +3790,405 @@ svg {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+
+/* ── LUXURY DESKTOP CENTER MODAL ── */
+.luxury-modal-card {
+  background: linear-gradient(145deg, rgba(6, 21, 45, 0.95), rgba(10, 35, 66, 0.9));
+  backdrop-filter: blur(30px) saturate(120%);
+  border: 1.5px solid rgba(92, 235, 216, 0.25);
+  border-radius: 28px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 30px 60px rgba(3, 7, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: modalScaleUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScaleUp {
+  from {
+    transform: scale(0.93) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal status icons */
+.modal-header-icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.modal-status-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 20px rgba(92, 235, 216, 0.15);
+}
+
+.modal-status-icon.success {
+  background: radial-gradient(circle, rgba(92, 235, 216, 0.2) 0%, rgba(13, 148, 136, 0.3) 100%);
+  border: 1.5px solid rgba(92, 235, 216, 0.6);
+}
+
+.modal-status-icon.success::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(92, 235, 216, 0.3);
+  animation: modalPulse 2s infinite;
+}
+
+@keyframes modalPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+.modal-status-icon.error {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.3) 100%);
+  border: 1.5px solid rgba(239, 68, 68, 0.6);
+}
+
+.modal-status-icon.info {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(29, 78, 216, 0.3) 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.6);
+}
+
+.modal-status-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.modal-status-icon.success svg {
+  stroke: #5CEBD8;
+}
+
+.modal-status-icon.error svg {
+  stroke: #fca5a5;
+}
+
+.modal-status-icon.info svg {
+  stroke: #93c5fd;
+}
+
+/* Modal details list */
+.modal-details-container {
+  background: rgba(3, 11, 23, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.modal-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.modal-detail-row.amount-row {
+  padding: 12px 0;
+}
+
+.modal-detail-label {
+  font-size: 13.5px;
+  color: var(--gray-400);
+}
+
+.modal-detail-val {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.modal-detail-val.mono {
+  font-family: monospace;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--gray-300);
+}
+
+.modal-detail-val.amount-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: #5CEBD8;
+}
+
+.modal-detail-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 4px 0;
+}
+
+.luxury-modal-button {
+  background: linear-gradient(135deg, #127a87 0%, #159da8 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(21, 157, 168, 0.25);
+  margin-bottom: 16px;
+}
+
+.luxury-modal-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(21, 157, 168, 0.4);
+}
+
+.luxury-modal-button:active {
+  transform: translateY(1px);
+}
+
+.luxury-modal-receipt-link {
+  background: transparent;
+  border: none;
+  color: var(--gray-400);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.luxury-modal-receipt-link:hover {
+  color: #5CEBD8;
+}
+
+/* Modal bubble animation */
+.modal-bubbles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.modal-bubble {
+  position: absolute;
+  bottom: -20px;
+  background: rgba(92, 235, 216, 0.15);
+  border-radius: 50%;
+  animation: modalBubbleRise 4s infinite linear;
+}
+
+@keyframes modalBubbleRise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-280px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+
+/* ── MOBILE TOAST CONTAINER & ITEMS ── */
+.mobile-toast-container {
+  position: fixed;
+  z-index: 10000;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-toast-container {
+    left: auto;
+    right: 16px;
+    transform: none;
+  }
+}
+
+.mobile-toast-item {
+  pointer-events: auto;
+  background: linear-gradient(135deg, rgba(6, 21, 45, 0.95) 0%, rgba(9, 31, 59, 0.92) 100%);
+  backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid rgba(92, 235, 216, 0.2);
+  border-radius: 24px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 32px rgba(3, 7, 18, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: toastEntrance 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: grab;
+}
+
+.mobile-toast-item:active {
+  cursor: grabbing;
+}
+
+@keyframes toastEntrance {
+  from {
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.mobile-toast-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-toast-title-group {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-toast-title-group h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.toast-timestamp {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+.mobile-toast-body p {
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--gray-300);
+  margin: 0;
+}
+
+.mobile-toast-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toast-view-details-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5CEBD8;
+  cursor: pointer;
+}
+
+/* Toast status icons */
+.mobile-toast-header .toast-status-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mobile-toast-header .toast-status-icon.success {
+  background: rgba(92, 235, 216, 0.15);
+  border: 1px solid rgba(92, 235, 216, 0.4);
+}
+
+.mobile-toast-header .toast-status-icon.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.mobile-toast-header .toast-status-icon.info {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.mobile-toast-header .toast-status-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.mobile-toast-header .toast-status-icon.success svg {
+  stroke: #5CEBD8;
+}
+
+.mobile-toast-header .toast-status-icon.error svg {
+  stroke: #fca5a5;
+}
+
+.mobile-toast-header .toast-status-icon.info svg {
+  stroke: #93c5fd;
+}
+
+/* Toast bubbles */
+.toast-bubbles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.toast-bubble {
+  position: absolute;
+  bottom: -10px;
+  background: rgba(92, 235, 216, 0.1);
+  border-radius: 50%;
+  animation: toastBubbleRise 3s infinite linear;
+}
+
+@keyframes toastBubbleRise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.6);
+    opacity: 0;
+  }
+}

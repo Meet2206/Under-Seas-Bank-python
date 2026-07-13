@@ -104,12 +104,44 @@ export default function Transfer() {
 
         setLoading(true)
         try {
-            await transferMoney({
+            const result = await transferMoney({
                 from_account_id: Number(fromAccount),
                 to_account_id: Number(finalToAccountId),
                 amount: Number(amount)
             })
-            alert("Transfer Successful!")
+
+            let recipientName = "Beneficiary";
+            if (toSelectionValue.startsWith("own-")) {
+                const accId = toSelectionValue.replace("own-", "");
+                const ownAcc = accounts.find(a => a.id === Number(accId));
+                if (ownAcc) recipientName = `${ownAcc.account_type} Account`;
+            } else if (toSelectionValue.startsWith("beneficiary-")) {
+                const accNum = toSelectionValue.replace("beneficiary-", "");
+                const ben = beneficiaries.find(b => b.account_number === accNum);
+                if (ben) recipientName = ben.name;
+            } else if (toSelectionValue === "manual") {
+                recipientName = `Account #${manualAccountNumber}`;
+            }
+
+            const fromAccObj = accounts.find(a => a.id === Number(fromAccount));
+            const newBal = fromAccObj ? (fromAccObj.balance - Number(amount)) : 0;
+
+            if (window.showRichAlert) {
+                window.showRichAlert({
+                    title: "Transfer Successful",
+                    message: `₹${Number(amount).toLocaleString()} has been transferred to ${recipientName}.`,
+                    type: "success",
+                    details: {
+                        amount: Number(amount),
+                        recipient: recipientName,
+                        reference: `TXN${result?.id || Math.floor(10000000 + Math.random() * 90000000)}`,
+                        balance: newBal
+                    }
+                });
+            } else {
+                alert("Transfer Successful!");
+            }
+
             setAmount("")
             setManualAccountNumber("")
             setToSelectionValue("")

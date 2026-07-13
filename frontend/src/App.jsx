@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import AlertProvider from "./components/AlertProvider"
 
 import Landing from "./pages/Landing"
 import Login from "./pages/Login"
@@ -18,37 +19,39 @@ function App() {
 
   return (
 
-    <BrowserRouter>
+    <AlertProvider>
+      <BrowserRouter>
 
-      <Routes>
+        <Routes>
 
-        <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/accounts" element={<Accounts />} />
+          <Route path="/accounts" element={<Accounts />} />
 
-        <Route path="/transfer" element={<Transfer />} />
+          <Route path="/transfer" element={<Transfer />} />
 
-        <Route path="/transactions" element={<Transactions />} />
+          <Route path="/transactions" element={<Transactions />} />
 
-        <Route path="/loans" element={<Loans />} />
+          <Route path="/loans" element={<Loans />} />
 
-        <Route path="/fd" element={<FixedDeposit />} />
+          <Route path="/fd" element={<FixedDeposit />} />
 
-        <Route path="/credit-card" element={<CreditCard />} />
+          <Route path="/credit-card" element={<CreditCard />} />
 
-        <Route path="/analytics" element={<Analytics />} />
+          <Route path="/analytics" element={<Analytics />} />
 
-        <Route path="/statements" element={<Statements />} />
+          <Route path="/statements" element={<Statements />} />
 
-        <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<Settings />} />
 
-      </Routes>
+        </Routes>
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </AlertProvider>
 
   )
 
