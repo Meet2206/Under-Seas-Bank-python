@@ -114,9 +114,7 @@ export default function CreditCard() {
         }
     }
 
-    const activeLimit = cards.length > 0 ? cards[0].credit_limit : Number(creditLimit)
-    const currentTier = tiers.find(t => t.limit === activeLimit) || tiers[1]
-    const hasCard = cards.length > 0
+    const currentTier = tiers.find(t => t.limit === Number(creditLimit)) || tiers[1]
 
     return (
         <MainLayout title="Credit Cards" subtitle="Unlock premium perks and smart spending power">
@@ -272,7 +270,6 @@ export default function CreditCard() {
                         <select 
                             value={accountId} 
                             onChange={(e) => setAccountId(e.target.value)}
-                            disabled={hasCard}
                         >
                             <option value="">Select Account</option>
                             {accounts.map((acc) => (
@@ -288,7 +285,6 @@ export default function CreditCard() {
                         <select 
                             value={creditLimit} 
                             onChange={(e) => handleLimitChange(e.target.value)}
-                            disabled={hasCard}
                         >
                             <option value="1000">₹1,000 (Standard)</option>
                             <option value="5000">₹5,000 (Silver)</option>
@@ -302,55 +298,70 @@ export default function CreditCard() {
                         <span style={{ fontSize: "12px", color: "var(--gray-500)" }}>Enjoy 2% Cashback on all purchases</span>
                     </div>
 
-                    <button 
-                        onClick={apply} 
-                        style={{ width: "100%", justifyContent: "center" }}
-                        disabled={hasCard}
-                    >
-                        {hasCard ? "Card Active" : "Apply Now"}
-                    </button>
+                    {(() => {
+                        const matchingCard = cards.find(card => Number(card.credit_limit) === Number(creditLimit));
+                        return (
+                            <button 
+                                onClick={apply} 
+                                style={{ 
+                                    width: "100%", 
+                                    justifyContent: "center",
+                                    opacity: matchingCard ? 0.7 : 1,
+                                    cursor: matchingCard ? "default" : "pointer"
+                                }}
+                                disabled={!!matchingCard}
+                            >
+                                {matchingCard ? "Card Active" : "Apply Now"}
+                            </button>
+                        );
+                    })()}
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <div className="pk-card-stage">
-                        <div className="pk-card" style={{ background: currentTier.gradient }}>
-                            <div className="pk-moon" style={{ background: currentTier.moon }}></div>
-                            <span className="pk-bubble" style={{ width: "8px", height: "8px", top: "64px", right: "38px" }}></span>
-                            <span className="pk-bubble" style={{ width: "5px", height: "5px", top: "80px", right: "28px" }}></span>
-                            
-                            <div className="pk-top-row">
-                                <div>
-                                    <div className="pk-brand">Abyss</div>
-                                    <div className="pk-tier-tag">{currentTier.name} credit</div>
-                                </div>
-                                <div className="pk-bank">Underseas Bank</div>
-                            </div>
-                            
-                            <div className="pk-mid">
-                                <div className="pk-balance-label">Available balance</div>
-                                <div className="pk-balance">
-                                    {hasCard 
-                                        ? `₹${(cards[0].credit_limit - cards[0].used_credit).toLocaleString()}` 
-                                        : currentTier.display
-                                    }
-                                </div>
-                            </div>
-                            
-                            <div className="pk-bottom-row">
-                                <div>
-                                    <div className="pk-holder">{user?.name || "VALUED CUSTOMER"}</div>
-                                    <div className="pk-number">
-                                        {hasCard ? cards[0].card_number : "4053 5670 0360 8161"}
+                        {(() => {
+                            const matchingCard = cards.find(card => Number(card.credit_limit) === Number(creditLimit));
+                            return (
+                                <div className="pk-card" style={{ background: currentTier.gradient }}>
+                                    <div className="pk-moon" style={{ background: currentTier.moon }}></div>
+                                    <span className="pk-bubble" style={{ width: "8px", height: "8px", top: "64px", right: "38px" }}></span>
+                                    <span className="pk-bubble" style={{ width: "5px", height: "5px", top: "80px", right: "28px" }}></span>
+                                    
+                                    <div className="pk-top-row">
+                                        <div>
+                                            <div className="pk-brand">Abyss</div>
+                                            <div className="pk-tier-tag">{currentTier.name} credit</div>
+                                        </div>
+                                        <div className="pk-bank">Underseas Bank</div>
                                     </div>
+                                    
+                                    <div className="pk-mid">
+                                        <div className="pk-balance-label">Available balance</div>
+                                        <div className="pk-balance">
+                                            {matchingCard 
+                                                ? `₹${(matchingCard.credit_limit - matchingCard.used_credit).toLocaleString()}` 
+                                                : currentTier.display
+                                            }
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="pk-bottom-row">
+                                        <div>
+                                            <div className="pk-holder">{user?.name || "VALUED CUSTOMER"}</div>
+                                            <div className="pk-number">
+                                                {matchingCard ? matchingCard.card_number : "•••• •••• •••• 1234"}
+                                            </div>
+                                        </div>
+                                        <div className="pk-chip">🪸</div>
+                                    </div>
+                                    
+                                    <svg className="pk-waves" viewBox="0 0 400 46" preserveAspectRatio="none">
+                                        <path d="M0,20 C60,40 100,0 160,16 C220,32 260,4 320,18 C360,26 380,14 400,20 L400,46 L0,46 Z" fill="rgba(255,255,255,0.14)"/>
+                                        <path d="M0,30 C70,10 110,44 180,26 C240,10 280,36 340,24 C370,18 390,28 400,26 L400,46 L0,46 Z" fill="rgba(255,255,255,0.22)"/>
+                                    </svg>
                                 </div>
-                                <div className="pk-chip">🪸</div>
-                            </div>
-                            
-                            <svg className="pk-waves" viewBox="0 0 400 46" preserveAspectRatio="none">
-                                <path d="M0,20 C60,40 100,0 160,16 C220,32 260,4 320,18 C360,26 380,14 400,20 L400,46 L0,46 Z" fill="rgba(255,255,255,0.14)"/>
-                                <path d="M0,30 C70,10 110,44 180,26 C240,10 280,36 340,24 C370,18 390,28 400,26 L400,46 L0,46 Z" fill="rgba(255,255,255,0.22)"/>
-                            </svg>
-                        </div>
+                            );
+                        })()}
                     </div>
                 </div>
             </div>
