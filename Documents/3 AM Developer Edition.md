@@ -6,9 +6,13 @@
 
 **"I built a banking system capable of managing millions of rupees... while my own account politely suggested I reconsider buying iced coffee." 💀**
 
-<p align="center"> <img src= ![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM+with+Coffee;Pr[...]> </p>
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM+with+Coffee;Production+Ready+(Allegedly)" />
+</p>
 
- <p align="center"> <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="280"/> </p>
+<p align="center">
+  <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="280"/>
+</p>
 
 </div>
 
@@ -17,7 +21,7 @@
 ## 🎭 The Irony
 
 ### Things I Built:
-✅ Authentication | ✅ JWT Security | ✅ PostgreSQL | ✅ Redis | ✅ Money Transfers | ✅ Fixed Deposits | ✅ Credit Cards | ✅ Loan EMI Calculator | ✅ Financial Analytics | ✅ Productio[...]
+✅ Authentication | ✅ JWT Security | ✅ PostgreSQL | ✅ Redis | ✅ Money Transfers | ✅ Fixed Deposits | ✅ Credit Cards | ✅ Loan EMI Calculator | ✅ Financial Analytics | ✅ Production Deployment
 
 ### Things I Don't Have:
 
@@ -34,12 +38,12 @@
 
 <div align="center">
 
-| Category | Status |
-|----------|--------|
-| **Money in Database** | ███████████████████████████████ |
-| **Money in My Wallet** | █ |
-| **Available Balance** | ₹127.43 |
-| **Minimum Balance Required** | Also ₹127.43 |
+| Category                     | Status                              |
+|-------------------------------|--------------------------------------|
+| **Money in Database**         | ███████████████████████████████     |
+| **Money in My Wallet**        | █                                    |
+| **Available Balance**         | ₹127.43                              |
+| **Minimum Balance Required**  | Also ₹127.43                         |
 
 **Peak Software Engineering. 📊**
 
@@ -53,18 +57,18 @@
 
 ```
 💡 Random Idea at 2AM
-       ↓
+        ↓
 "This should take 2 weeks." 😎
-       ↓
-Week 1 😃
-       ↓
-Week 3 🙂
-       ↓
-Month 2 😐
-       ↓
-Month 3 🤡
-       ↓
-Production 🚀
+        ↓
+    Week 1 😃
+        ↓
+    Week 3 🙂
+        ↓
+   Month 2 😐
+        ↓
+   Month 3 🤡
+        ↓
+ Production 🚀
 ```
 
 ![Coffee Developer](https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif)
@@ -79,20 +83,18 @@ Production 🚀
 
 ### Everything was finally working.
 
-```text
+```
 Authentication      ✅
-Database            ✅
-Deployment          ✅
-Dashboard           ✅
-Frontend            ✅
-Backend             ✅
-Sanity              ...debatable.
+Database             ✅
+Deployment           ✅
+Dashboard            ✅
+Frontend             ✅
+Backend              ✅
+Sanity               ...debatable.
 ```
 
 I could've deployed it.
-
 I could've celebrated.
-
 I could've closed my laptop.
 
 ...
@@ -102,31 +104,27 @@ But then my developer brain whispered:
 > **"Just one tiny change."** 🤏
 
 Worst.
-
 Idea.
-
 Ever.
 
-```text
+```
 Tiny Change Requested ✨
-        ↓
-AI: "Understood."
-        ↓
-*Rewrites Reality*
-        ↓
-Database          💀
-Deployment        💀
-Authentication    💀
-Dashboard         ????
+         ↓
+   AI: "Understood."
+         ↓
+  *Rewrites Reality*
+         ↓
+    Database          💀
+    Deployment        💀
+    Authentication    💀
+    Dashboard         ????
 ```
 
 For one glorious moment...
-
-The dashboard belonged to one user...
-
+the dashboard belonged to one user...
 ...while the navbar proudly welcomed **me**.
 
-```text
+```
 Dashboard:
 👤 User #384
 
@@ -137,60 +135,52 @@ Welcome, Meet.
 Even the application had no idea who was logged in.
 
 For about fifteen minutes...
-
 I genuinely believed
-
 **three months of work had just disappeared.**
 
 Then came Stage 2.
 
-```text
+```
 Denial
-↓
+   ↓
 Panic
-↓
+   ↓
 Staring at the screen
-↓
+   ↓
 "There's no way..."
-↓
+   ↓
 Opening Git
-↓
+   ↓
 Aggressive debugging
-↓
+   ↓
 Negotiating with AI
-↓
+   ↓
 Fix.
-↓
+   ↓
 Another Fix.
-↓
+   ↓
 Another Another Fix.
-↓
+   ↓
 "It works."
 ```
 
 ### Lesson Learned
 
-```text
+```
 If everything works...
-
 Don't make
 "one last tiny change."
 
 Because in software engineering,
-
 there is no such thing.
 ```
 
 ### Moral of the Story
 
 If it works...
-
 Close the laptop.
-
 Go outside.
-
 Drink water.
-
 Do **NOT** ask for **"one tiny change."**
 
 </div>
@@ -203,19 +193,19 @@ Do **NOT** ask for **"one tiny change."**
 
 ```
 Coffee ☕
-  ↓
+   ↓
 Coding 💻
-  ↓
+   ↓
 Bug 🐛
-  ↓
+   ↓
 Stack Overflow 🔍
-  ↓
+   ↓
 Claude 🤖
-  ↓
+   ↓
 Codex 🤖
-  ↓
+   ↓
 ChatGPT 🤖
-  ↓
+   ↓
 "It works." ✅
 
 Nobody knows why. 👀
@@ -263,15 +253,15 @@ Nobody knows why. 👀
 
 <div align="center">
 
-| Platform | Experience | My Reaction |
-|----------|-------------|------------|
-| **Render Build** | ✅ Build Successful | LET'S GOOOOOOOOOOOOOOOO 🚀 |
-| **Render Deploy** | ❌ Deployment Failed | Figure it out. 💀 |
-| **Render Again** | 💀 | *whispers softly* |
-| **Render Again** | 💀 | *internal screaming* |
-| **Render Finally** | ✅ Success! | FINALLY! 😭 |
-| **Vercel Deploy** | ✅ Deployment Successful | Wait... that's it? 🤔 |
-| **Vercel Result** | Yes. | SKILL ISSUE -Render 😎 |
+| Platform          | Experience             | My Reaction                  |
+|--------------------|-------------------------|-------------------------------|
+| **Render Build**    | ✅ Build Successful     | LET'S GOOOOOOOOOOOOOOOO 🚀    |
+| **Render Deploy**   | ❌ Deployment Failed    | Figure it out. 💀             |
+| **Render Again**    | 💀                      | *whispers softly*             |
+| **Render Again**    | 💀                      | *internal screaming*          |
+| **Render Finally**  | ✅ Success!             | FINALLY! 😭                   |
+| **Vercel Deploy**   | ✅ Deployment Successful | Wait... that's it? 🤔        |
+| **Vercel Result**   | Yes.                    | SKILL ISSUE -Render 😎        |
 
 ![Deployment Stress](https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif)
 
@@ -301,15 +291,15 @@ Nobody knows why. 👀
 
 ```
 Bug Appears 🐛
-    ↓
-Google 🔍 → Didn't Work ✗
-    ↓
-Claude 🤖 → Almost Fixed ~
-    ↓
-Codex 🤖 → Almost Fixed ~
-    ↓
+      ↓
+Google 🔍  → Didn't Work ✗
+      ↓
+Claude 🤖  → Almost Fixed ~
+      ↓
+Codex 🤖   → Almost Fixed ~
+      ↓
 ChatGPT 🤖 → Actually Fixed ✓
-    ↓
+      ↓
 Me: "I knew that." 🤓
 ```
 
@@ -339,17 +329,17 @@ Vercel           😎 (Smooth Operator)
 
 <div align="center">
 
-| Metric | Value |
-|--------|-------|
-| **Development Time** | ~3 Months 🗓️ |
-| **Number of Deployments** | Lost Count 📊 |
-| **Git Commits** | Concerning Amount 😅 |
-| **Coffee Consumed** | Industrial Quantities ☕☕☕ |
-| **Hours Debugging** | Yes. ✓ |
-| **Hours Coding** | Surprisingly Less. 🤷 |
-| **Stack Overflow Tabs** | 47 🔍 |
-| **Render Restart Attempts** | Don't Ask. 🙅 |
-| **Times Whispered "Please Work"** | Daily. 🙏 |
+| Metric                           | Value                        |
+|-----------------------------------|-------------------------------|
+| **Development Time**              | ~3 Months 🗓️                 |
+| **Number of Deployments**         | Lost Count 📊                |
+| **Git Commits**                   | Concerning Amount 😅         |
+| **Coffee Consumed**               | Industrial Quantities ☕☕☕   |
+| **Hours Debugging**               | Yes. ✓                       |
+| **Hours Coding**                  | Surprisingly Less. 🤷        |
+| **Stack Overflow Tabs**           | 47 🔍                        |
+| **Render Restart Attempts**       | Don't Ask. 🙅                |
+| **Times Whispered "Please Work"** | Daily. 🙏                    |
 
 </div>
 
@@ -374,7 +364,7 @@ Difficulty: ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
 
 ### Cloud ☁️
 ```
-▲ Vercel → Deploys & Leaves
+▲  Vercel → Deploys & Leaves
 ☁️ Render → Build OK, Deploy RIP, Good Luck
 ```
 
@@ -394,15 +384,15 @@ Difficulty: ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
 
 ```
 User 😃
-  ↓
+   ↓
 React Frontend ⚛️
-  ↓
+   ↓
 FastAPI Backend 🐍
-  ↓
+   ↓
 PostgreSQL Database 🐘
-  ↓
+   ↓
 Everything Works ✅
-  ↓
+   ↓
 Developer Opens Logs Every 5 Minutes
 Just To Be Sure 👀
 ```
@@ -418,7 +408,6 @@ Just To Be Sure 👀
 **Huge thanks to Y.** 🙏
 
 *Without him...*
-
 *I'd probably still be staring at Render logs pretending to understand them.* 😭
 
 ![Gratitude](https://media.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif)
@@ -508,19 +497,19 @@ It ended with:
 
 ## ❤️ Built With
 
-| What | Why |
-|------|-----|
-| ☕ Coffee | Fuel for the soul |
-| 😭 Render Logs | Masochism |
-| 🐍 Python | Backend excellence |
-| ⚛️ React | Frontend magic |
-| 💀 Questionable Decisions | Character building |
-| 📚 Stack Overflow | Lifesaver |
-| 🤖 Claude, Codex, ChatGPT | AI Debugging Trinity |
-| 🤝 Friends | Support system |
-| 🚀 Vercel & Render | Deployment Roulette |
-| ⏰ 2-3 Months | Time investment |
-| 🗣️ "It works on localhost." | Universal truth |
+| What                          | Why                     |
+|--------------------------------|--------------------------|
+| ☕ Coffee                      | Fuel for the soul        |
+| 😭 Render Logs                 | Masochism                |
+| 🐍 Python                      | Backend excellence       |
+| ⚛️ React                       | Frontend magic           |
+| 💀 Questionable Decisions      | Character building       |
+| 📚 Stack Overflow              | Lifesaver                |
+| 🤖 Claude, Codex, ChatGPT      | AI Debugging Trinity     |
+| 🤝 Friends                     | Support system           |
+| 🚀 Vercel & Render             | Deployment Roulette      |
+| ⏰ 2-3 Months                  | Time investment          |
+| 🗣️ "It works on localhost."   | Universal truth          |
 
 ---
 
@@ -528,14 +517,14 @@ It ended with:
 
 <div align="center">
 
-| Category | Rating |
-|----------|--------|
-| Documentation | ██░░░░░░░░ 15% |
-| Character Development | ██████████ 100% |
-| Coffee Consumed | ██████████ ∞ |
-| Questionable Decisions | ██████████ 100% |
-| Sanity | ░░░░░░░░░░ 0% |
-| Production Ready | ✅ ABSOLUTELY |
+| Category                | Rating                     |
+|---------------------------|-----------------------------|
+| Documentation              | ██░░░░░░░░ 15%              |
+| Character Development      | ██████████ 100%             |
+| Coffee Consumed            | ██████████ ∞                |
+| Questionable Decisions     | ██████████ 100%             |
+| Sanity                     | ░░░░░░░░░░ 0%                |
+| Production Ready           | ✅ ABSOLUTELY                |
 
 </div>
 
