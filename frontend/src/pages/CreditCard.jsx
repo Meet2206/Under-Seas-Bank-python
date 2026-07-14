@@ -106,7 +106,16 @@ export default function CreditCard() {
         }
     }
 
-    const currentTier = tiers.find(t => t.key === selectedTier) || tiers[1]
+    const handleLimitChange = (val) => {
+        setCreditLimit(val)
+        const matched = tiers.find(t => t.limit === Number(val))
+        if (matched) {
+            setSelectedTier(matched.key)
+        }
+    }
+
+    const activeLimit = cards.length > 0 ? cards[0].credit_limit : Number(creditLimit)
+    const currentTier = tiers.find(t => t.limit === activeLimit) || tiers[1]
     const hasCard = cards.length > 0
 
     return (
@@ -114,20 +123,13 @@ export default function CreditCard() {
             <style dangerouslySetInnerHTML={{__html: `
                 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap');
 
-                .pk-wrap {
-                  font-family: 'Quicksand', sans-serif;
-                  max-width: 420px;
-                  margin: 0 auto;
-                  padding: 28px 20px 36px;
-                  background: #EEF6F4;
-                  border-radius: 32px;
-                  box-sizing: border-box;
-                }
-
                 .pk-card-stage {
                   position: relative;
-                  height: 250px;
-                  margin-bottom: 22px;
+                  width: 100%;
+                  max-width: 360px;
+                  aspect-ratio: 360 / 227;
+                  align-self: center;
+                  box-sizing: border-box;
                 }
 
                 .pk-card {
@@ -238,6 +240,7 @@ export default function CreditCard() {
                   font-size: 13px;
                   font-weight: 600;
                   opacity: 0.95;
+                  text-align: left;
                 }
 
                 .pk-number {
@@ -258,101 +261,57 @@ export default function CreditCard() {
                   justify-content: center;
                   font-size: 13px;
                 }
-
-                .pk-select-label {
-                  font-size: 13px;
-                  font-weight: 700;
-                  color: #3F8E86;
-                  margin: 16px 2px 8px;
-                  letter-spacing: 0.3px;
-                }
-
-                .pk-options {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  margin-bottom: 20px;
-                }
-
-                .pk-option {
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  padding: 12px 16px;
-                  border-radius: 16px;
-                  background: #fff;
-                  border: 1.5px solid #E2F0EC;
-                  cursor: pointer;
-                  transition: border-color 0.2s ease, background 0.2s ease;
-                }
-
-                .pk-option:hover {
-                  border-color: #BFE3DA;
-                }
-
-                .pk-option.active {
-                  border-color: var(--tier-accent, #5FB8AC);
-                  background: var(--tier-bg, #EAF7F4);
-                }
-
-                .pk-option-left {
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                }
-
-                .pk-swatch {
-                  width: 22px;
-                  height: 22px;
-                  border-radius: 50%;
-                  flex-shrink: 0;
-                  box-shadow: 0 1px 2px rgba(0,0,0,0.15) inset;
-                }
-
-                .pk-option-name {
-                  font-weight: 700;
-                  font-size: 14px;
-                  color: #2A5C58;
-                }
-
-                .pk-option-amt {
-                  font-weight: 600;
-                  font-size: 14px;
-                  color: #3F8E86;
-                }
-
-                .pk-check {
-                  color: #5FB8AC;
-                  font-weight: 700;
-                  font-size: 15px;
-                  width: 18px;
-                  text-align: center;
-                }
-
-                .pk-apply {
-                  width: 100%;
-                  border: none;
-                  padding: 16px;
-                  border-radius: 20px;
-                  font-family: 'Fredoka', sans-serif;
-                  font-size: 16px;
-                  font-weight: 600;
-                  color: #fff;
-                  cursor: pointer;
-                  background: linear-gradient(135deg, #6BC6B8, #4E9FC7);
-                  box-shadow: 0 4px 12px -4px rgba(78, 159, 199, 0.55);
-                  transition: transform 0.15s ease, box-shadow 0.15s ease;
-                  letter-spacing: 0.3px;
-                }
-
-                .pk-apply:active {
-                  transform: scale(0.97);
-                  box-shadow: 0 4px 10px -4px rgba(78, 159, 199, 0.6);
-                }
             `}} />
 
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "32px", paddingBottom: "40px" }}>
-                <div className="pk-wrap" style={{ width: "100%" }}>
+            <div className="grid-2-1">
+                <div className="form-section">
+                    <h3>Request Premium Card</h3>
+                    
+                    <div className="form-field">
+                        <label>Linked Bank Account</label>
+                        <select 
+                            value={accountId} 
+                            onChange={(e) => setAccountId(e.target.value)}
+                            disabled={hasCard}
+                        >
+                            <option value="">Select Account</option>
+                            {accounts.map((acc) => (
+                                <option key={acc.id} value={acc.id}>
+                                    {acc.account_type} - {acc.account_number}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="form-field">
+                        <label>Desired Credit Limit</label>
+                        <select 
+                            value={creditLimit} 
+                            onChange={(e) => handleLimitChange(e.target.value)}
+                            disabled={hasCard}
+                        >
+                            <option value="1000">₹1,000 (Standard)</option>
+                            <option value="5000">₹5,000 (Silver)</option>
+                            <option value="10000">₹10,000 (Gold)</option>
+                            <option value="25000">₹25,000 (Platinum)</option>
+                        </select>
+                    </div>
+
+                    <div className="premium-note">
+                        <div></div>
+                        <span style={{ fontSize: "12px", color: "var(--gray-500)" }}>Enjoy 2% Cashback on all purchases</span>
+                    </div>
+
+                    <button 
+                        onClick={apply} 
+                        style={{ width: "100%", justifyContent: "center" }}
+                        disabled={hasCard}
+                    >
+                        {hasCard ? "Card Active" : "Apply Now"}
+                    </button>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <div className="pk-card-stage">
                         <div className="pk-card" style={{ background: currentTier.gradient }}>
                             <div className="pk-moon" style={{ background: currentTier.moon }}></div>
@@ -393,120 +352,50 @@ export default function CreditCard() {
                             </svg>
                         </div>
                     </div>
-
-                    {/* Linked Bank Account Selector (If applying) */}
-                    {!hasCard && (
-                        <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "16px", padding: "0 2px" }}>
-                            <label style={{ color: "#3F8E86", fontSize: "13px", fontWeight: "700", letterSpacing: "0.3px" }}>Linked Bank Account</label>
-                            <select 
-                                value={accountId} 
-                                onChange={(e) => setAccountId(e.target.value)}
-                                style={{
-                                    width: "100%",
-                                    padding: "12px 16px",
-                                    borderRadius: "16px",
-                                    border: "1.5px solid #E2F0EC",
-                                    background: "#fff",
-                                    color: "#2a5c58",
-                                    fontWeight: "600",
-                                    fontFamily: "'Quicksand', sans-serif",
-                                    fontSize: "14px",
-                                    outline: "none"
-                                }}
-                            >
-                                <option value="">Select Account</option>
-                                {accounts.map((acc) => (
-                                    <option key={acc.id} value={acc.id}>
-                                        {acc.account_type} - {acc.account_number}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
-
-                    <div className="pk-select-label">Choose your credit limit</div>
-                    <div className="pk-options">
-                        {tiers.map((t) => (
-                            <div 
-                                key={t.key}
-                                className={`pk-option ${selectedTier === t.key ? 'active' : ''}`}
-                                style={{
-                                    '--tier-accent': t.accent,
-                                    '--tier-bg': t.bg
-                                }}
-                                onClick={() => {
-                                    if (!hasCard) {
-                                        setSelectedTier(t.key)
-                                        setCreditLimit(t.limit.toString())
-                                    }
-                                }}
-                            >
-                                <div className="pk-option-left">
-                                    <span className="pk-check">{selectedTier === t.key ? '✓' : ''}</span>
-                                    <span className="pk-swatch" style={{ background: t.gradient }}></span>
-                                    <span className="pk-option-name">{t.name}</span>
-                                </div>
-                                <span className="pk-option-amt">{t.display}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    <button 
-                        className="pk-apply" 
-                        onClick={apply}
-                        disabled={hasCard}
-                        style={{
-                            opacity: hasCard ? 0.75 : 1,
-                            cursor: hasCard ? "default" : "pointer"
-                        }}
-                    >
-                        {hasCard ? "Card Active" : "Apply now"}
-                    </button>
                 </div>
+            </div>
 
-                {/* Existing Cards Section */}
-                <div className="data-table-wrapper" style={{ width: "100%", maxWidth: "800px" }}>
-                    <div className="panel-header" style={{ marginBottom: "20px" }}>
-                        <h3>Existing Credit Cards</h3>
-                        <span className="badge badge-info">{cards.length} Total</span>
+            <div className="data-table-wrapper" style={{ marginTop: "32px" }}>
+                <div className="panel-header" style={{ marginBottom: "20px" }}>
+                    <h3>Existing Credit Cards</h3>
+                    <span className="badge badge-info">{cards.length} Total</span>
+                </div>
+                
+                {loading ? (
+                    <p className="loading-text">Loading...</p>
+                ) : cards.length === 0 ? (
+                    <div className="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>
+                        <p>No credit cards issued yet.</p>
                     </div>
-                    
-                    {loading ? (
-                        <p className="loading-text">Loading...</p>
-                    ) : cards.length === 0 ? (
-                        <div className="empty-state">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>
-                            <p>No credit cards issued yet.</p>
-                        </div>
-                    ) : (
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Card Number</th>
-                                    <th>Total Limit</th>
-                                    <th>Utilized</th>
-                                    <th>Available Credit</th>
-                                    <th style={{ textAlign: "right" }}>Status</th>
+                ) : (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Card Number</th>
+                                <th>Total Limit</th>
+                                <th>Utilized</th>
+                                <th>Available Credit</th>
+                                <th style={{ textAlign: "right" }}>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cards.map((card) => (
+                                <tr key={card.id}>
+                                    <td style={{ fontFamily: "monospace" }}>{card.card_number}</td>
+                                    <td><strong>₹{card.credit_limit.toLocaleString()}</strong></td>
+                                    <td style={{ color: "var(--danger)" }}>₹{card.used_credit.toLocaleString()}</td>
+                                    <td><span style={{ color: "var(--success)", fontWeight: "700" }}>₹{(card.credit_limit - card.used_credit).toLocaleString()}</span></td>
+                                    <td style={{ textAlign: "right" }}>
+                                        <span className={`badge ${card.status === 'Approved' ? 'badge-success' : 'badge-warning'}`}>
+                                            {card.status}
+                                        </span>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {cards.map((card) => (
-                                    <tr key={card.id}>
-                                        <td style={{ fontFamily: "monospace" }}>{card.card_number}</td>
-                                        <td><strong>₹{card.credit_limit.toLocaleString()}</strong></td>
-                                        <td style={{ color: "var(--danger)" }}>₹{card.used_credit.toLocaleString()}</td>
-                                        <td><span style={{ color: "var(--success)", fontWeight: "700" }}>₹{(card.credit_limit - card.used_credit).toLocaleString()}</span></td>
-                                        <td style={{ textAlign: "right" }}>
-                                            <span className={`badge ${card.status === 'Approved' ? 'badge-success' : 'badge-warning'}`}>
-                                                {card.status}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )}
-                </div>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </MainLayout>
     )
