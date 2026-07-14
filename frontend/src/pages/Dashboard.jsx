@@ -142,7 +142,7 @@ export default function Dashboard() {
 
                 {activeAccounts.map((acc) => {
                     const t = acc.account_type?.toLowerCase();
-                    const cardType = t === "current" ? "current" : t === "salary" ? "tide" : "shoal";
+                    const cardType = t === "current" ? "swell" : t === "salary" ? "tide" : "cove";
                     return (
                         <BankCard
                             key={acc.id}

@@ -16,7 +16,7 @@ const reefCards = [
         image: reefAssets.turtle,
         label: "Turtle-grade patience",
         title: "Savings that cruise calmly",
-        copy: "Set aside money in current, shoal, and tide accounts with a clear view of every rupee moving through the reef."
+        copy: "Set aside money in swell, cove, and tide accounts with a clear view of every rupee moving through the reef."
     },
     {
         image: reefAssets.reefFish,
@@ -35,7 +35,7 @@ const reefCards = [
 const products = [
     {
         depth: "40m",
-        name: "Reef Current Account",
+        name: "Reef Swell Account",
         copy: "For everyday spending, salary flow, and quick balance checks. Bright, practical, and always close to the surface.",
         stat: "24/7",
         statLabel: "activity visibility"
@@ -49,7 +49,7 @@ const products = [
     },
     {
         depth: "2200m",
-        name: "Abyss Signature Card",
+        name: "Thalassa Signature Card",
         copy: "A premium credit card concept with cashback, limits, repayments, and clean statements built into the dashboard.",
         stat: "5%",
         statLabel: "cashback reef rewards"
@@ -225,7 +225,7 @@ export default function Landing() {
                     </div>
                     <div className="ocean-card-chip" />
                     <p>•••• •••• •••• 4821</p>
-                    <small>Cashback current · Pearl deposits · Abyss credit</small>
+                    <small>Cashback swell · Pearl deposits · Thalassa credit</small>
                 </aside>
 
                 <div className="ocean-seafloor" aria-hidden="true">
@@ -314,7 +314,7 @@ export default function Landing() {
             <section className="ocean-final" ref={(node) => { sectionRefs.current[3] = node }}>
                 <Fish className="final-fish-left" color="#ffd166" />
                 <Fish className="final-fish-right" color="#9ff7ef" flip />
-                <p className="ocean-eyebrow">4000m · The glowing abyss</p>
+                <p className="ocean-eyebrow">4000m · The glowing thalassa</p>
                 <h2>Your money deserves a vault with a view.</h2>
                 <Link to="/login" className="ocean-button ocean-button-bright">Sign In Securely</Link>
             </section>

@@ -329,7 +329,7 @@ export default function CreditCard() {
                                     
                                     <div className="pk-top-row">
                                         <div>
-                                            <div className="pk-brand">Abyss</div>
+                                            <div className="pk-brand">Thalassa</div>
                                             <div className="pk-tier-tag">{currentTier.name} credit</div>
                                         </div>
                                         <div className="pk-bank">Underseas Bank</div>

@@ -1,19 +1,21 @@
 import { useId } from "react"
 
 export default function BankCard({ type, accountType, balance, cardNumber, holderName, onClick }) {
-    const isAbyss = type === "abyss";
-    const isCurrent = type === "current";
-    const isTide = type === "tide";
-    const isShoal = type === "shoal";
+    const t = type?.toLowerCase();
+    const isThalassa = t === "thalassa" || t === "abyss";
+    const isSwell = t === "swell" || t === "current";
+    const isTide = t === "tide";
+    const isCove = t === "cove" || t === "shoal" || !t;
     const uid = useId().replace(/:/g, "");
+    const cardClass = isSwell ? "current" : isTide ? "tide" : isThalassa ? "abyss" : "shoal";
 
-    let tierName = "Shoal";
+    let tierName = "Cove";
     let defaultSub = "Savings Account";
     let textColor = "#F4FBFA";
     let subColor = "#EAFBF7";
 
-    if (isCurrent) {
-        tierName = "Current";
+    if (isSwell) {
+        tierName = "Swell";
         defaultSub = "Current Account";
         textColor = "#F4FBFA";
         subColor = "#E3D8F5";
@@ -22,8 +24,8 @@ export default function BankCard({ type, accountType, balance, cardNumber, holde
         defaultSub = "Salary Account";
         textColor = "#F4FBFA";
         subColor = "#CFE3F5";
-    } else if (isAbyss) {
-        tierName = "Abyss";
+    } else if (isThalassa) {
+        tierName = "Thalassa";
         defaultSub = "Signature Credit";
         textColor = "#F3D89A";
         subColor = "#C7AD79";
@@ -34,8 +36,8 @@ export default function BankCard({ type, accountType, balance, cardNumber, holde
     const tierSub = accountType || defaultSub;
 
     return (
-        <div className={`new-bank-card ${type}`} onClick={onClick}>
-            {isShoal && (
+        <div className={`new-bank-card ${cardClass}`} onClick={onClick}>
+            {isCove && (
                 <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id={`skyShoal-${uid}`} x1="0" y1="0" x2="0" y2="1">
@@ -76,7 +78,7 @@ export default function BankCard({ type, accountType, balance, cardNumber, holde
                 </svg>
             )}
 
-            {isCurrent && (
+            {isSwell && (
                 <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id={`skyCurrent-${uid}`} x1="0" y1="0" x2="0" y2="1">
@@ -152,7 +154,7 @@ export default function BankCard({ type, accountType, balance, cardNumber, holde
                 </svg>
             )}
 
-            {isAbyss && (
+            {isThalassa && (
                 <svg viewBox="0 0 360 227" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id={`skyAbyss-${uid}`} x1="0" y1="0" x2="0" y2="1">
