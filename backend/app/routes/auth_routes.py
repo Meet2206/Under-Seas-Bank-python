@@ -43,10 +43,15 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 
 
 @router.get("/me")
-def get_me(current_user=Depends(get_current_user)):
+def get_me(current_user=Depends(get_current_user), db: Session = Depends(get_db)):
     """
     Get details of currently authenticated user.
     """
+    if not current_user.profile_image:
+        import random
+        current_user.profile_image = random.choice(["/1.jpg", "/2.jpg", "/3.jpg"])
+        db.commit()
+        db.refresh(current_user)
 
     return {
         "id": current_user.id,
@@ -56,6 +61,7 @@ def get_me(current_user=Depends(get_current_user)):
         "is_email_verified": current_user.is_email_verified,
         "is_phone_verified": current_user.is_phone_verified,
         "customer_id": current_user.customer_id,
+        "profile_image": current_user.profile_image,
     }
 
 

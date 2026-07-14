@@ -216,8 +216,12 @@ export default function Header({ title, subtitle, onMenuToggle }) {
                 {/* User Info with Dropdown */}
                 <div className="header-user-wrapper" ref={profileRef} style={{ position: "relative" }}>
                     <div className="header-user" onClick={() => setProfileDropdownOpen(!profileDropdownOpen)} style={{ cursor: "pointer" }}>
-                        <div className="header-avatar">
-                            {getInitials(user?.name)}
+                        <div className="header-avatar" style={{ overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            {user?.profile_image ? (
+                                <img src={user.profile_image} alt={user.name || "User"} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                            ) : (
+                                getInitials(user?.name)
+                            )}
                         </div>
                         <div className="header-user-info">
                             <p>{user?.name || "User"}</p>

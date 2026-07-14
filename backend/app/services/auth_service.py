@@ -31,12 +31,16 @@ def register_user(data, db: Session):
         if not existing_cust:
             break
 
+    import random
+    profile_image = random.choice(["/1.jpg", "/2.jpg", "/3.jpg"])
+
     user = User(
         name=data.name,
         email=data.email,
         phone_number=data.phone_number,
         mpin_hash=mpin_hash,
-        customer_id=customer_id
+        customer_id=customer_id,
+        profile_image=profile_image
     )
 
     db.add(user)
