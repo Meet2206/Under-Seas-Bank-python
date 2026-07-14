@@ -35,64 +35,29 @@ def get_db():
 
 def run_migrations():
     from sqlalchemy import text
-    with engine.connect() as conn:
-        # Add columns to users table
+    
+    migrations = [
+        ("users", "customer_id", "VARCHAR(12) UNIQUE"),
+        ("users", "account_creation_notification_shown", "BOOLEAN DEFAULT FALSE"),
+        ("users", "welcome_reward_notification_shown", "BOOLEAN DEFAULT FALSE"),
+        ("users", "profile_image", "VARCHAR(255)"),
+        
+        ("accounts", "ifsc_code", "VARCHAR(11) DEFAULT 'UNBS0000101'"),
+        ("accounts", "status", "VARCHAR(20) DEFAULT 'Active'"),
+        ("accounts", "closed_at", "TIMESTAMP WITH TIME ZONE"),
+        ("accounts", "closed_by", "VARCHAR(50)"),
+        ("accounts", "closure_reason", "VARCHAR(255)"),
+        
+        ("transactions", "description", "VARCHAR(255)"),
+        ("transactions", "status", "VARCHAR(50) DEFAULT 'Successful'"),
+    ]
+    
+    for table, column, definition in migrations:
         try:
-            conn.execute(text("ALTER TABLE users ADD COLUMN customer_id VARCHAR(12) UNIQUE"))
-            conn.commit()
+            with engine.connect() as conn:
+                conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {definition}"))
+                conn.commit()
+                print(f"Successfully added column {column} to table {table}")
         except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE users ADD COLUMN account_creation_notification_shown BOOLEAN DEFAULT FALSE"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE users ADD COLUMN welcome_reward_notification_shown BOOLEAN DEFAULT FALSE"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE users ADD COLUMN profile_image VARCHAR(255)"))
-            conn.commit()
-        except Exception:
-            pass
-
-        # Add columns to accounts table
-        try:
-            conn.execute(text("ALTER TABLE accounts ADD COLUMN ifsc_code VARCHAR(11) DEFAULT 'UNBS0000101'"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE accounts ADD COLUMN status VARCHAR(20) DEFAULT 'Active'"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE accounts ADD COLUMN closed_at TIMESTAMP WITH TIME ZONE"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE accounts ADD COLUMN closed_by VARCHAR(50)"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE accounts ADD COLUMN closure_reason VARCHAR(255)"))
-            conn.commit()
-        except Exception:
-            pass
-
-        # Add columns to transactions table
-        try:
-            conn.execute(text("ALTER TABLE transactions ADD COLUMN description VARCHAR(255)"))
-            conn.commit()
-        except Exception:
-            pass
-        try:
-            conn.execute(text("ALTER TABLE transactions ADD COLUMN status VARCHAR(50) DEFAULT 'Successful'"))
-            conn.commit()
-        except Exception:
+            # Column already exists or error occurred, skip to next
             pass
