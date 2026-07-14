@@ -6,7 +6,7 @@
 
 **"I built a banking system capable of managing millions of rupees... while my own account politely suggested I reconsider buying iced coffee." 💀**
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM+with+Coffee;Production+Deployment+Roulette;Peak+Software+Engineering)
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&duration=2500&color=00FFB3&center=true&vCenter=true&width=900&lines=🏦+Underseas+Bank;Built+at+3AM+with+Coffee;Pr[...]
  <p align="center"> <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="280"/> </p>
 
 </div>
@@ -16,7 +16,7 @@
 ## 🎭 The Irony
 
 ### Things I Built:
-✅ Authentication | ✅ JWT Security | ✅ PostgreSQL | ✅ Redis | ✅ Money Transfers | ✅ Fixed Deposits | ✅ Credit Cards | ✅ Loan EMI Calculator | ✅ Financial Analytics | ✅ Production Deployment
+✅ Authentication | ✅ JWT Security | ✅ PostgreSQL | ✅ Redis | ✅ Money Transfers | ✅ Fixed Deposits | ✅ Credit Cards | ✅ Loan EMI Calculator | ✅ Financial Analytics | ✅ Productio[...]
 
 ### Things I Don't Have:
 
@@ -67,6 +67,130 @@ Production 🚀
 ```
 
 ![Coffee Developer](https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif)
+
+</div>
+
+---
+
+## ☢️ The "One Small Change" Incident
+
+<div align="center">
+
+### Everything was finally working.
+
+```text
+Authentication      ✅
+Database            ✅
+Deployment          ✅
+Dashboard           ✅
+Frontend            ✅
+Backend             ✅
+Sanity              ...debatable.
+```
+
+I could've deployed it.
+
+I could've celebrated.
+
+I could've closed my laptop.
+
+...
+
+But then my developer brain whispered:
+
+> **"Just one tiny change."** 🤏
+
+Worst.
+
+Idea.
+
+Ever.
+
+```text
+Tiny Change Requested ✨
+        ↓
+AI: "Understood."
+        ↓
+*Rewrites Reality*
+        ↓
+Database          💀
+Deployment        💀
+Authentication    💀
+Dashboard         ????
+```
+
+For one glorious moment...
+
+The dashboard belonged to one user...
+
+...while the navbar proudly welcomed **me**.
+
+```text
+Dashboard:
+👤 User #384
+
+Top Right:
+Welcome, Meet.
+```
+
+Even the application had no idea who was logged in.
+
+For about fifteen minutes...
+
+I genuinely believed
+
+**three months of work had just disappeared.**
+
+Then came Stage 2.
+
+```text
+Denial
+↓
+Panic
+↓
+Staring at the screen
+↓
+"There's no way..."
+↓
+Opening Git
+↓
+Aggressive debugging
+↓
+Negotiating with AI
+↓
+Fix.
+↓
+Another Fix.
+↓
+Another Another Fix.
+↓
+"It works."
+```
+
+### Lesson Learned
+
+```text
+If everything works...
+
+Don't make
+"one last tiny change."
+
+Because in software engineering,
+
+there is no such thing.
+```
+
+### Moral of the Story
+
+If it works...
+
+Close the laptop.
+
+Go outside.
+
+Drink water.
+
+Do **NOT** ask for **"one tiny change."**
 
 </div>
 
