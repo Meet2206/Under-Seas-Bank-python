@@ -159,7 +159,12 @@ def send_welcome_email(to_email: str, user_name: str):
                                             <table width="100%" cellpadding="0" cellspacing="0">
                                                 <tr>
                                                     <td width="28" style="vertical-align: top; color: #c9a24b; font-size: 15px; font-weight: 700;">01</td>
-                                                   
+                                                    <td>
+                                                        <strong style="color: #14181a; font-size: 14.5px;">Secure banking</strong>
+                                                        <p style="color: #75808a; font-size: 13.5px; margin: 4px 0 0; line-height: 1.6;">
+                                                            Your funds and data are protected with state-of-the-art encryption.
+                                                        </p>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </td>
